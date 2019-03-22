@@ -1,7 +1,9 @@
 "# WordGame" 
 "# WordGame" 
 
-# Henry note:
-- can I get some SIDs in this file please :)
-- also a changelog.txt / changelog.md file
-- you can remove this message once done
+
+Phiar Ceu Hnin
+SID: 217281975
+
+Nam Youn Kim
+SID: 217429291
