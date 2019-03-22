@@ -1,1 +1,15 @@
-Nam Youn Kim 217429291
+Week 3
+Wednesday (20/03/2019)
+	- contact each other to 
+		+ discuss which platform and IDE (Android Studio) we will be basing for our project
+		+ decide which project we will be working
+		+ decide which features and levels we will be implementing
+		+ learn how to use collaboration software, GitHub, which actually takes a huge amount of time
+		+ create a project on Visual Studio and upload it to GitHub
+
+Friday
+	+ meet in the class room and test commiting and pushing project to the GitHub
+	+ clone the project file to both students' laptop and make some changes and perform commit testing and pushing
+	+ make a task plan for week 4
+	+ discuss further detail about the project such as sharing ideas and modifications for project
+	+ 
