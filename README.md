@@ -2,8 +2,8 @@
 "# WordGame" 
 
 
-Phiar Ceu Hnin
+Name: Phiar Ceu Hnin
 SID: 217281975
 
-Nam Youn Kim
+Name: Nam Youn Kim
 SID: 217429291
