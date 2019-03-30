@@ -27,8 +27,24 @@ public class ChooseLevelActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void ToLevelTwoPage(View view) {
+        Intent intent = new Intent (this, LevelTwoActivity.class);
+        startActivity(intent);
+    }
+
+    public void ToLevelThreePage(View view) {
+        Intent intent = new Intent (this, LevelThreeActivity.class);
+        startActivity(intent);
+    }
+
     public void ClickLevelOne(View view) {
         ToLevelOnePage(view);
+    }
+    public void ClickLevelTwo(View view) {
+        ToLevelTwoPage(view);
+    }
+    public void ClickLevelThree (View view) {
+        ToLevelThreePage(view);
     }
 
 

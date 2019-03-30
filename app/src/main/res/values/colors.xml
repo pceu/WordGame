@@ -6,4 +6,5 @@
     <color name ="test">#072235</color>
     <color name="appBackgroundStart">#36D1DC</color>
     <color name="appBackgroundEnd">#5B86E5</color>
+    <color name="white">#ffff</color>
 </resources>

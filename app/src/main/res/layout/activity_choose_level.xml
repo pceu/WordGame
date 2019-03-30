@@ -26,6 +26,7 @@
 
     <Button
         android:id="@+id/levelTwoButton"
+        android:onClick="ClickLevelTwo"
         android:layout_width="161dp"
         android:layout_height="53dp"
         android:layout_marginStart="8dp"
@@ -38,6 +39,7 @@
 
     <Button
         android:id="@+id/levelThreeButton"
+        android:onClick="ClickLevelThree"
         android:layout_width="161dp"
         android:layout_height="53dp"
         android:layout_marginStart="8dp"
