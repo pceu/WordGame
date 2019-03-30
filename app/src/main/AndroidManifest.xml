@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LevelOneActivity"></activity>
+        <activity android:name=".LevelThreeActivity"></activity>
+        <activity android:name=".LevelTwoActivity" />
+        <activity android:name=".LevelOneActivity" />
         <activity android:name=".ChooseLevelActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

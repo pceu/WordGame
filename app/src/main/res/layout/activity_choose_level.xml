@@ -7,4 +7,45 @@
     android:background="@drawable/app_background"
     tools:context=".ChooseLevelActivity">
 
+
+    <Button
+        android:id="@+id/levelOneButton"
+        android:onClick="ClickLevelOne"
+        android:layout_width="161dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="172dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="53dp"
+        android:text="LEVEL 1"
+        app:layout_constraintBottom_toTopOf="@+id/levelTwoButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.178" />
+
+    <Button
+        android:id="@+id/levelTwoButton"
+        android:layout_width="161dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="64dp"
+        android:text="Level 2"
+        app:layout_constraintBottom_toTopOf="@+id/levelThreeButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/levelThreeButton"
+        android:layout_width="161dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="304dp"
+        android:text="Level 3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
