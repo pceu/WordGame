@@ -12,4 +12,26 @@ Friday
 	+ clone the project file to both students' laptop and make some changes and perform commit testing and pushing
 	+ make a task plan for week 4
 	+ discuss further detail about the project such as sharing ideas and modifications for project
-	+ 
+
+================================================ WEEK 4 =============================================================
+Wednesday
+	- research some words to be used in the game 
+	- Create question for each word – question indicates or describe the question which will help the user to get the answer.
+	- Discuss Level class structure as each member needs to be familiar when working on it
+	- Assign different tasks to each other
+
+Friday & Saturday
+	- Re-discuss about app colour and design for buttons and TextView
+	- resolve issue with GitHub and Android Studio as the project works for one and doesn't for the other (this takes a while)
+	- work on main activity - create three buttons and link level to chooseLevelActivity
+	- create activity for each level (3 levels)
+	- Create a Level class which contains question for the word, the answer and others related information about the word.
+	- Instantiate a sameple objects for Level 1
+	- Next week, both will be working on level feature again and try to make the game playable for some part by next week.
+
+
+
+
+
+
+
