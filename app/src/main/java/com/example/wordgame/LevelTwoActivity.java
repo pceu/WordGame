@@ -13,6 +13,11 @@ public class LevelTwoActivity extends AppCompatActivity {
 
     private int userQuestionNumber;     // when exit the game the question user up to will be saved for user and allow to resume for future playing
 
+    /*
+        this is a temporary method for instantiating Level objects and will extract Level data from local drive and
+        create a list of Level objects .
+        New methods/functions will be implemented in the future
+     */
     private void loadLevel2() {
         levelTwoQuestion.add(new Level(1, "When you know your mistake, you tend do this", "admit", "it", 2));
         levelTwoQuestion.add(new Level(2, "Pain cause by involuntary contraction", "Cramp", "ap", 2));
@@ -32,6 +37,10 @@ public class LevelTwoActivity extends AppCompatActivity {
 
     }
 
+    /*
+        playLevelTwo method will also call other method for playing this level
+        more comments will be added when completed with this function/method
+     */
     public void playLevelTwo() {
         for (int i = userQuestionNumber; i <= levelTwoQuestion.size(); i++) {
             // will add some codes later

@@ -1,5 +1,5 @@
-Week 3
-Wednesday (20/03/2019)
+﻿Week 3
+Wednesday (20/03/2019) [Both Nam & Ceu]
 	- contact each other to 
 		+ discuss which platform and IDE (Android Studio) we will be basing for our project
 		+ decide which project we will be working
@@ -7,7 +7,7 @@ Wednesday (20/03/2019)
 		+ learn how to use collaboration software, GitHub, which actually takes a huge amount of time
 		+ create a project on Visual Studio and upload it to GitHub
 
-Friday
+Friday [Both Ceu & Nam]
 	+ meet in the class room and test commiting and pushing project to the GitHub
 	+ clone the project file to both students' laptop and make some changes and perform commit testing and pushing
 	+ make a task plan for week 4
@@ -15,28 +15,54 @@ Friday
 
 ================================================ WEEK 4 =============================================================
 Wednesday
-	- research some words to be used in the game 
-	- Create question for each word – question indicates or describe the question which will help the user to get the answer.
-	- Discuss Level class structure as each member needs to be familiar when working on it
-	- Assign different tasks to each other
+	- research some words to be used in the game [Nam = level 1] [Ceu == level 2]
+	- Create question for each word – question indicates or describe the question which will help the user to 
+`	  get the answer. [Nam = level 1] [Ceu == level 2]
+	- Discuss Level class structure as each member needs to be familiar when working on it [Both involved]
+	- Assign different tasks to each other [Both]
 
 Friday & Saturday
-	- Re-discuss about app colour and design for buttons and TextView
-	- resolve issue with GitHub and Android Studio as the project works for one and doesn't for the other (this takes a while)
-	- work on main activity - create three buttons and link level to chooseLevelActivity
-	- create activity for each level (3 levels)
-	- Create a Level class which contains question for the word, the answer and others related information about the word.
-	- Instantiate a sameple objects for Level 1
-	- Next week, both will be working on level feature again and try to make the game playable for some part by next week.
+	- Re-discuss about app colour and design for buttons and TextView [Nam & Ceu]
+	- resolve issue with GitHub and Android Studio as the project works for one and doesn't for the other (this takes a while) [Nam]
+	- work on main activity - create three buttons and link level to chooseLevelActivity [Nam]
+	- create activity for each level (3 levels) [Ceu]
+	- Create a Level class which contains question for the word, the answer and others related information about the word. [Ceu]
+	- Instantiate a sameple objects for Level 1 [Ceu]
+	- Next week, both will be working on level feature again and try to make the game playable for some part by next week. [Nam & Ceu]
 
 Henry notes
 	- Excellent progress listed.
 	- BUT: please also say WHO did each task (at the end of the line, add [NAME]), so I can match it with attendance.php and assign correct grade allocations at end of trimester.
 
-
+================================== WEEK 5==================================================================================
 ## Week 5, Wednesday 3/April [Henry]
 - Try not to hard-code variables even now. Work with files on disk as one of the first things you do.
+	- (YES, we do have a plan for storing user data and will be studying and use one of the storing methods in android.
+	   
 - Include multi-line comments (/* */) before each function, to outline what the function does, any arguments and return types, and how to use it.
+	- (We wil sure do this and thanks for reminding).
+
+Important Note
+	- This week, we were super busy with other assignments and could not give much time on this project as there are a other assignments due in
+	  on this week as well. We are slightly falling behind than our plan; but we will be give more time next week catching up with the works.
+	  Appologies for this week progress as we could not give the time as we wanted.
+
+Monday 1/April
+	- watch and research some online resources to create buttons and others such as question board. [Ceu]
+	- create button images and question board using photoshop. [Ceu]
+Saturday 6/April
+	- create a layout for level 2 and add buttons, textViews and others necessary for the level. [Ceu]
+	- create buttons, question board and others needed for level 1 page. [Nam]
+Sunday 7/April
+	- write codes on level 2 class to iterate the Level object and adds them on the screen & modify the level 2 layout. [Ceu]
+	- create more buttons and linearlayouts for level 2 page. [Ceu]
+	- continue work on level 1 page including fixing issue with Ceu's work. [Nam]
+
+Note:   We have similiar xml file to some extent as I (Ceu) have changed and messed up with the drawable (image). Android Studio did not like the name we gave to the images
+	as the names do not keep the naming convention the android studio suggests. As a result, when Nam did the 'Pull' and try to push his work
+	on GitHub, errors stopped Nam to proceed with pushing his work. Therefore, Nam figured out and fixed the issue by combining his xml file with Ceu's work
+	on level 2.
+
 
 
 

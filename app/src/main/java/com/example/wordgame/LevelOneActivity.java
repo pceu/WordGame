@@ -8,8 +8,10 @@ import java.util.List;
 
 public class LevelOneActivity extends AppCompatActivity {
 
+    //Level object list for this level (Level 1)
     private List<Level> testQuestion = new ArrayList<Level>();
 
+    // temporary method (will delete this method or add more comments if used
     private void addLevel() {
         testQuestion.add(new Level(1, "Something that people do or cause to happen", "Act", "C", 1));
         testQuestion.add(new Level(2, "Have Some ambitious plan", "Aim", "m", 1));
