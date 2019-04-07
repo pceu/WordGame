@@ -79,9 +79,14 @@
     <LinearLayout
         android:id="@+id/answerLayout1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="75dp"
         android:layout_gravity="center"
         android:orientation="horizontal">
+        <Button
+            android:id="@+id/l2WordButton1"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
     <LinearLayout
