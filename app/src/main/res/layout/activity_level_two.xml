@@ -42,30 +42,35 @@
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:background="@drawable/no_shadow_answer_btn"
-            android:layout_marginEnd="3dp"/>
+            android:layout_marginEnd="3dp"
+            android:textSize="38sp"/>
         <Button
             android:id="@+id/l2AnswerBtn2"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:background="@drawable/no_shadow_answer_btn"
-            android:layout_marginEnd="3dp"/>
+            android:layout_marginEnd="3dp"
+            android:textSize="38sp"/>
         <Button
             android:id="@+id/l2AnswerBtn3"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:background="@drawable/no_shadow_answer_btn"
-            android:layout_marginEnd="3dp"/>
+            android:layout_marginEnd="3dp"
+            android:textSize="38sp"/>
         <Button
             android:id="@+id/l2AnswerBtn4"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:background="@drawable/no_shadow_answer_btn"
-            android:layout_marginEnd="3dp"/>
+            android:layout_marginEnd="3dp"
+            android:textSize="38sp"/>
         <Button
             android:id="@+id/l2AnswerBtn5"
             android:layout_width="75dp"
             android:layout_height="75dp"
-            android:background="@drawable/no_shadow_answer_btn" />
+            android:background="@drawable/no_shadow_answer_btn"
+            android:textSize="38sp"/>
 
 
 
@@ -78,6 +83,7 @@
         android:layout_width="wrap_content"
         android:layout_height="95dp"
         android:layout_gravity="center"
+        android:gravity="center"
         android:orientation="horizontal"
         android:layout_marginTop="100dp">
         <Button
@@ -85,24 +91,29 @@
             android:background="@drawable/word_button"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginEnd="10dp"/>
+            android:layout_marginEnd="10dp"
+            android:textSize="35sp"
+            android:text="M"/>
         <Button
             android:id="@+id/l2GivenWordBtn2"
             android:background="@drawable/word_button"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginEnd="10dp"/>
+            android:layout_marginEnd="10dp"
+            android:textSize="35sp"/>
         <Button
             android:id="@+id/l2GivenWordBtn3"
             android:background="@drawable/word_button"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginEnd="10dp"/>
+            android:layout_marginEnd="10dp"
+            android:textSize="35sp"/>
         <Button
             android:id="@+id/l2GivenWordBtn4"
             android:background="@drawable/word_button"
             android:layout_width="80dp"
-            android:layout_height="80dp" />
+            android:layout_height="80dp"
+            android:textSize="35sp"/>
 
     </LinearLayout>
 
@@ -118,24 +129,28 @@
             android:background="@drawable/word_button"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginEnd="10dp"/>
+            android:layout_marginEnd="10dp"
+            android:textSize="35sp"/>
         <Button
             android:id="@+id/l2GivenWordBtn6"
             android:background="@drawable/word_button"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginEnd="10dp"/>
+            android:layout_marginEnd="10dp"
+            android:textSize="35sp"/>
         <Button
             android:id="@+id/l2GivenWordBtn7"
             android:background="@drawable/word_button"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginEnd="10dp"/>
+            android:layout_marginEnd="10dp"
+            android:textSize="35sp"/>
         <Button
             android:id="@+id/l2GivenWordBtn8"
             android:background="@drawable/word_button"
             android:layout_width="80dp"
-            android:layout_height="80dp" />
+            android:layout_height="80dp"
+            android:textSize="35sp"/>
 
     </LinearLayout>
 </LinearLayout>
