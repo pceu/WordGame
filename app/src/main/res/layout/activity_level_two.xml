@@ -13,11 +13,12 @@
         android:layout_height="180dp"
         android:background="@drawable/question_box"
         android:orientation="vertical"
+        android:gravity="center"
         android:layout_gravity="center"
         android:layout_marginTop="60dp">
 
         <TextView
-            android:id="@+id/level2Question"
+            android:id="@+id/l2qBoard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -37,11 +38,31 @@
         android:layout_marginTop="20dp">
 
         <Button
+            android:id="@+id/l2AnswerBtn1"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:background="@drawable/no_shadow_answer_btn"
-            android:layout_marginEnd="45dp"/>
+            android:layout_marginEnd="3dp"/>
         <Button
+            android:id="@+id/l2AnswerBtn2"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="@drawable/no_shadow_answer_btn"
+            android:layout_marginEnd="3dp"/>
+        <Button
+            android:id="@+id/l2AnswerBtn3"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="@drawable/no_shadow_answer_btn"
+            android:layout_marginEnd="3dp"/>
+        <Button
+            android:id="@+id/l2AnswerBtn4"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="@drawable/no_shadow_answer_btn"
+            android:layout_marginEnd="3dp"/>
+        <Button
+            android:id="@+id/l2AnswerBtn5"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:background="@drawable/no_shadow_answer_btn" />
@@ -50,31 +71,7 @@
 
 
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
-        android:layout_marginTop="2dp">
 
-        <Button
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:background="@drawable/no_shadow_answer_btn"
-            android:layout_marginEnd="45dp"/>
-        <Button
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:background="@drawable/no_shadow_answer_btn"
-            android:layout_marginEnd="45dp"/>
-
-        <Button
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:background="@drawable/no_shadow_answer_btn" />
-
-
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/answerLayout1"
@@ -82,30 +79,30 @@
         android:layout_height="95dp"
         android:layout_gravity="center"
         android:orientation="horizontal"
-        android:layout_marginTop="70dp">
+        android:layout_marginTop="100dp">
         <Button
-            android:id="@+id/l2WordButton1"
+            android:id="@+id/l2GivenWordBtn1"
             android:background="@drawable/word_button"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginEnd="10dp"/>
         <Button
-            android:id="@+id/l2WordButton2"
+            android:id="@+id/l2GivenWordBtn2"
             android:background="@drawable/word_button"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginEnd="10dp"/>
         <Button
-            android:id="@+id/l2WordButton3"
+            android:id="@+id/l2GivenWordBtn3"
             android:background="@drawable/word_button"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginEnd="10dp"/>
         <Button
-            android:id="@+id/l2WordButton4"
+            android:id="@+id/l2GivenWordBtn4"
             android:background="@drawable/word_button"
-            android:layout_width="85dp"
-            android:layout_height="85dp" />
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
 
     </LinearLayout>
 
@@ -117,28 +114,28 @@
         android:orientation="horizontal"
         android:layout_marginTop="0dp">
         <Button
-            android:id="@+id/l2WordButton5"
+            android:id="@+id/l2GivenWordBtn5"
             android:background="@drawable/word_button"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginEnd="10dp"/>
         <Button
-            android:id="@+id/l2WordButton6"
+            android:id="@+id/l2GivenWordBtn6"
             android:background="@drawable/word_button"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginEnd="10dp"/>
         <Button
-            android:id="@+id/l2WordButton7"
+            android:id="@+id/l2GivenWordBtn7"
             android:background="@drawable/word_button"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_marginEnd="10dp"/>
         <Button
-            android:id="@+id/l2WordButton8"
+            android:id="@+id/l2GivenWordBtn8"
             android:background="@drawable/word_button"
-            android:layout_width="90dp"
-            android:layout_height="90dp" />
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
 
     </LinearLayout>
 </LinearLayout>
