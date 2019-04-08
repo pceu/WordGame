@@ -65,6 +65,10 @@ Note:   We have similiar xml file to some extent as I (Ceu) have changed and mes
 
 
 
+================================== WEEK 6 ==================================================================================
+# Monday 8/April [Henry]
+- This project is falling behind. You should be finished your primary feature by now. You need much more work to pass.
+
 
 
 
