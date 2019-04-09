@@ -62,6 +62,12 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_two);
 
+        // instantiate level 2 object - contains question num, question, answer, hint and level number
+        loadLevel2();
+
+        // the Level object at useQuestionNumber will be pass to playLevelTwo function to generate the game
+        userQuestionNumber = 0; // temporarily set as 0, but modified when User class is created and loaded here
+
         // set pressAnswerCount to zero
         pressAnsCount = 0;
         // assign buttons and textView from xml file
@@ -96,14 +102,7 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
         l2GivenWordBtn7.setOnClickListener(this);
         l2GivenWordBtn8.setOnClickListener(this);
 
-
-        // instantiate level 2 object - contains question num, question, answer, hint and level number
-        loadLevel2();
-
-        // the Level object at useQuestionNumber will be pass to playLevelTwo function to generate the game
-        userQuestionNumber = 0; // temporarily set as 0, but modified when User class is created and loaded here
-
-        // for clarity purpose, a playLevelTwo method is created and call from here
+        // for clarity purpose, a playLevelOne method is created and call from here
         playLevelTwo(levelTwoQuestion.get(userQuestionNumber));
 
     }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,16 +16,14 @@
         android:layout_marginTop="60dp">
 
         <TextView
-            android:id="@+id/level2Question"
+            android:id="@+id/l1qBoard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:textSize="30sp"
             android:layout_marginEnd="15dp"
-            android:layout_marginStart="15dp"
-            android:text="This is a test question for the level!"
-            />
+            android:layout_marginStart="15dp"/>
     </LinearLayout>
 
     <LinearLayout
@@ -37,68 +34,57 @@
         android:layout_marginTop="20dp">
 
         <Button
+            android:id="@+id/l1AnswerBtn1"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:background="@drawable/no_shadow_answer_btn"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginEnd="10dp"
+            android:textSize="38sp"/>
         <Button
+            android:id="@+id/l1AnswerBtn2"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:background="@drawable/no_shadow_answer_btn"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginEnd="10dp"
+            android:textSize="38sp"/>
         <Button
+            android:id="@+id/l1AnswerBtn3"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:background="@drawable/no_shadow_answer_btn"
-            android:layout_marginRight="10dp"/>
-        <Button
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:background="@drawable/no_shadow_answer_btn"
-            android:layout_marginRight="10dp"/>
-
-
-
-
+            android:textSize="38sp"/>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="center"
-        android:layout_marginTop="130dp">
+        android:layout_marginTop="70dp">
 
         <Button
+            android:id="@+id/l1GivenWordBtn1"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:background="@drawable/no_shadow_answer_btn"
-            android:layout_marginRight="10dp"
-            android:text="W"
-            android:textSize="30dp"/>
+            android:layout_marginEnd="10dp"
+            android:textSize="30sp"/>
         <Button
+            android:id="@+id/l1GivenWordBtn2"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:background="@drawable/no_shadow_answer_btn"
-            android:layout_marginRight="10dp"
-            android:text="W"
-            android:textSize="30dp"/>
+            android:layout_marginEnd="10dp"
+            android:textSize="30sp"/>
         <Button
+            android:id="@+id/l1GivenWordBtn3"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:background="@drawable/no_shadow_answer_btn"
-            android:layout_marginRight="10dp"
-            android:text="W"
-            android:textSize="30dp"/>
-        <Button
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:background="@drawable/no_shadow_answer_btn"
-            android:layout_marginRight="10dp"
-            android:text="W"
-            android:textSize="30dp"/>
-
-
+            android:layout_marginEnd="10dp"
+            android:textSize="30sp"/>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -107,37 +93,26 @@
         android:layout_marginTop="10dp">
 
         <Button
+            android:id="@+id/l1GivenWordBtn4"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:background="@drawable/no_shadow_answer_btn"
-            android:layout_marginRight="10dp"
-            android:text="W"
-            android:textSize="30dp"/>
+            android:layout_marginEnd="10dp"
+            android:textSize="30sp"/>
         <Button
+            android:id="@+id/l1GivenWordBtn5"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:background="@drawable/no_shadow_answer_btn"
-            android:layout_marginRight="10dp"
-            android:text="W"
-            android:textSize="30dp"/>
+            android:layout_marginEnd="10dp"
+            android:textSize="30sp"/>
         <Button
+            android:id="@+id/l1GivenWordBtn6"
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:background="@drawable/no_shadow_answer_btn"
-            android:layout_marginRight="10dp"
-            android:text="W"
-            android:textSize="30dp"/>
-        <Button
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:background="@drawable/no_shadow_answer_btn"
-            android:layout_marginRight="10dp"
-            android:text="W"
-            android:textSize="30dp"/>
-
-
+            android:layout_marginEnd="10dp"
+            android:textSize="30sp"/>
     </LinearLayout>
-
-
 
 </LinearLayout>
