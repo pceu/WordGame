@@ -4,11 +4,17 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,16 +45,6 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
     Button l2GivenWordBtn1, l2GivenWordBtn2, l2GivenWordBtn3, l2GivenWordBtn4,
             l2GivenWordBtn5, l2GivenWordBtn6, l2GivenWordBtn7, l2GivenWordBtn8;
     //----------------------------------------------------------------------------------------------
-    /*
-        this is a temporary method for instantiating Level objects and will extract Level data from local drive and
-        create a list of Level objects .
-        New methods/functions will be implemented in the future
-     */
-    private void loadLevel2() {
-        levelTwoQuestion.add(new Level(1, "When you know your mistake, you tend do this", "admit", "it", 2, "TDMAESIO"));
-        levelTwoQuestion.add(new Level(2, "Pain cause by involuntary contraction", "Cramp", "ap", 2, "MCALPAGR"));
-        levelTwoQuestion.add(new Level(2, "To ___ something on the surface", "apply", "py", 2, "EUPAYJLP"));
-    }
 
     /*
         The onCreate function
@@ -62,8 +58,9 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_two);
 
-        // instantiate level 2 object - contains question num, question, answer, hint and level number
-        loadLevel2();
+        // read level Two data from csv file (stored in raw directory) and instantiate Level object
+        // add the Level object created from the file to levelTwoQuestion list
+        readLevelTwoData();
 
         // the Level object at useQuestionNumber will be pass to playLevelTwo function to generate the game
         userQuestionNumber = 0; // temporarily set as 0, but modified when User class is created and loaded here
@@ -105,6 +102,42 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
         // for clarity purpose, a playLevelOne method is created and call from here
         playLevelTwo(levelTwoQuestion.get(userQuestionNumber));
 
+    }
+
+    /*
+        readLevelTwoData
+        Create an input stream to read files stored in this project
+        create a bufferedReader for the input stream
+        split the line in the csv file using comma as a token
+        store each token at value (0..5) in a temp variable which will then be used to create a Level Object
+        add the newly created Level object in a list (userLevelQuestion)
+        learned from Android Developer website and this (https://www.youtube.com/watch?v=i-TqNzUryn8)
+     */
+    public void readLevelTwoData() {
+        InputStream myInputStream = getResources().openRawResource(R.raw.level_two_data);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(myInputStream, Charset.forName("UTF-8")));
+
+        String textLine = "";
+        try {
+            while ((textLine = bufferedReader.readLine()) != null) {
+                String[] tokens = textLine.split(",");
+
+                // Read the data and create a Level object, then add them in levelOneQuestion list
+                // first store the data in a temp variable first
+                int questionNumber = Integer.parseInt(tokens[0]);
+                String question = tokens[1];
+                String answer = tokens[2];
+                String hint = tokens[3];
+                int levelNumber = Integer.parseInt(tokens[4]);
+                String givenWord = tokens[5];
+                //create a new Level object by passing the above variables in its constructor
+                // add the new object to levelTwoQuestion list
+                levelTwoQuestion.add(new Level(questionNumber, question, answer, hint, levelNumber, givenWord));
+            }
+        } catch (IOException e) {
+            Log.wtf("Level Two Activity", "Error occur while reading on line" + textLine, e);
+            e.printStackTrace();
+        }
     }
 
     /*
