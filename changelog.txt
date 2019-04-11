@@ -69,6 +69,10 @@ Note:   We have similiar xml file to some extent as I (Ceu) have changed and mes
 # Monday 8/April [Henry]
 - This project is falling behind. You should be finished your primary feature by now. You need much more work to pass.
 
+# Thursday 11/April [Henry]
+- Good to see code comments improve.
+- This file MUST BE UPDATED every day (every work session), per person, to tell the other person what was changed. Otherwise we don't have a summary (me or your teammate) of what you changed.
+
 
 
 
