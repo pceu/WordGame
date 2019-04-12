@@ -83,7 +83,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="120dp">
         <Button
             android:id="@+id/l2GivenWordBtn1"
             android:background="@drawable/word_button"

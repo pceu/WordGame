@@ -249,6 +249,11 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    /*
+        # accept a button as a parameter
+        # compares the text from the given button with every word buttons; and put back (make appear and clickable) the button which has the same letter with the input button text
+        # the input button is the answer button clicked by the user
+     */
     public void putBackWordButton(Button answerButton) {
         String answerButtonText = String.valueOf(answerButton.getText());
         if(answerButtonText.equalsIgnoreCase(String.valueOf(l1GivenWordBtn1.getText()))) {

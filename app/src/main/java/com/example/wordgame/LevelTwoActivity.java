@@ -99,6 +99,14 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
         l2GivenWordBtn7.setOnClickListener(this);
         l2GivenWordBtn8.setOnClickListener(this);
 
+        // assign all answerWord buttons to onClick method created for this view
+        // creating a method for each button will be a messy codes; thus, share all buttons in one method
+        l2AnswerBtn1.setOnClickListener(this);
+        l2AnswerBtn2.setOnClickListener(this);
+        l2AnswerBtn3.setOnClickListener(this);
+        l2AnswerBtn4.setOnClickListener(this);
+        l2AnswerBtn5.setOnClickListener(this);
+
         // for clarity purpose, a playLevelOne method is created and call from here
         playLevelTwo(levelTwoQuestion.get(userQuestionNumber));
 
@@ -178,8 +186,7 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.l2GivenWordBtn1:
-                l2GivenWordBtn1.animate().alpha(0).setDuration(50);
-                l2GivenWordBtn1.setClickable(false);
+                disappearButton(l2GivenWordBtn1);
                 pressAnsCount++;
                 setAnswer(String.valueOf(l2GivenWordBtn1.getText()));
                 if (pressAnsCount == 5) {
@@ -187,8 +194,7 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
                 }
                 break;
             case R.id.l2GivenWordBtn2:
-                l2GivenWordBtn2.animate().alpha(0).setDuration(50);
-                l2GivenWordBtn2.setClickable(false);
+                disappearButton(l2GivenWordBtn2);
                 pressAnsCount++;
                 setAnswer(String.valueOf(l2GivenWordBtn2.getText()));
                 if (pressAnsCount == 5) {
@@ -196,8 +202,7 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
                 }
                 break;
             case R.id.l2GivenWordBtn3:
-                l2GivenWordBtn3.animate().alpha(0).setDuration(50);
-                l2GivenWordBtn3.setClickable(false);
+                disappearButton(l2GivenWordBtn3);
                 pressAnsCount++;
                 setAnswer(String.valueOf(l2GivenWordBtn3.getText()));
                 if (pressAnsCount == 5) {
@@ -205,8 +210,7 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
                 }
                 break;
             case R.id.l2GivenWordBtn4:
-                l2GivenWordBtn4.animate().alpha(0).setDuration(50);
-                l2GivenWordBtn4.setClickable(false);
+                disappearButton(l2GivenWordBtn4);
                 pressAnsCount++;
                 setAnswer(String.valueOf(l2GivenWordBtn4.getText()));
                 if (pressAnsCount == 5) {
@@ -214,8 +218,7 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
                 }
                 break;
             case R.id.l2GivenWordBtn5:
-                l2GivenWordBtn5.animate().alpha(0).setDuration(50);
-                l2GivenWordBtn5.setClickable(false);
+                disappearButton(l2GivenWordBtn5);
                 pressAnsCount++;
                 setAnswer(String.valueOf(l2GivenWordBtn5.getText()));
                 if (pressAnsCount == 5) {
@@ -223,8 +226,7 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
                 }
                  break;
             case R.id.l2GivenWordBtn6:
-                l2GivenWordBtn6.animate().alpha(0).setDuration(50);
-                l2GivenWordBtn6.setClickable(false);
+                disappearButton(l2GivenWordBtn6);
                 pressAnsCount++;
                 setAnswer(String.valueOf(l2GivenWordBtn6.getText()));
                 if (pressAnsCount == 5) {
@@ -232,8 +234,7 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
                 }
                 break;
             case R.id.l2GivenWordBtn7:
-                l2GivenWordBtn7.animate().alpha(0).setDuration(50);
-                l2GivenWordBtn7.setClickable(false);
+                disappearButton(l2GivenWordBtn7);
                 pressAnsCount++;
                 setAnswer(String.valueOf(l2GivenWordBtn7.getText()));
                 if (pressAnsCount == 5) {
@@ -241,12 +242,56 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
                 }
                 break;
             case R.id.l2GivenWordBtn8:
-                l2GivenWordBtn8.animate().alpha(0).setDuration(50);
-                l2GivenWordBtn8.setClickable(false);
+                disappearButton(l2GivenWordBtn8);
                 pressAnsCount++;
                 setAnswer(String.valueOf(l2GivenWordBtn8.getText()));
                 if (pressAnsCount == 5) {
                     validateAnswer(levelTwoQuestion.get(userQuestionNumber));
+                }
+                break;
+            case R.id.l2AnswerBtn1:
+                if (!setAnswerBtn1) {return; }
+                else {
+                    putBackWordButton(l2AnswerBtn1);
+                    l2AnswerBtn1.setText("");
+                    setAnswerBtn1 = false;
+                    pressAnsCount--;
+                }
+                break;
+            case R.id.l2AnswerBtn2:
+                if (!setAnswerBtn2) {return; }
+                else {
+                    putBackWordButton(l2AnswerBtn2);
+                    l2AnswerBtn2.setText("");
+                    setAnswerBtn2 = false;
+                    pressAnsCount--;
+                }
+                break;
+            case R.id.l2AnswerBtn3:
+                if (!setAnswerBtn3) {return; }
+                else {
+                    putBackWordButton(l2AnswerBtn3);
+                    l2AnswerBtn3.setText("");
+                    setAnswerBtn3 = false;
+                    pressAnsCount--;
+                }
+                break;
+            case R.id.l2AnswerBtn4:
+                if (!setAnswerBtn4) {return; }
+                else {
+                    putBackWordButton(l2AnswerBtn4);
+                    l2AnswerBtn4.setText("");
+                    setAnswerBtn4 = false;
+                    pressAnsCount--;
+                }
+                break;
+            case R.id.l2AnswerBtn5:
+                if (!setAnswerBtn5) {return; }
+                else {
+                    putBackWordButton(l2AnswerBtn5);
+                    l2AnswerBtn5.setText("");
+                    setAnswerBtn5 = false;
+                    pressAnsCount--;
                 }
                 break;
         }
@@ -329,22 +374,14 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
      */
     public void resetButtons() {
         // make re-appear wordButtons
-        l2GivenWordBtn1.animate().alpha(255).setDuration(50);
-        l2GivenWordBtn1.setClickable(true);
-        l2GivenWordBtn2.animate().alpha(255).setDuration(50);
-        l2GivenWordBtn2.setClickable(true);
-        l2GivenWordBtn3.animate().alpha(255).setDuration(50);
-        l2GivenWordBtn3.setClickable(true);
-        l2GivenWordBtn4.animate().alpha(255).setDuration(50);
-        l2GivenWordBtn4.setClickable(true);
-        l2GivenWordBtn5.animate().alpha(255).setDuration(50);
-        l2GivenWordBtn5.setClickable(true);
-        l2GivenWordBtn6.animate().alpha(255).setDuration(50);
-        l2GivenWordBtn6.setClickable(true);
-        l2GivenWordBtn7.animate().alpha(255).setDuration(50);
-        l2GivenWordBtn7.setClickable(true);
-        l2GivenWordBtn8.animate().alpha(255).setDuration(50);
-        l2GivenWordBtn8.setClickable(true);
+        reappearButton(l2GivenWordBtn1);
+        reappearButton(l2GivenWordBtn2);
+        reappearButton(l2GivenWordBtn3);
+        reappearButton(l2GivenWordBtn4);
+        reappearButton(l2GivenWordBtn5);
+        reappearButton(l2GivenWordBtn6);
+        reappearButton(l2GivenWordBtn7);
+        reappearButton(l2GivenWordBtn8);
 
         // set to false for setAnswers buttons as we need this value to check if the answerButton is filled with letter
         setAnswerBtn1 = false;
@@ -359,5 +396,62 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
         l2AnswerBtn3.setText("");
         l2AnswerBtn4.setText("");
         l2AnswerBtn5.setText("");
+    }
+
+    /*
+        # accept a button as a parameter
+        # compares the text from the given button with every word buttons; and put back (make appear and clickable) the button which has the same letter with the input button text
+        # the input button is the answer button clicked by the user
+     */
+    public void putBackWordButton(Button answerButton) {
+        String answerButtonText = String.valueOf(answerButton.getText());
+        if(answerButtonText.equalsIgnoreCase(String.valueOf(l2GivenWordBtn1.getText())) && !l2GivenWordBtn1.isClickable()) {
+            reappearButton(l2GivenWordBtn1);
+            return;
+        }
+        if(answerButtonText.equalsIgnoreCase(String.valueOf(l2GivenWordBtn2.getText())) && !l2GivenWordBtn2.isClickable()) {
+            answerButton.setText("");
+            reappearButton(l2GivenWordBtn2);
+            return;
+        }
+        if(answerButtonText.equalsIgnoreCase(String.valueOf(l2GivenWordBtn3.getText())) && !l2GivenWordBtn3.isClickable()) {
+            reappearButton(l2GivenWordBtn3);
+            return;
+        }
+        if(answerButtonText.equalsIgnoreCase(String.valueOf(l2GivenWordBtn4.getText())) && !l2GivenWordBtn4.isClickable()) {
+            reappearButton(l2GivenWordBtn4);
+            return;
+        }
+        if(answerButtonText.equalsIgnoreCase(String.valueOf(l2GivenWordBtn5.getText())) && !l2GivenWordBtn5.isClickable()) {
+            reappearButton(l2GivenWordBtn5);
+            return;
+        }
+        if(answerButtonText.equalsIgnoreCase(String.valueOf(l2GivenWordBtn6.getText())) && !l2GivenWordBtn6.isClickable()) {
+            reappearButton(l2GivenWordBtn6);
+            return;
+        }
+        if(answerButtonText.equalsIgnoreCase(String.valueOf(l2GivenWordBtn7.getText())) && !l2GivenWordBtn7.isClickable()) {
+            reappearButton(l2GivenWordBtn7);
+            return;
+        }
+        if(answerButtonText.equalsIgnoreCase(String.valueOf(l2GivenWordBtn8.getText())) && !l2GivenWordBtn8.isClickable()) {
+            reappearButton(l2GivenWordBtn8);
+        }
+    }
+
+    /*
+        this function set the alpha to full value and set button clickable to true
+     */
+    public void reappearButton(Button button) {
+        button.animate().alpha(255).setDuration(50);
+        button.setClickable(true);
+    }
+
+    /*
+        set alpha value of a given button to zero and set false for setClickable
+     */
+    public  void disappearButton(Button button) {
+        button.animate().alpha(0).setDuration(50);
+        button.setClickable(false);
     }
 }

@@ -114,6 +114,15 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
         l3GivenWordBtn11.setOnClickListener(this);
         l3GivenWordBtn12.setOnClickListener(this);
 
+        // assign all answerButtons to onclick method created for this view
+        l3AnswerBtn1.setOnClickListener(this);
+        l3AnswerBtn2.setOnClickListener(this);
+        l3AnswerBtn3.setOnClickListener(this);
+        l3AnswerBtn4.setOnClickListener(this);
+        l3AnswerBtn5.setOnClickListener(this);
+        l3AnswerBtn6.setOnClickListener(this);
+        l3AnswerBtn7.setOnClickListener(this);
+
         // for clarity purpose, a playLevelThree method is created and call from here
         playLevelThree(levelThreeQuestion.get(userQuestionNumber));
     }
@@ -196,8 +205,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.l3GivenWordBtn1:
-                l3GivenWordBtn1.animate().alpha(0).setDuration(50);
-                l3GivenWordBtn1.setClickable(false);
+                disappearButton(l3GivenWordBtn1);
                 pressAnsCount++;
                 setAnswer(String.valueOf(l3GivenWordBtn1.getText()));
                 if (pressAnsCount == 7) {
@@ -205,8 +213,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
             case R.id.l3GivenWordBtn2:
-                l3GivenWordBtn2.animate().alpha(0).setDuration(50);
-                l3GivenWordBtn2.setClickable(false);
+                disappearButton(l3GivenWordBtn2);
                 pressAnsCount++;
                 setAnswer(String.valueOf(l3GivenWordBtn2.getText()));
                 if (pressAnsCount == 7) {
@@ -214,8 +221,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
             case R.id.l3GivenWordBtn3:
-                l3GivenWordBtn3.animate().alpha(0).setDuration(50);
-                l3GivenWordBtn3.setClickable(false);
+                disappearButton(l3GivenWordBtn3);
                 pressAnsCount++;
                 setAnswer(String.valueOf(l3GivenWordBtn3.getText()));
                 if (pressAnsCount == 7) {
@@ -223,8 +229,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
             case R.id.l3GivenWordBtn4:
-                l3GivenWordBtn4.animate().alpha(0).setDuration(50);
-                l3GivenWordBtn4.setClickable(false);
+                disappearButton(l3GivenWordBtn4);
                 pressAnsCount++;
                 setAnswer(String.valueOf(l3GivenWordBtn4.getText()));
                 if (pressAnsCount == 7) {
@@ -232,8 +237,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
             case R.id.l3GivenWordBtn5:
-                l3GivenWordBtn5.animate().alpha(0).setDuration(50);
-                l3GivenWordBtn5.setClickable(false);
+                disappearButton(l3GivenWordBtn5);
                 pressAnsCount++;
                 setAnswer(String.valueOf(l3GivenWordBtn5.getText()));
                 if (pressAnsCount == 7) {
@@ -241,8 +245,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
             case R.id.l3GivenWordBtn6:
-                l3GivenWordBtn6.animate().alpha(0).setDuration(50);
-                l3GivenWordBtn6.setClickable(false);
+                disappearButton(l3GivenWordBtn6);
                 pressAnsCount++;
                 setAnswer(String.valueOf(l3GivenWordBtn6.getText()));
                 if (pressAnsCount == 7) {
@@ -250,8 +253,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
             case R.id.l3GivenWordBtn7:
-                l3GivenWordBtn7.animate().alpha(0).setDuration(50);
-                l3GivenWordBtn7.setClickable(false);
+                disappearButton(l3GivenWordBtn7);
                 pressAnsCount++;
                 setAnswer(String.valueOf(l3GivenWordBtn7.getText()));
                 if (pressAnsCount == 7) {
@@ -259,8 +261,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
             case R.id.l3GivenWordBtn8:
-                l3GivenWordBtn8.animate().alpha(0).setDuration(50);
-                l3GivenWordBtn8.setClickable(false);
+                disappearButton(l3GivenWordBtn8);
                 pressAnsCount++;
                 setAnswer(String.valueOf(l3GivenWordBtn8.getText()));
                 if (pressAnsCount == 7) {
@@ -268,8 +269,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
             case R.id.l3GivenWordBtn9:
-                l3GivenWordBtn9.animate().alpha(0).setDuration(50);
-                l3GivenWordBtn9.setClickable(false);
+                disappearButton(l3GivenWordBtn9);
                 pressAnsCount++;
                 setAnswer(String.valueOf(l3GivenWordBtn9.getText()));
                 if (pressAnsCount == 7) {
@@ -277,8 +277,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
             case R.id.l3GivenWordBtn10:
-                l3GivenWordBtn10.animate().alpha(0).setDuration(50);
-                l3GivenWordBtn10.setClickable(false);
+                disappearButton(l3GivenWordBtn10);
                 pressAnsCount++;
                 setAnswer(String.valueOf(l3GivenWordBtn10.getText()));
                 if (pressAnsCount == 7) {
@@ -286,8 +285,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
             case R.id.l3GivenWordBtn11:
-                l3GivenWordBtn11.animate().alpha(0).setDuration(50);
-                l3GivenWordBtn11.setClickable(false);
+                disappearButton(l3GivenWordBtn11);
                 pressAnsCount++;
                 setAnswer(String.valueOf(l3GivenWordBtn11.getText()));
                 if (pressAnsCount == 7) {
@@ -295,12 +293,74 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
             case R.id.l3GivenWordBtn12:
-                l3GivenWordBtn12.animate().alpha(0).setDuration(50);
-                l3GivenWordBtn12.setClickable(false);
+                disappearButton(l3GivenWordBtn12);
                 pressAnsCount++;
                 setAnswer(String.valueOf(l3GivenWordBtn12.getText()));
                 if (pressAnsCount == 7) {
                     validateAnswer(levelThreeQuestion.get(userQuestionNumber));
+                }
+                break;
+            case R.id.l3AnswerBtn1:
+                if (!setAnswerBtn1) {return; }
+                else {
+                    putBackWordButton(l3AnswerBtn1);
+                    l3AnswerBtn1.setText("");
+                    setAnswerBtn1 = false;
+                    pressAnsCount--;
+                }
+                break;
+            case R.id.l3AnswerBtn2:
+                if (!setAnswerBtn2) {return; }
+                else {
+                    putBackWordButton(l3AnswerBtn2);
+                    l3AnswerBtn2.setText("");
+                    setAnswerBtn2 = false;
+                    pressAnsCount--;
+                }
+                break;
+            case R.id.l3AnswerBtn3:
+                if (!setAnswerBtn3) {return; }
+                else {
+                    putBackWordButton(l3AnswerBtn3);
+                    l3AnswerBtn3.setText("");
+                    setAnswerBtn3 = false;
+                    pressAnsCount--;
+                }
+                break;
+            case R.id.l3AnswerBtn4:
+                if (!setAnswerBtn4) {return; }
+                else {
+                    putBackWordButton(l3AnswerBtn4);
+                    l3AnswerBtn4.setText("");
+                    setAnswerBtn4 = false;
+                    pressAnsCount--;
+                }
+                break;
+            case R.id.l3AnswerBtn5:
+                if (!setAnswerBtn5) {return; }
+                else {
+                    putBackWordButton(l3AnswerBtn5);
+                    l3AnswerBtn5.setText("");
+                    setAnswerBtn5 = false;
+                    pressAnsCount--;
+                }
+                break;
+            case R.id.l3AnswerBtn6:
+                if (!setAnswerBtn6) {return; }
+                else {
+                    putBackWordButton(l3AnswerBtn6);
+                    l3AnswerBtn6.setText("");
+                    setAnswerBtn6 = false;
+                    pressAnsCount--;
+                }
+                break;
+            case R.id.l3AnswerBtn7:
+                if (!setAnswerBtn7) {return; }
+                else {
+                    putBackWordButton(l3AnswerBtn7);
+                    l3AnswerBtn7.setText("");
+                    setAnswerBtn7 = false;
+                    pressAnsCount--;
                 }
                 break;
         }
@@ -393,30 +453,18 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
  */
     public void resetButtons() {
         // make re-appear wordButtons
-        l3GivenWordBtn1.animate().alpha(255).setDuration(50);
-        l3GivenWordBtn1.setClickable(true);
-        l3GivenWordBtn2.animate().alpha(255).setDuration(50);
-        l3GivenWordBtn2.setClickable(true);
-        l3GivenWordBtn3.animate().alpha(255).setDuration(50);
-        l3GivenWordBtn3.setClickable(true);
-        l3GivenWordBtn4.animate().alpha(255).setDuration(50);
-        l3GivenWordBtn4.setClickable(true);
-        l3GivenWordBtn5.animate().alpha(255).setDuration(50);
-        l3GivenWordBtn5.setClickable(true);
-        l3GivenWordBtn6.animate().alpha(255).setDuration(50);
-        l3GivenWordBtn6.setClickable(true);
-        l3GivenWordBtn7.animate().alpha(255).setDuration(50);
-        l3GivenWordBtn7.setClickable(true);
-        l3GivenWordBtn8.animate().alpha(255).setDuration(50);
-        l3GivenWordBtn8.setClickable(true);
-        l3GivenWordBtn9.animate().alpha(255).setDuration(50);
-        l3GivenWordBtn9.setClickable(true);
-        l3GivenWordBtn10.animate().alpha(255).setDuration(50);
-        l3GivenWordBtn10.setClickable(true);
-        l3GivenWordBtn11.animate().alpha(255).setDuration(50);
-        l3GivenWordBtn11.setClickable(true);
-        l3GivenWordBtn12.animate().alpha(255).setDuration(50);
-        l3GivenWordBtn12.setClickable(true);
+        reappearButton(l3GivenWordBtn1);
+        reappearButton(l3GivenWordBtn2);
+        reappearButton(l3GivenWordBtn3);
+        reappearButton(l3GivenWordBtn4);
+        reappearButton(l3GivenWordBtn5);
+        reappearButton(l3GivenWordBtn6);
+        reappearButton(l3GivenWordBtn7);
+        reappearButton(l3GivenWordBtn8);
+        reappearButton(l3GivenWordBtn9);
+        reappearButton(l3GivenWordBtn10);
+        reappearButton(l3GivenWordBtn11);
+        reappearButton(l3GivenWordBtn12);
 
         // set to false for setAnswers buttons as we need this value to check if the answerButton is filled with letter
         setAnswerBtn1 = false;
@@ -437,5 +485,77 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
         l3AnswerBtn7.setText("");
     }
 
+    /*
+        # accept a button as a parameter
+        # compares the text from the given button with every word buttons; and put back (make appear and clickable) the button which has the same letter with the input button text
+        # the input button is the answer button clicked by the user
+     */
+    public void putBackWordButton(Button answerButton) {
+        String answerButtonText = String.valueOf(answerButton.getText());
+        if(answerButtonText.equalsIgnoreCase(String.valueOf(l3GivenWordBtn1.getText())) && !l3GivenWordBtn1.isClickable()) {
+            reappearButton(l3GivenWordBtn1);
+            return;
+        }
+        if(answerButtonText.equalsIgnoreCase(String.valueOf(l3GivenWordBtn2.getText())) && !l3GivenWordBtn2.isClickable()) {
+            answerButton.setText("");
+            reappearButton(l3GivenWordBtn2);
+            return;
+        }
+        if(answerButtonText.equalsIgnoreCase(String.valueOf(l3GivenWordBtn3.getText())) && !l3GivenWordBtn3.isClickable()) {
+            reappearButton(l3GivenWordBtn3);
+            return;
+        }
+        if(answerButtonText.equalsIgnoreCase(String.valueOf(l3GivenWordBtn4.getText())) && !l3GivenWordBtn4.isClickable()) {
+            reappearButton(l3GivenWordBtn4);
+            return;
+        }
+        if(answerButtonText.equalsIgnoreCase(String.valueOf(l3GivenWordBtn5.getText())) && !l3GivenWordBtn5.isClickable()) {
+            reappearButton(l3GivenWordBtn5);
+            return;
+        }
+        if(answerButtonText.equalsIgnoreCase(String.valueOf(l3GivenWordBtn6.getText())) && !l3GivenWordBtn6.isClickable()) {
+            reappearButton(l3GivenWordBtn6);
+            return;
+        }
+        if(answerButtonText.equalsIgnoreCase(String.valueOf(l3GivenWordBtn7.getText())) && !l3GivenWordBtn7.isClickable()) {
+            reappearButton(l3GivenWordBtn7);
+            return;
+        }
+        if(answerButtonText.equalsIgnoreCase(String.valueOf(l3GivenWordBtn8.getText())) && !l3GivenWordBtn8.isClickable()) {
+            reappearButton(l3GivenWordBtn8);
+            return;
+        }
+        if(answerButtonText.equalsIgnoreCase(String.valueOf(l3GivenWordBtn9.getText())) && !l3GivenWordBtn9.isClickable()) {
+            reappearButton(l3GivenWordBtn9);
+            return;
+        }
+        if(answerButtonText.equalsIgnoreCase(String.valueOf(l3GivenWordBtn10.getText())) && !l3GivenWordBtn10.isClickable()) {
+            reappearButton(l3GivenWordBtn10);
+            return;
+        }
+        if(answerButtonText.equalsIgnoreCase(String.valueOf(l3GivenWordBtn11.getText())) && !l3GivenWordBtn11.isClickable()) {
+            reappearButton(l3GivenWordBtn11);
+            return;
+        }
+        if(answerButtonText.equalsIgnoreCase(String.valueOf(l3GivenWordBtn12.getText())) && !l3GivenWordBtn12.isClickable()) {
+            reappearButton(l3GivenWordBtn12);
+        }
+    }
+
+    /*
+        this function set the alpha to full value and set button clickable to true
+     */
+    public void reappearButton(Button button) {
+        button.animate().alpha(255).setDuration(50);
+        button.setClickable(true);
+    }
+
+    /*
+        set alpha value of a given button to zero and set false for setClickable
+     */
+    public  void disappearButton(Button button) {
+        button.animate().alpha(0).setDuration(50);
+        button.setClickable(false);
+    }
 
 }
