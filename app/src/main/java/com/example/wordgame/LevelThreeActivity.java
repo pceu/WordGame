@@ -1,6 +1,7 @@
 package com.example.wordgame;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,8 +20,6 @@ import java.util.List;
 
 public class LevelThreeActivity extends AppCompatActivity implements View.OnClickListener {
 
-    // load the font for text in this level
-    //Typeface customFont = Typeface.createFromAsset(getAssets(), "assets/fonts/felaFromAssets.otf");
 
     // Level object list for this level (Level 3) - contains multiple questions to play for the level
     private List<Level> levelThreeQuestion = new ArrayList<>();
@@ -82,8 +81,13 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
         setAnswerBtn1 = false; setAnswerBtn2 = false; setAnswerBtn3 = false;
         setAnswerBtn4 = false; setAnswerBtn5 = false; setAnswerBtn6 = false; setAnswerBtn7 = false;
 
+        // load the font for text in this level
+        Typeface customFont = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/felaFromAssets.otf");
+
+
         // assign buttons for givenWord buttons
         l3GivenWordBtn1 = findViewById(R.id.l3GivenWordBtn1);
+        l3GivenWordBtn1.setTypeface(customFont);
         l3GivenWordBtn2 = findViewById(R.id.l3GivenWordBtn2);
         l3GivenWordBtn3 = findViewById(R.id.l3GivenWordBtn3);
         l3GivenWordBtn4 = findViewById(R.id.l3GivenWordBtn4);
