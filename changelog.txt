@@ -73,6 +73,35 @@ Note:   We have similiar xml file to some extent as I (Ceu) have changed and mes
 - Good to see code comments improve.
 - This file MUST BE UPDATED every day (every work session), per person, to tell the other person what was changed. Otherwise we don't have a summary (me or your teammate) of what you changed.
 
+# Monday 8/April
+- assign Level object attributes to appropriate buttons and textView on the screen [Ceu]
+- Update level 2 layout [Ceu]
+
+# Tuesday 9/April
+- update level 2 (nearly completed level to make the level playable) [Ceu]
+	- program to transfer letters in Level Object to word buttons on the screen. [Ceu]
+	- program to compare user selected letters with answer stored in Level class. [Ceu]
+- complete level 2 (implement level feature) [Ceu]
+
+# Wednesday 10/April
+- completed level feature for all level 1, 2 and 3. [Ceu]
+- meet with group partner and split tasks for this week [Ceu] [Nam]
+- Nam is assigned to 'Coin' feature; and Ceu is assigned to 'Hint' feature
+
+# Thursday 11/April
+- created and added three csv files for level 1, 2 and 3 into the project [Ceu]
+- implement a function for each level to read a csv file, create objects and add them in a Level list stored in each class. [Ceu]
+
+# Friday 12/April
+- solved loading typeface issue in the project. [Ceu]
+- create hint button using photoshop [Ceu]
+
+# Saturday 13/April
+- implemented erase answer feature for level 2 and 3. [Ceu]
+- implemented hint feature (for all levels) [Ceu]
+- update changelog.txt for this week [Ceu]
+
+
 
 
 
