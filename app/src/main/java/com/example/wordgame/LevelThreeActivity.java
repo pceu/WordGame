@@ -25,7 +25,12 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
     private List<Level> levelThreeQuestion = new ArrayList<>();
 
     private int userQuestionNumber;     // when exit the game the question user up to will be saved for user and allow to resume for future playing
-    private int pressAnsCount;
+    private int clickWordBtnCount;
+
+    private int hintClickCount;     // stored how many hint button is clicked for a given question
+    private static final int maxHintGiven = 3;  // the number user can click the hint button in a question
+    // hint button
+    Button l3HintButton;
 
     TextView l3qBoard;
 
@@ -64,8 +69,17 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
         // the Level object at useQuestionNumber will be pass to playLevelThree function to generate the game
         userQuestionNumber = 0; // temporarily set as 0, but modified when User class is created and loaded here
 
+        //==================== Hint section================
+        hintClickCount = 0;
+        // assign hint button to the hint button created in xml layout
+        // assign the button to the onClick method for this view
+        l3HintButton = findViewById(R.id.l3HintButton);
+        l3HintButton.setOnClickListener(this);
+
+        //-------------------------------------------------------------------
+
         // set pressAnswerCount to zero
-        pressAnsCount = 0;
+        clickWordBtnCount = 0;
         // assign buttons and textView from xml file
         l3qBoard = findViewById(R.id.l3qBoard);
 
@@ -197,8 +211,8 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
         - switch statement is used to track which button is clicked
         - make the clicked button to disappear and set clickable to false
         - set the clicked button value to the unassigned answerButton
-        - each time a button is pressed/clicked, pressAnsCount is increment to decide whether user has filled all answer buttons
-        - Once it gets to 7 for pressAnsCount, call validateAnswer() which will validate the answer and pass appropriate object
+        - each time a button is pressed/clicked, clickWordBtnCount is increment to decide whether user has filled all answer buttons
+        - Once it gets to 7 for clickWordBtnCount, call validateAnswer() which will validate the answer and pass appropriate object
           depending on user getting the answer right or wrong
      */
     @Override
@@ -206,97 +220,97 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
         switch (view.getId()) {
             case R.id.l3GivenWordBtn1:
                 disappearButton(l3GivenWordBtn1);
-                pressAnsCount++;
+                clickWordBtnCount++;
                 setAnswer(String.valueOf(l3GivenWordBtn1.getText()));
-                if (pressAnsCount == 7) {
+                if (clickWordBtnCount == 7) {
                     validateAnswer(levelThreeQuestion.get(userQuestionNumber));
                 }
                 break;
             case R.id.l3GivenWordBtn2:
                 disappearButton(l3GivenWordBtn2);
-                pressAnsCount++;
+                clickWordBtnCount++;
                 setAnswer(String.valueOf(l3GivenWordBtn2.getText()));
-                if (pressAnsCount == 7) {
+                if (clickWordBtnCount == 7) {
                     validateAnswer(levelThreeQuestion.get(userQuestionNumber));
                 }
                 break;
             case R.id.l3GivenWordBtn3:
                 disappearButton(l3GivenWordBtn3);
-                pressAnsCount++;
+                clickWordBtnCount++;
                 setAnswer(String.valueOf(l3GivenWordBtn3.getText()));
-                if (pressAnsCount == 7) {
+                if (clickWordBtnCount == 7) {
                     validateAnswer(levelThreeQuestion.get(userQuestionNumber));
                 }
                 break;
             case R.id.l3GivenWordBtn4:
                 disappearButton(l3GivenWordBtn4);
-                pressAnsCount++;
+                clickWordBtnCount++;
                 setAnswer(String.valueOf(l3GivenWordBtn4.getText()));
-                if (pressAnsCount == 7) {
+                if (clickWordBtnCount == 7) {
                     validateAnswer(levelThreeQuestion.get(userQuestionNumber));
                 }
                 break;
             case R.id.l3GivenWordBtn5:
                 disappearButton(l3GivenWordBtn5);
-                pressAnsCount++;
+                clickWordBtnCount++;
                 setAnswer(String.valueOf(l3GivenWordBtn5.getText()));
-                if (pressAnsCount == 7) {
+                if (clickWordBtnCount == 7) {
                     validateAnswer(levelThreeQuestion.get(userQuestionNumber));
                 }
                 break;
             case R.id.l3GivenWordBtn6:
                 disappearButton(l3GivenWordBtn6);
-                pressAnsCount++;
+                clickWordBtnCount++;
                 setAnswer(String.valueOf(l3GivenWordBtn6.getText()));
-                if (pressAnsCount == 7) {
+                if (clickWordBtnCount == 7) {
                     validateAnswer(levelThreeQuestion.get(userQuestionNumber));
                 }
                 break;
             case R.id.l3GivenWordBtn7:
                 disappearButton(l3GivenWordBtn7);
-                pressAnsCount++;
+                clickWordBtnCount++;
                 setAnswer(String.valueOf(l3GivenWordBtn7.getText()));
-                if (pressAnsCount == 7) {
+                if (clickWordBtnCount == 7) {
                     validateAnswer(levelThreeQuestion.get(userQuestionNumber));
                 }
                 break;
             case R.id.l3GivenWordBtn8:
                 disappearButton(l3GivenWordBtn8);
-                pressAnsCount++;
+                clickWordBtnCount++;
                 setAnswer(String.valueOf(l3GivenWordBtn8.getText()));
-                if (pressAnsCount == 7) {
+                if (clickWordBtnCount == 7) {
                     validateAnswer(levelThreeQuestion.get(userQuestionNumber));
                 }
                 break;
             case R.id.l3GivenWordBtn9:
                 disappearButton(l3GivenWordBtn9);
-                pressAnsCount++;
+                clickWordBtnCount++;
                 setAnswer(String.valueOf(l3GivenWordBtn9.getText()));
-                if (pressAnsCount == 7) {
+                if (clickWordBtnCount == 7) {
                     validateAnswer(levelThreeQuestion.get(userQuestionNumber));
                 }
                 break;
             case R.id.l3GivenWordBtn10:
                 disappearButton(l3GivenWordBtn10);
-                pressAnsCount++;
+                clickWordBtnCount++;
                 setAnswer(String.valueOf(l3GivenWordBtn10.getText()));
-                if (pressAnsCount == 7) {
+                if (clickWordBtnCount == 7) {
                     validateAnswer(levelThreeQuestion.get(userQuestionNumber));
                 }
                 break;
             case R.id.l3GivenWordBtn11:
                 disappearButton(l3GivenWordBtn11);
-                pressAnsCount++;
+                clickWordBtnCount++;
                 setAnswer(String.valueOf(l3GivenWordBtn11.getText()));
-                if (pressAnsCount == 7) {
+                if (clickWordBtnCount == 7) {
                     validateAnswer(levelThreeQuestion.get(userQuestionNumber));
                 }
                 break;
             case R.id.l3GivenWordBtn12:
                 disappearButton(l3GivenWordBtn12);
-                pressAnsCount++;
+                clickWordBtnCount++;
                 setAnswer(String.valueOf(l3GivenWordBtn12.getText()));
-                if (pressAnsCount == 7) {
+                if (clickWordBtnCount == 7) {
                     validateAnswer(levelThreeQuestion.get(userQuestionNumber));
                 }
                 break;
@@ -306,7 +320,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
                     putBackWordButton(l3AnswerBtn1);
                     l3AnswerBtn1.setText("");
                     setAnswerBtn1 = false;
-                    pressAnsCount--;
+                    clickWordBtnCount--;
                 }
                 break;
             case R.id.l3AnswerBtn2:
@@ -315,7 +329,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
                     putBackWordButton(l3AnswerBtn2);
                     l3AnswerBtn2.setText("");
                     setAnswerBtn2 = false;
-                    pressAnsCount--;
+                    clickWordBtnCount--;
                 }
                 break;
             case R.id.l3AnswerBtn3:
@@ -324,7 +338,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
                     putBackWordButton(l3AnswerBtn3);
                     l3AnswerBtn3.setText("");
                     setAnswerBtn3 = false;
-                    pressAnsCount--;
+                    clickWordBtnCount--;
                 }
                 break;
             case R.id.l3AnswerBtn4:
@@ -333,7 +347,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
                     putBackWordButton(l3AnswerBtn4);
                     l3AnswerBtn4.setText("");
                     setAnswerBtn4 = false;
-                    pressAnsCount--;
+                    clickWordBtnCount--;
                 }
                 break;
             case R.id.l3AnswerBtn5:
@@ -342,7 +356,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
                     putBackWordButton(l3AnswerBtn5);
                     l3AnswerBtn5.setText("");
                     setAnswerBtn5 = false;
-                    pressAnsCount--;
+                    clickWordBtnCount--;
                 }
                 break;
             case R.id.l3AnswerBtn6:
@@ -351,7 +365,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
                     putBackWordButton(l3AnswerBtn6);
                     l3AnswerBtn6.setText("");
                     setAnswerBtn6 = false;
-                    pressAnsCount--;
+                    clickWordBtnCount--;
                 }
                 break;
             case R.id.l3AnswerBtn7:
@@ -360,9 +374,14 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
                     putBackWordButton(l3AnswerBtn7);
                     l3AnswerBtn7.setText("");
                     setAnswerBtn7 = false;
-                    pressAnsCount--;
+                    clickWordBtnCount--;
                 }
                 break;
+            case R.id.l3HintButton:
+                if(hintClickCount < maxHintGiven) {
+                    giveHint();
+                    hintClickCount++;
+                }
         }
     }
 
@@ -437,11 +456,12 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
                 return;
             }
             Toast.makeText(this, "Answer is correct!", Toast.LENGTH_LONG).show();
-            pressAnsCount = 0;
+            clickWordBtnCount = 0;
+            hintClickCount = 0;
             userQuestionNumber++;
             playLevelThree(levelThreeQuestion.get(userQuestionNumber));
         } else {
-            pressAnsCount = 0;
+            clickWordBtnCount = 0;
             playLevelThree(levelThreeQuestion.get(userQuestionNumber));
         }
     }
@@ -556,6 +576,91 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
     public  void disappearButton(Button button) {
         button.animate().alpha(0).setDuration(50);
         button.setClickable(false);
+    }
+
+    /*
+        # do nothing and return if all the setAnswer buttons are set as true
+        # if the decided number of hints are already given, then return
+        # if the above stated conditions are not met, check every setAnswer buttons and do the following
+            - if setAnswer bool value is false
+            - increase clickWordBtnCount++ (as how many click of this helps the program know when to validate the answer)
+            - store the letter at a button (if answer button 1 is not set yet) for the question in a temporary String variable
+            - set the above temp variable as the given (in parameter) answer button text
+            - set setAnswer button to true
+            - validate the answer if clickWordBtnCount is 7
+            - else return (exit the function)
+     */
+    public void giveHint() {
+        // check if the hint has been given or not (one hint is only allowed for level 1)
+        if(setAnswerBtn1 && setAnswerBtn2 && setAnswerBtn3 && setAnswerBtn4 && setAnswerBtn5 && setAnswerBtn6 && setAnswerBtn7) {
+            return;
+        }
+        if(hintClickCount == maxHintGiven) {
+            return;
+        }
+        if(!setAnswerBtn1) {
+            clickWordBtnCount++;
+            String hintLetter = String.valueOf(levelThreeQuestion.get(userQuestionNumber).getAnswer().charAt(0));
+            l3AnswerBtn1.setText(hintLetter);
+            setAnswerBtn1 = true;
+            if (clickWordBtnCount == 7) {
+                validateAnswer(levelThreeQuestion.get(userQuestionNumber));
+            } else { return;}
+        }
+        if(!setAnswerBtn2) {
+            clickWordBtnCount++;
+            String hintLetter = String.valueOf(levelThreeQuestion.get(userQuestionNumber).getAnswer().charAt(1));
+            l3AnswerBtn2.setText(hintLetter);
+            setAnswerBtn2 = true;
+            if (clickWordBtnCount == 7) {
+                validateAnswer(levelThreeQuestion.get(userQuestionNumber));
+            } else { return;}
+        }
+        if(!setAnswerBtn3) {
+            clickWordBtnCount++;
+            String hintLetter = String.valueOf(levelThreeQuestion.get(userQuestionNumber).getAnswer().charAt(2));
+            l3AnswerBtn3.setText(hintLetter);
+            setAnswerBtn3 = true;
+            if (clickWordBtnCount == 7) {
+                validateAnswer(levelThreeQuestion.get(userQuestionNumber));
+            } else { return;}
+        }
+        if(!setAnswerBtn4) {
+            clickWordBtnCount++;
+            String hintLetter = String.valueOf(levelThreeQuestion.get(userQuestionNumber).getAnswer().charAt(3));
+            l3AnswerBtn4.setText(hintLetter);
+            setAnswerBtn4 = true;
+            if (clickWordBtnCount == 7) {
+                validateAnswer(levelThreeQuestion.get(userQuestionNumber));
+            } else { return;}
+        }
+        if(!setAnswerBtn5) {
+            clickWordBtnCount++;
+            String hintLetter = String.valueOf(levelThreeQuestion.get(userQuestionNumber).getAnswer().charAt(4));
+            l3AnswerBtn5.setText(hintLetter);
+            setAnswerBtn5 = true;
+            if (clickWordBtnCount == 7) {
+                validateAnswer(levelThreeQuestion.get(userQuestionNumber));
+            } else { return;}
+        }
+        if(!setAnswerBtn6) {
+            clickWordBtnCount++;
+            String hintLetter = String.valueOf(levelThreeQuestion.get(userQuestionNumber).getAnswer().charAt(4));
+            l3AnswerBtn6.setText(hintLetter);
+            setAnswerBtn6 = true;
+            if (clickWordBtnCount == 7) {
+                validateAnswer(levelThreeQuestion.get(userQuestionNumber));
+            } else { return;}
+        }
+        if(!setAnswerBtn7) {
+            clickWordBtnCount++;
+            String hintLetter = String.valueOf(levelThreeQuestion.get(userQuestionNumber).getAnswer().charAt(4));
+            l3AnswerBtn7.setText(hintLetter);
+            setAnswerBtn7 = true;
+            if (clickWordBtnCount == 7) {
+                validateAnswer(levelThreeQuestion.get(userQuestionNumber));
+            }
+        }
     }
 
 }
