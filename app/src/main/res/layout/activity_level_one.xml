@@ -14,7 +14,7 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/Coin"
+            android:src="@drawable/coin"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="240dp"/>
 
