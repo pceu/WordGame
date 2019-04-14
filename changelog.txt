@@ -95,11 +95,15 @@ Note:   We have similiar xml file to some extent as I (Ceu) have changed and mes
 # Friday 12/April
 - solved loading typeface issue in the project. [Ceu]
 - create hint button using photoshop [Ceu]
+- Designed the ChooseLevelPage [Nam]
+- Inserted Main Logo [Nam]
 
 # Saturday 13/April
 - implemented erase answer feature for level 2 and 3. [Ceu]
 - implemented hint feature (for all levels) [Ceu]
-- update changelog.txt for this week [Ceu]
+- Designed coin icon and coin box at all layout page [Nam]
+- Tried that increasing coin when user find a correct answer [Nam]
+- update changelog.txt for this week [Both]
 
 
 
