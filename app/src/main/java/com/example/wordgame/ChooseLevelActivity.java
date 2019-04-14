@@ -17,35 +17,20 @@ public class ChooseLevelActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_level);
 
-        levelOneButton = (Button) findViewById(R.id.levelOneButton);
-        levelTwoButton = (Button) findViewById(R.id.levelTwoButton);
-        levelThreeButton = (Button) findViewById(R.id.levelThreeButton);
-    }
-
-    public void ToLevelOnePage(View view) {
-        Intent intent = new Intent (this, LevelOneActivity.class);
-        startActivity(intent);
-    }
-
-    public void ToLevelTwoPage(View view) {
-        Intent intent = new Intent (this, LevelTwoActivity.class);
-        startActivity(intent);
-    }
-
-    public void ToLevelThreePage(View view) {
-        Intent intent = new Intent (this, LevelThreeActivity.class);
-        startActivity(intent);
     }
 
     public void ClickLevelOne(View view) {
-        ToLevelOnePage(view);
+        Intent i = new Intent(this, LevelOneActivity.class);
+        startActivity(i);
     }
+
     public void ClickLevelTwo(View view) {
-        ToLevelTwoPage(view);
-    }
-    public void ClickLevelThree (View view) {
-        ToLevelThreePage(view);
+        Intent i = new Intent(this, LevelTwoActivity.class);
+        startActivity(i);
     }
 
-
+    public void ClickLevelThree(View view) {
+        Intent i = new Intent(this, LevelThreeActivity.class);
+        startActivity(i);
+    }
 }
