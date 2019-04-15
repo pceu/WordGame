@@ -106,6 +106,10 @@ Note:   We have similiar xml file to some extent as I (Ceu) have changed and mes
 - update changelog.txt for this week [Both]
 
 
-
+================================== WEEK 7 ==================================================================================
+# Monday 15/April
+- Feedback: Good to see some more progress. [Henry]
+- Feedback: The 3 Level classes should be combined into 1. I don't see the reason for 3 of them.
+- Feedback: As I told the class last week in a discussion post, remove repetition. This part: " if(!setAnswerBtn1) {" and "if(!setAnswerBtn2) {" , etc... they're all the same. So use a FOR loop and arrays instead.
 
 
