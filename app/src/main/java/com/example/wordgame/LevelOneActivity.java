@@ -19,6 +19,7 @@ import java.util.List;
 
 public class LevelOneActivity extends AppCompatActivity implements View.OnClickListener {
 
+
     // Level object list for this level (Level 1) - contains multiple questions to play for the level
     private List<Level> levelOneQuestion = new ArrayList<>();
 
@@ -38,6 +39,10 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
 
     // Answer buttons - value will be assign when user click GivenWord buttons
     Button l1AnswerBtn1, l1AnswerBtn2, l1AnswerBtn3;
+
+    // Coin Button
+    private int coinAmount;
+    Button coinButtonL1;
 
     //----------------------------------------------------------------------------------------------
 
@@ -85,6 +90,13 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
         l1AnswerBtn1 = findViewById(R.id.l1AnswerBtn1);
         l1AnswerBtn2 = findViewById(R.id.l1AnswerBtn2);
         l1AnswerBtn3 = findViewById(R.id.l1AnswerBtn3);
+
+        // ================ coin section =======================
+        // assign button for coinButton
+        coinAmount = 50;
+        coinButtonL1 = findViewById(R.id.coinButtonL1);
+        coinButtonL1.setText(coinAmount);
+        coinButtonL1.setOnClickListener(this);
 
         setAnswerBtn1 = false; setAnswerBtn2 = false; setAnswerBtn3 = false;
 
@@ -264,6 +276,8 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
                     giveHint();
                     hintClickCount++;
                 }
+            case R.id.coinButtonL1:
+                break;
         }
     }
 
@@ -347,6 +361,8 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
                 return;
             }
             Toast.makeText(this, "Answer is correct!", Toast.LENGTH_LONG).show();
+            coinAmount = coinAmount + 10;
+            coinButtonL1.setText(coinAmount);
             clickWordBtnCount = 0;
             hintClickCount = 0;
             userQuestionNumber++;
