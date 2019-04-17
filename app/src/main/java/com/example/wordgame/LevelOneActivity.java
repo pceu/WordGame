@@ -95,7 +95,7 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
         // assign button for coinButton
         coinAmount = 50;
         coinButtonL1 = findViewById(R.id.coinButtonL1);
-        coinButtonL1.setText(coinAmount);
+        coinButtonL1.setText(String.valueOf(coinAmount));
         coinButtonL1.setOnClickListener(this);
 
         setAnswerBtn1 = false; setAnswerBtn2 = false; setAnswerBtn3 = false;
@@ -362,7 +362,7 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
             }
             Toast.makeText(this, "Answer is correct!", Toast.LENGTH_LONG).show();
             coinAmount = coinAmount + 10;
-            coinButtonL1.setText(coinAmount);
+            coinButtonL1.setText(String.valueOf(coinAmount));
             clickWordBtnCount = 0;
             hintClickCount = 0;
             userQuestionNumber++;
