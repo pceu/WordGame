@@ -41,6 +41,10 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
     // Answer buttons - value will be assign when user click GivenWord buttons
     Button l3AnswerBtn1, l3AnswerBtn2, l3AnswerBtn3, l3AnswerBtn4, l3AnswerBtn5, l3AnswerBtn6, l3AnswerBtn7;
 
+    // Coin Button
+    private int coinAmount;
+    Button coinButtonL3;
+
     //----------------------------------------------------------------------------------------------
 
     //---------------- GIVEN WORDS BUTTONS SECTION ---------------
@@ -97,6 +101,13 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
 
         // load the font for text in this level
         Typeface customFont = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/felaFromAssets.otf");
+
+        // ================ coin section =======================
+        // assign button for coinButton
+        coinAmount = 50;
+        coinButtonL3 = findViewById(R.id.coinButtonL3);
+        coinButtonL3.setText(String.valueOf(coinAmount));
+        coinButtonL3.setOnClickListener(this);
 
 
         // assign buttons for givenWord buttons
@@ -382,6 +393,8 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
                     giveHint();
                     hintClickCount++;
                 }
+            case R.id.coinButtonL3:
+                break;
         }
     }
 
@@ -456,6 +469,8 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
                 return;
             }
             Toast.makeText(this, "Answer is correct!", Toast.LENGTH_LONG).show();
+            coinAmount = coinAmount + 10;
+            coinButtonL3.setText(String.valueOf(coinAmount));
             clickWordBtnCount = 0;
             hintClickCount = 0;
             userQuestionNumber++;

@@ -20,13 +20,14 @@
             android:layout_marginLeft="240dp"/>
 
         <Button
+            android:id="@+id/coinButtonL2"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="5dp"
             android:background="@drawable/coin_box_shape"
             android:text="10"
-            android:textSize="24dp"/>
+            android:textSize="24dp" />
     </LinearLayout>
 
     <LinearLayout

@@ -42,6 +42,10 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
     // Answer buttons - value will be assign when user click GivenWord buttons
     Button l2AnswerBtn1, l2AnswerBtn2, l2AnswerBtn3, l2AnswerBtn4, l2AnswerBtn5;
 
+    // Coin Button
+    private int coinAmount;
+    Button coinButtonL2;
+
     //----------------------------------------------------------------------------------------------
 
     //---------------- GIVEN WORDS BUTTONS SECTION ---------------
@@ -89,6 +93,13 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
         l2AnswerBtn5 = findViewById(R.id.l2AnswerBtn5);
         setAnswerBtn1 = false; setAnswerBtn2 = false; setAnswerBtn3 = false;
         setAnswerBtn4 = false; setAnswerBtn5 = false;
+
+        // ================ coin section =======================
+        // assign button for coinButton
+        coinAmount = 50;
+        coinButtonL2 = findViewById(R.id.coinButtonL2);
+        coinButtonL2.setText(String.valueOf(coinAmount));
+        coinButtonL2.setOnClickListener(this);
 
         // assign buttons for givenWord buttons
         l2GivenWordBtn1 = findViewById(R.id.l2GivenWordBtn1);
@@ -310,6 +321,8 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
                     giveHint();
                     hintClickCount++;
                 }
+            case R.id.coinButtonL2:
+                break;
         }
     }
 
@@ -372,6 +385,8 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
                 return;
             }
             Toast.makeText(this, "Answer is correct!", Toast.LENGTH_LONG).show();
+            coinAmount = coinAmount + 10;
+            coinButtonL2.setText(String.valueOf(coinAmount));
             clickWordBtnCount = 0;
             hintClickCount = 0;
             userQuestionNumber++;
