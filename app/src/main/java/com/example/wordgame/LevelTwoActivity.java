@@ -46,6 +46,9 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
     private int coinAmount;
     Button coinButtonL2;
 
+    // Skip Button
+    Button l2SkipButton;
+
     //----------------------------------------------------------------------------------------------
 
     //---------------- GIVEN WORDS BUTTONS SECTION ---------------
@@ -100,6 +103,9 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
         coinButtonL2 = findViewById(R.id.coinButtonL2);
         coinButtonL2.setText(String.valueOf(coinAmount));
         coinButtonL2.setOnClickListener(this);
+        // skip Question section==============================
+        l2SkipButton = findViewById(R.id.l2SkipButton);
+        l2SkipButton.setOnClickListener(this);
 
         // assign buttons for givenWord buttons
         l2GivenWordBtn1 = findViewById(R.id.l2GivenWordBtn1);
@@ -317,12 +323,20 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
                 }
                 break;
             case R.id.l2HintButton:
-                if(hintClickCount < maxHintGiven) {
+                if(hintClickCount < maxHintGiven && decreaseCoin(10)) {
                     giveHint();
                     hintClickCount++;
                 }
             case R.id.coinButtonL2:
                 break;
+            case R.id.l2SkipButton:
+                if (decreaseCoin(30)) {
+                    userQuestionNumber++;
+                    playLevelTwo(levelTwoQuestion.get(userQuestionNumber));
+                } else {
+                    Toast.makeText(this, "Not enough Coin to skip the question!", Toast.LENGTH_LONG).show();
+                    // will use popup window to let user know that user does not have sufficient amount of coin
+                }
         }
     }
 
@@ -551,6 +565,21 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
             if (clickWordBtnCount == 5) {
                 validateAnswer(levelTwoQuestion.get(userQuestionNumber));
             }
+        }
+    }
+
+    // Coin number Modification
+    /*
+        # check and return false if the user coin amount subtract amount passed in the parameter is less than zero
+        # else - reduce the user coin amount by the given amount and update the text of coinButton1
+     */
+    public boolean decreaseCoin(int amount) {
+        if (coinAmount - amount < 0) {
+            return false;
+        } else {
+            coinAmount = coinAmount - amount;
+            coinButtonL2.setText(String.valueOf(coinAmount));
+            return true;
         }
     }
 
