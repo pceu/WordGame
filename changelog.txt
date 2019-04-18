@@ -115,6 +115,10 @@ Note:   We have similiar xml file to some extent as I (Ceu) have changed and mes
 	- will make sure use them in the most efficient and not repeated way.
 
 # Wednesday 17/April
+- fix increasing coin issue [Nam] & [Ceu]
+- create skip button using Photoshop [Ceu]
 - implement skip question feature for all levels (without popup message window) [Ceu]
+	+ write functions to skip(check and reduce the coin amount and pass the next question object) the question for level 1, 2 and 3.
+	+ add skip button to level 1, 2 and 3.
 
 
