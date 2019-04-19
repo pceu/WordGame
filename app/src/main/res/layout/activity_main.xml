@@ -62,7 +62,8 @@
             android:textSize="25dp"
             android:textStyle="italic"
             android:layout_marginLeft="120dp"
-            android:background="@drawable/btn_shape_round" />
+            android:background="@drawable/btn_shape_round"
+            android:onClick="GotoSetting"/>
 
     </LinearLayout>
 
