@@ -44,6 +44,9 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
     private int coinAmount;
     Button coinButtonL1;
 
+    // Skip Button
+    Button l1SkipButton;
+
     //----------------------------------------------------------------------------------------------
 
     //---------------- GIVEN WORDS BUTTONS SECTION ---------------
@@ -97,6 +100,10 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
         coinButtonL1 = findViewById(R.id.coinButtonL1);
         coinButtonL1.setText(String.valueOf(coinAmount));
         coinButtonL1.setOnClickListener(this);
+
+        // skip Question section==============================
+        l1SkipButton = findViewById(R.id.l1SkipButton);
+        l1SkipButton.setOnClickListener(this);
 
         setAnswerBtn1 = false; setAnswerBtn2 = false; setAnswerBtn3 = false;
 
@@ -272,12 +279,24 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
                 }
                 break;
             case R.id.l1HintButton:
-                if(hintClickCount < maxHintGiven) {
+                if(hintClickCount < maxHintGiven && decreaseCoin(10)) {
                     giveHint();
                     hintClickCount++;
+                } else {
+                    // will also use popup window (as custom popup window takes time to create)
+                    // we are right now focusing on the basic thing first
+                    Toast.makeText(this, "Not enough Coin to use hint or has used max hint allowance!", Toast.LENGTH_LONG).show();
                 }
             case R.id.coinButtonL1:
                 break;
+            case R.id.l1SkipButton:
+                if (decreaseCoin(30)) {
+                    userQuestionNumber++;
+                    playLevelOne(levelOneQuestion.get(userQuestionNumber));
+                } else {
+                    Toast.makeText(this, "Not enough Coin to skip the question!", Toast.LENGTH_LONG).show();
+                    // will use popup window to let user know that user does not have sufficient amount of coin
+                }
         }
     }
 
@@ -460,6 +479,21 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
             if (clickWordBtnCount == 3) {
                 validateAnswer(levelOneQuestion.get(userQuestionNumber));
             }
+        }
+    }
+
+    // Coin number Modification
+    /*
+        # check and return false if the user coin amount subtract amount passed in the parameter is less than zero
+        # else - reduce the user coin amount by the given amount and update the text of coinButton1
+     */
+    public boolean decreaseCoin(int amount) {
+        if (coinAmount - amount < 0) {
+            return false;
+        } else {
+            coinAmount = coinAmount - amount;
+            coinButtonL1.setText(String.valueOf(coinAmount));
+            return true;
         }
     }
 

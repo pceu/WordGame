@@ -44,6 +44,8 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
     // Coin Button
     private int coinAmount;
     Button coinButtonL3;
+    // Skip Button
+    Button l3SkipButton;
 
     //----------------------------------------------------------------------------------------------
 
@@ -109,6 +111,9 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
         coinButtonL3.setText(String.valueOf(coinAmount));
         coinButtonL3.setOnClickListener(this);
 
+        // skip Question section==============================
+        l3SkipButton = findViewById(R.id.l3SkipButton);
+        l3SkipButton.setOnClickListener(this);
 
         // assign buttons for givenWord buttons
         l3GivenWordBtn1 = findViewById(R.id.l3GivenWordBtn1);
@@ -389,12 +394,20 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
             case R.id.l3HintButton:
-                if(hintClickCount < maxHintGiven) {
+                if(hintClickCount < maxHintGiven && decreaseCoin(10)) {
                     giveHint();
                     hintClickCount++;
                 }
             case R.id.coinButtonL3:
                 break;
+            case R.id.l3SkipButton:
+                if (decreaseCoin(30)) {
+                    userQuestionNumber++;
+                    playLevelThree(levelThreeQuestion.get(userQuestionNumber));
+                } else {
+                    Toast.makeText(this, "Not enough Coin to skip the question!", Toast.LENGTH_LONG).show();
+                    // will use popup window to let user know that user does not have sufficient amount of coin
+                }
         }
     }
 
@@ -675,6 +688,21 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
             if (clickWordBtnCount == 7) {
                 validateAnswer(levelThreeQuestion.get(userQuestionNumber));
             }
+        }
+    }
+
+    // Coin number Modification
+    /*
+        # check and return false if the user coin amount subtract amount passed in the parameter is less than zero
+        # else - reduce the user coin amount by the given amount and update the text of coinButton1
+     */
+    public boolean decreaseCoin(int amount) {
+        if (coinAmount - amount < 0) {
+            return false;
+        } else {
+            coinAmount = coinAmount - amount;
+            coinButtonL3.setText(String.valueOf(coinAmount));
+            return true;
         }
     }
 
