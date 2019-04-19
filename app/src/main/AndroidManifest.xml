@@ -13,6 +13,7 @@
         <activity android:name=".LevelTwoActivity" />
         <activity android:name=".LevelOneActivity" />
         <activity android:name=".ChooseLevelActivity" />
+        <activity android:name=".SettingActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -2,6 +2,7 @@ package com.example.wordgame;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -56,6 +57,9 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
             l3GivenWordBtn9, l3GivenWordBtn10, l3GivenWordBtn11, l3GivenWordBtn12;
     //----------------------------------------------------------------------------------------------
 
+    // Background Music
+    MediaPlayer bkgrdmsc;
+
     /*
         The onCreate function
         set value for some variables such as pressCount
@@ -67,6 +71,11 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_three);
+
+        // Background Music playing code
+        bkgrdmsc = MediaPlayer.create(LevelThreeActivity.this, R.raw.backgroundmusic);
+        bkgrdmsc.setLooping(true);
+        bkgrdmsc.start();
 
         // read level Three data from csv file (stored in raw directory) and instantiate Level object
         // add the Level object created from the file to levelThreeQuestion list
@@ -155,6 +164,13 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
 
         // for clarity purpose, a playLevelThree method is created and call from here
         playLevelThree(levelThreeQuestion.get(userQuestionNumber));
+    }
+
+    // If user go out from game, the background music will turn off automatically.
+    protected void onPause(){
+        super.onPause();
+        bkgrdmsc.release();
+        finish();
     }
 
     /*

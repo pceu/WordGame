@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.media.MediaPlayer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -58,6 +59,9 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
     // hint button
     Button l1HintButton;
 
+    // Background Music
+    MediaPlayer bkgrdmsc;
+
     /*
         The onCreate function
         set value for some variables such as pressCount
@@ -69,6 +73,11 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_one);
+
+        // Background Music playing code
+        bkgrdmsc = MediaPlayer.create(LevelOneActivity.this, R.raw.backgroundmusic);
+        bkgrdmsc.setLooping(true);
+        bkgrdmsc.start();
 
         // read level one data from csv file (stored in raw directory) and instantiate Level object
         // add the Level object created from the file to levelOneQuestion list
@@ -131,6 +140,13 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
         // for clarity purpose, a playLevelOne method is created and call from here
         playLevelOne(levelOneQuestion.get(userQuestionNumber));
 
+    }
+
+    // If user go out from game, the background music will turn off automatically.
+    protected void onPause(){
+        super.onPause();
+        bkgrdmsc.release();
+        finish();
     }
 
     /*

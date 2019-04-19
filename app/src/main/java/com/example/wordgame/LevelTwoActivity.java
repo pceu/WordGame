@@ -1,6 +1,7 @@
 package com.example.wordgame;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -57,6 +58,9 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
             l2GivenWordBtn5, l2GivenWordBtn6, l2GivenWordBtn7, l2GivenWordBtn8;
     //----------------------------------------------------------------------------------------------
 
+    // Background Music
+    MediaPlayer bkgrdmsc;
+
     /*
         The onCreate function
         set value for some variables such as pressCount
@@ -68,6 +72,11 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_two);
+
+        // Background Music playing code
+        bkgrdmsc = MediaPlayer.create(LevelTwoActivity.this, R.raw.backgroundmusic);
+        bkgrdmsc.setLooping(true);
+        bkgrdmsc.start();
 
         // read level Two data from csv file (stored in raw directory) and instantiate Level object
         // add the Level object created from the file to levelTwoQuestion list
@@ -138,6 +147,13 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
         // for clarity purpose, a playLevelOne method is created and call from here
         playLevelTwo(levelTwoQuestion.get(userQuestionNumber));
 
+    }
+
+    // If user go out from game, the background music will turn off automatically.
+    protected void onPause(){
+        super.onPause();
+        bkgrdmsc.release();
+        finish();
     }
 
     /*
