@@ -121,7 +121,12 @@ Note:   We have similiar xml file to some extent as I (Ceu) have changed and mes
 	+ write functions to skip(check and reduce the coin amount and pass the next question object) the question for level 1, 2 and 3.
 	+ add skip button to level 1, 2 and 3.
 
+# Friday 19/April
+- Add background music when user play the word game (only Level 1, 2, 3 layout pages) [Nam]
+- Create setting xml file and designed [Nam]
+
 # Sunday 21/April
-- research and study about Room (storing technique in Android) to implement this in the project
+- research and study about Room (storing technique in Android) to implement this in the project [Ceu]
+- Add function that music turn on and off [Nam]
 
 
