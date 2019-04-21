@@ -61,7 +61,7 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
 
     // Background Music
     MediaPlayer bkgrdmsc;
-
+    private int lastbkgdchecked = SettingActivity.bkgdchecked;
     /*
         The onCreate function
         set value for some variables such as pressCount
@@ -75,9 +75,11 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_level_one);
 
         // Background Music playing code
-        bkgrdmsc = MediaPlayer.create(LevelOneActivity.this, R.raw.backgroundmusic);
-        bkgrdmsc.setLooping(true);
-        bkgrdmsc.start();
+        if (lastbkgdchecked == 0) {
+            bkgrdmsc = MediaPlayer.create(LevelOneActivity.this, R.raw.backgroundmusic);
+            bkgrdmsc.setLooping(true);
+            bkgrdmsc.start();
+        }
 
         // read level one data from csv file (stored in raw directory) and instantiate Level object
         // add the Level object created from the file to levelOneQuestion list
@@ -144,6 +146,10 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
 
     // If user go out from game, the background music will turn off automatically.
     protected void onPause(){
+        if (lastbkgdchecked == 0){
+            bkgrdmsc.release();
+        }
+        SettingActivity.bkgdchecked = 0;
         super.onPause();
         bkgrdmsc.release();
         finish();
