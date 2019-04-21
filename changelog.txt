@@ -121,4 +121,7 @@ Note:   We have similiar xml file to some extent as I (Ceu) have changed and mes
 	+ write functions to skip(check and reduce the coin amount and pass the next question object) the question for level 1, 2 and 3.
 	+ add skip button to level 1, 2 and 3.
 
+# Sunday 21/April
+- research and study about Room (storing technique in Android) to implement this in the project
+
 
