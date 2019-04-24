@@ -15,49 +15,43 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
-public class LevelOneActivity extends AppCompatActivity implements View.OnClickListener {
-
-
-    // Level object list for this level (Level 1) - contains multiple questions to play for the level
-    private List<Level> levelOneQuestion = new ArrayList<>();
+public class LevelOneActivity extends AppCompatActivity implements View.OnClickListener, Level {
 
     private int userQuestionNumber;     // when exit the game the question user up to will be saved for user and allow to resume for future playing
     // use to track how many user has clicked given wordButtons
     // will increase whenever user clicks the wordButtons, and decrease whenever the answer is erased
     private int clickWordBtnCount;
 
+    // hint button
+    private Button hintButton;
     private int hintClickCount;     // stored how many hint button is clicked for a given question
-    private static final int maxHintGiven = 1;  // the number user can click the hint button in a question
-
-    TextView l1qBoard;
+    // the number user can click the hint button in a question
+    static final int maxHintGiven = 1;
+    // question board for a level
+    private TextView questionBoard;
 
     //--------------- ANSWER BUTTONS SECTION-------------------------
     // Boolean variables for tracking whether the answer has been set or not (for answer buttons)
-    Boolean setAnswerBtn1, setAnswerBtn2, setAnswerBtn3;
+    // boolean value at index 0 represent setAnswerBtn1, index 1 for setAnswerBtn2 and so on
+    private Boolean [] setAnswerButtons = new Boolean[3];
 
     // Answer buttons - value will be assign when user click GivenWord buttons
-    Button l1AnswerBtn1, l1AnswerBtn2, l1AnswerBtn3;
+    private Button[] answerButtons = new Button[3];
 
     // Coin Button
-    private int coinAmount;
-    Button coinButtonL1;
+    int coinAmount;
+    Button coinButton;
 
     // Skip Button
-    Button l1SkipButton;
+    Button skipButton;
 
     //----------------------------------------------------------------------------------------------
 
     //---------------- GIVEN WORDS BUTTONS SECTION ---------------
     // buttons given at the bottom for user to choose and combine to get the right answer
-    Button l1GivenWordBtn1, l1GivenWordBtn2, l1GivenWordBtn3, l1GivenWordBtn4,
-            l1GivenWordBtn5, l1GivenWordBtn6;
-    //----------------------------------------------------------------------------------------------
-
-    // hint button
-    Button l1HintButton;
+    Button [] givenWordButtons = new Button[6];
 
     // Background Music
     MediaPlayer bkgrdmsc;
@@ -67,80 +61,76 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
         set value for some variables such as pressCount
         assign buttons created in this class with buttons from xml file
         assign all givenWords buttons to onClick function
-        call playLevelOne function which assign each object attributes to buttons, textView accordingly
+        call playLevel function which assign each object attributes to buttons, textView accordingly
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_one);
-
         // Background Music playing code
         if (lastbkgdchecked == 0) {
             bkgrdmsc = MediaPlayer.create(LevelOneActivity.this, R.raw.backgroundmusic);
             bkgrdmsc.setLooping(true);
             bkgrdmsc.start();
         }
-
-        // read level one data from csv file (stored in raw directory) and instantiate Level object
-        // add the Level object created from the file to levelOneQuestion list
+        // read level one data from csv file (stored in raw directory) and instantiate LevelData object
+        // add the LevelData object created from the file to levelQuestionOneData list
         readLevelOneData();
 
-        // the Level object at useQuestionNumber will be pass to playLevelOne function to generate the game
+        // the LevelData object at useQuestionNumber will be pass to playLevel function to generate the game
         userQuestionNumber = 0; // temporarily set as 0, but modified when User class is created and loaded here
         hintClickCount = 0;
 
         // set pressAnswerCount to zero
         clickWordBtnCount = 0;
-        Toast.makeText(this, String.valueOf(clickWordBtnCount), Toast.LENGTH_LONG).show();
         // assign buttons and textView from xml file
-        l1qBoard = findViewById(R.id.l1qBoard);
+        questionBoard = findViewById(R.id.l1qBoard);
 
         // assign hint button to the hint button created in xml layout
         // assign the button to the onClick method for this view
-        l1HintButton = findViewById(R.id.l1HintButton);
-        l1HintButton.setOnClickListener(this);
+        hintButton = findViewById(R.id.l1HintButton);
+        hintButton.setOnClickListener(this);
 
         // assign buttons for answerButton
-        l1AnswerBtn1 = findViewById(R.id.l1AnswerBtn1);
-        l1AnswerBtn2 = findViewById(R.id.l1AnswerBtn2);
-        l1AnswerBtn3 = findViewById(R.id.l1AnswerBtn3);
+        answerButtons[0] = findViewById(R.id.l1AnswerBtn1);
+        answerButtons[1] = findViewById(R.id.l1AnswerBtn2);
+        answerButtons[2] = findViewById(R.id.l1AnswerBtn3);
 
         // ================ coin section =======================
         // assign button for coinButton
         coinAmount = 50;
-        coinButtonL1 = findViewById(R.id.coinButtonL1);
-        coinButtonL1.setText(String.valueOf(coinAmount));
-        coinButtonL1.setOnClickListener(this);
+        coinButton = findViewById(R.id.coinButtonL1);
+        coinButton.setText(String.valueOf(coinAmount));
+        coinButton.setOnClickListener(this);
 
         // skip Question section==============================
-        l1SkipButton = findViewById(R.id.l1SkipButton);
-        l1SkipButton.setOnClickListener(this);
+        skipButton = findViewById(R.id.l1SkipButton);
+        skipButton.setOnClickListener(this);
 
-        setAnswerBtn1 = false; setAnswerBtn2 = false; setAnswerBtn3 = false;
+        // set answerButtons to false for all index
+        Arrays.fill(setAnswerButtons, Boolean.FALSE);
+
 
         // assign buttons for givenWord buttons
-        l1GivenWordBtn1 = findViewById(R.id.l1GivenWordBtn1);
-        l1GivenWordBtn2 = findViewById(R.id.l1GivenWordBtn2);
-        l1GivenWordBtn3 = findViewById(R.id.l1GivenWordBtn3);
-        l1GivenWordBtn4 = findViewById(R.id.l1GivenWordBtn4);
-        l1GivenWordBtn5 = findViewById(R.id.l1GivenWordBtn5);
-        l1GivenWordBtn6 = findViewById(R.id.l1GivenWordBtn6);
+        givenWordButtons[0] = findViewById(R.id.l1GivenWordBtn1);
+        givenWordButtons[1] = findViewById(R.id.l1GivenWordBtn2);
+        givenWordButtons[2] = findViewById(R.id.l1GivenWordBtn3);
+        givenWordButtons[3] = findViewById(R.id.l1GivenWordBtn4);
+        givenWordButtons[4] = findViewById(R.id.l1GivenWordBtn5);
+        givenWordButtons[5] = findViewById(R.id.l1GivenWordBtn6);
 
         // assign all givenWord buttons to onClick method created for this view
-        l1GivenWordBtn1.setOnClickListener(this);
-        l1GivenWordBtn2.setOnClickListener(this);
-        l1GivenWordBtn3.setOnClickListener(this);
-        l1GivenWordBtn4.setOnClickListener(this);
-        l1GivenWordBtn5.setOnClickListener(this);
-        l1GivenWordBtn6.setOnClickListener(this);
+        for (Button buttonAtIndx : givenWordButtons) {
+            buttonAtIndx.setOnClickListener(this);
+        }
 
         // assign all answerButtons to onCLick method created for this view
-        l1AnswerBtn1.setOnClickListener(this);
-        l1AnswerBtn2.setOnClickListener(this);
-        l1AnswerBtn3.setOnClickListener(this);
+        for (Button answerButton : answerButtons) {
+            answerButton.setOnClickListener(this);
+        }
 
-        // for clarity purpose, a playLevelOne method is created and call from here
-        playLevelOne(levelOneQuestion.get(userQuestionNumber));
+        // for clarity purpose, a playLevel method is created and call from here
+        playLevel(levelData.get(userQuestionNumber));
 
     }
 
@@ -160,8 +150,8 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
         Create an input stream to read files stored in this project
         create a bufferedReader for the input stream
         split the line in the csv file using comma as a token
-        store each token at value (0..5) in a temp variable which will then be used to create a Level Object
-        add the newly created Level object in a list (userLevelQuestion)
+        store each token at value (0..5) in a temp variable which will then be used to create a LevelData Object
+        add the newly created LevelData object in a list (userLevelQuestion)
      */
     public void readLevelOneData() {
         InputStream myInputStream = getResources().openRawResource(R.raw.level_one_data);
@@ -172,7 +162,7 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
             while ((tempString = bufferedReader.readLine()) != null) {
                 String[] tokens = tempString.split(",");
 
-                // Read the data and create a Level object, then add them in levelOneQuestion list
+                // Read the data and create a LevelData object, then add them in levelQuestionOneData list
                 // first store the data in a temp variable first
                 int questionNumber = Integer.parseInt(tokens[0]);
                 String question = tokens[1];
@@ -180,12 +170,12 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
                 String hint = tokens[3];
                 int levelNumber = Integer.parseInt(tokens[4]);
                 String givenWord = tokens[5];
-                //create a new Level object by passing the above variables in its constructor
-                // add the new object to levelOneQuestion list
-                levelOneQuestion.add(new Level(questionNumber, question, answer, hint, levelNumber, givenWord));
+                //create a new LevelData object by passing the above variables in its constructor
+                // add the new object to levelQuestionOneData list
+                levelData.add(new LevelData(questionNumber, question, answer, hint, levelNumber, givenWord));
             }
         } catch (IOException e) {
-            Log.wtf("Level One Activity", "Error occur while reading on line" + tempString, e);
+            Log.wtf("LevelData One Activity", "Error occur while reading on line" + tempString, e);
             e.printStackTrace();
         }
     }
@@ -196,21 +186,19 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
         extract the question from the given object and present in the question board.
         assign each character to givenWordButtons
      */
-    public void playLevelOne(Level level1Object)
+    public void playLevel(LevelData levelDataObject)
     {
         // reset all the buttons to make sure no value associated with answer and word buttons are not assigned at the beginning of the game.
         resetButtons();
 
         // assign object's attribute 'question' to questionBoard TextView
-        l1qBoard.setText(level1Object.getQuestion());
+        questionBoard.setText(levelDataObject.getQuestion());
 
         // assign given word value to each button
-        l1GivenWordBtn1.setText(String.valueOf(level1Object.getGivenWord().charAt(0)));
-        l1GivenWordBtn2.setText(String.valueOf(level1Object.getGivenWord().charAt(1)));
-        l1GivenWordBtn3.setText(String.valueOf(level1Object.getGivenWord().charAt(2)));
-        l1GivenWordBtn4.setText(String.valueOf(level1Object.getGivenWord().charAt(3)));
-        l1GivenWordBtn5.setText(String.valueOf(level1Object.getGivenWord().charAt(4)));
-        l1GivenWordBtn6.setText(String.valueOf(level1Object.getGivenWord().charAt(5)));
+        // could use for loop as button will be stored in array
+        for (int i = 0; i < givenWordButtons.length; i++) {
+            givenWordButtons[i].setText(String.valueOf(levelDataObject.getGivenWord().charAt(i)));
+        }
     }
 
     /*
@@ -226,79 +214,31 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.l1GivenWordBtn1:
-                disappearButton(l1GivenWordBtn1);
-                clickWordBtnCount++;
-                setAnswer(String.valueOf(l1GivenWordBtn1.getText()));
-                if (clickWordBtnCount == 3) {
-                    validateAnswer(levelOneQuestion.get(userQuestionNumber));
-                }
+                clickGivenWord(givenWordButtons[0]);
                 break;
             case R.id.l1GivenWordBtn2:
-                disappearButton(l1GivenWordBtn2);
-                clickWordBtnCount++;
-                setAnswer(String.valueOf(l1GivenWordBtn2.getText()));
-                if (clickWordBtnCount == 3) {
-                    validateAnswer(levelOneQuestion.get(userQuestionNumber));
-                }
+                clickGivenWord(givenWordButtons[1]);
                 break;
             case R.id.l1GivenWordBtn3:
-                disappearButton(l1GivenWordBtn3);
-                clickWordBtnCount++;
-                setAnswer(String.valueOf(l1GivenWordBtn3.getText()));
-                if (clickWordBtnCount == 3) {
-                    validateAnswer(levelOneQuestion.get(userQuestionNumber));
-                }
+                clickGivenWord(givenWordButtons[2]);
                 break;
             case R.id.l1GivenWordBtn4:
-                disappearButton(l1GivenWordBtn4);
-                clickWordBtnCount++;
-                setAnswer(String.valueOf(l1GivenWordBtn4.getText()));
-                if (clickWordBtnCount == 3) {
-                    validateAnswer(levelOneQuestion.get(userQuestionNumber));
-                }
+                clickGivenWord(givenWordButtons[3]);
                 break;
             case R.id.l1GivenWordBtn5:
-                disappearButton(l1GivenWordBtn5);
-                clickWordBtnCount++;
-                setAnswer(String.valueOf(l1GivenWordBtn5.getText()));
-                if (clickWordBtnCount == 3) {
-                    validateAnswer(levelOneQuestion.get(userQuestionNumber));
-                }
+                clickGivenWord(givenWordButtons[4]);
                 break;
             case R.id.l1GivenWordBtn6:
-                disappearButton(l1GivenWordBtn6);
-                clickWordBtnCount++;
-                setAnswer(String.valueOf(l1GivenWordBtn6.getText()));
-                if (clickWordBtnCount == 3) {
-                    validateAnswer(levelOneQuestion.get(userQuestionNumber));
-                }
+                clickGivenWord(givenWordButtons[5]);
                 break;
             case R.id.l1AnswerBtn1:
-                if (!setAnswerBtn1) {return; }
-                else {
-                    putBackWordButton(l1AnswerBtn1);
-                    l1AnswerBtn1.setText("");
-                    setAnswerBtn1 = false;
-                    clickWordBtnCount--;
-                }
+                clickAnswerButton(0);
                 break;
             case R.id.l1AnswerBtn2:
-                if (!setAnswerBtn2) {return; }
-                else {
-                    putBackWordButton(l1AnswerBtn2);
-                    l1AnswerBtn2.setText("");
-                    setAnswerBtn2 = false;
-                    clickWordBtnCount--;
-                }
+                clickAnswerButton(1);
                 break;
             case R.id.l1AnswerBtn3:
-                if (!setAnswerBtn3) {return; }
-                else {
-                    putBackWordButton(l1AnswerBtn3);
-                    l1AnswerBtn3.setText("");
-                    setAnswerBtn3 = false;
-                    clickWordBtnCount--;
-                }
+                clickAnswerButton(2);
                 break;
             case R.id.l1HintButton:
                 if(hintClickCount < maxHintGiven && decreaseCoin(10)) {
@@ -314,11 +254,45 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
             case R.id.l1SkipButton:
                 if (decreaseCoin(30)) {
                     userQuestionNumber++;
-                    playLevelOne(levelOneQuestion.get(userQuestionNumber));
+                    playLevel(levelData.get(userQuestionNumber));
                 } else {
                     Toast.makeText(this, "Not enough Coin to skip the question!", Toast.LENGTH_LONG).show();
                     // will use popup window to let user know that user does not have sufficient amount of coin
                 }
+        }
+    }
+
+    /*
+        clickGivenWord method
+        - make disappear of the clicked button (the button given in the parameter)
+        - increase the clickWordBtn count by 1
+        - set the text from the button in the answer button (one that does not have a value yet)
+        - do the answer validation if the clickWordBtn count gets to 3
+     */
+    public void clickGivenWord(Button wordButton) {
+        disappearButton(wordButton);
+        clickWordBtnCount++;
+        setAnswer(String.valueOf(wordButton.getText()));
+        if (clickWordBtnCount == 3) {
+            validateAnswer(levelData.get(userQuestionNumber));
+        }
+    }
+
+    /*
+        clickAnswerButton method
+        - do nothing and return if the setAnswerButtons at the given index is not false
+        - otherwise, put back the button in the original place
+        - set the answer button at index to an empty string
+        - the false value for setAnswerButtons at index given
+        - reduce the clickWordBtnCount again
+     */
+    public void clickAnswerButton(int arrayIndex) {
+        if (!setAnswerButtons[arrayIndex]) {return; }
+        else {
+            putBackWordButton(answerButtons[arrayIndex]);
+            answerButtons[arrayIndex].setText("");
+            setAnswerButtons[arrayIndex] = false;
+            clickWordBtnCount--;
         }
     }
 
@@ -329,29 +303,14 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
      */
     public void putBackWordButton(Button answerButton) {
         String answerButtonText = String.valueOf(answerButton.getText());
-        if(answerButtonText.equalsIgnoreCase(String.valueOf(l1GivenWordBtn1.getText()))) {
-            reappearButton(l1GivenWordBtn1);
-            return;
-        }
-        if(answerButtonText.equalsIgnoreCase(String.valueOf(l1GivenWordBtn2.getText()))) {
-            answerButton.setText("");
-            reappearButton(l1GivenWordBtn2);
-            return;
-        }
-        if(answerButtonText.equalsIgnoreCase(String.valueOf(l1GivenWordBtn3.getText()))) {
-            reappearButton(l1GivenWordBtn3);
-            return;
-        }
-        if(answerButtonText.equalsIgnoreCase(String.valueOf(l1GivenWordBtn4.getText()))) {
-            reappearButton(l1GivenWordBtn4);
-            return;
-        }
-        if(answerButtonText.equalsIgnoreCase(String.valueOf(l1GivenWordBtn5.getText()))) {
-            reappearButton(l1GivenWordBtn5);
-            return;
-        }
-        if(answerButtonText.equalsIgnoreCase(String.valueOf(l1GivenWordBtn6.getText()))) {
-            reappearButton(l1GivenWordBtn6);
+
+        // use foreach loop to compare the given text with every single givenWord buttons
+        // make reappear the button at index if the text stored are the same
+        for (Button buttonAtIdx: givenWordButtons) {
+            if(answerButtonText.equalsIgnoreCase(String.valueOf(buttonAtIdx.getText()))) {
+                reappearButton(buttonAtIdx);
+                return;
+            }
         }
     }
 
@@ -362,39 +321,33 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
         - set true to the setAnswerButton to know it has been assigned
      */
     public void setAnswer(String text) {
-        if (!setAnswerBtn1) {
-            l1AnswerBtn1.setText(text);
-            setAnswerBtn1 = true;
-            return;
-        }
-        if (!setAnswerBtn2) {
-            l1AnswerBtn2.setText(text);
-            setAnswerBtn2 = true;
-            return;
-        }
-        if (!setAnswerBtn3) {
-            l1AnswerBtn3.setText(text);
-            setAnswerBtn3 = true;
+        for (int i = 0; i < answerButtons.length; i++) {
+            if (!setAnswerButtons[i]) {
+                answerButtons[i].setText(text);
+                setAnswerButtons[i] = true;
+                return;
+            }
         }
     }
 
     /*
-        - accepts a Level object as a parameter so that we know what object to pass when checking answer
-        - compares the answer from user and answer within the Level object
+        - accepts a LevelData object as a parameter so that we know what object to pass when checking answer
+        - compares the answer from user and answer within the LevelData object
         - If correct
             - check if the question is the last one in the level, and go to next level should the question be the last one for this level.
-            - pass the next object in the Level Object list (next question in other words) for user to play
+            - pass the next object in the LevelData Object list (next question in other words) for user to play
         - if incorrect
             - pass the same object for user to play again
      */
-    public void validateAnswer(Level level1Object) {
+    public void validateAnswer(LevelData levelData1Object) {
         // first, combine the letters assigned to the answer buttons from user pressing buttons
-        String userAns = String.valueOf(l1AnswerBtn1.getText())
-                        + String.valueOf(l1AnswerBtn2.getText())
-                        + String.valueOf(l1AnswerBtn3.getText());
+        String userAns = "";
+        for (Button answerButton: answerButtons) {
+            userAns = userAns + String.valueOf(answerButton.getText());
+        }
 
-        if (level1Object.getAnswer().equalsIgnoreCase(userAns)) {
-            if (userQuestionNumber == levelOneQuestion.size() - 1) {
+        if (levelData1Object.getAnswer().equalsIgnoreCase(userAns)) {
+            if (userQuestionNumber == levelData.size() - 1) {
                 // save coins and questionNumber to drive for future and other levels
                 // go to next level page
                 Intent intent = new Intent (this, LevelTwoActivity.class);
@@ -403,14 +356,14 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
             }
             Toast.makeText(this, "Answer is correct!", Toast.LENGTH_LONG).show();
             coinAmount = coinAmount + 10;
-            coinButtonL1.setText(String.valueOf(coinAmount));
+            coinButton.setText(String.valueOf(coinAmount));
             clickWordBtnCount = 0;
             hintClickCount = 0;
             userQuestionNumber++;
-            playLevelOne(levelOneQuestion.get(userQuestionNumber));
+            playLevel(levelData.get(userQuestionNumber));
         } else {
             clickWordBtnCount = 0;
-            playLevelOne(levelOneQuestion.get(userQuestionNumber));
+            playLevel(levelData.get(userQuestionNumber));
         }
     }
 
@@ -421,22 +374,18 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
      */
     public void resetButtons() {
         // make re-appear wordButtons
-        reappearButton(l1GivenWordBtn1);
-        reappearButton(l1GivenWordBtn2);
-        reappearButton(l1GivenWordBtn3);
-        reappearButton(l1GivenWordBtn4);
-        reappearButton(l1GivenWordBtn5);
-        reappearButton(l1GivenWordBtn6);
+        for (Button givenWordButton : givenWordButtons) {
+            reappearButton(givenWordButton);
+        }
 
         // set to false for setAnswers buttons as we need this value to check if the answerButton is filled with letter
-        setAnswerBtn1 = false;
-        setAnswerBtn2 = false;
-        setAnswerBtn3 = false;
+        // learn the method(setting all boolean values in array to false or true) from this link - https://stackoverflow.com/questions/2364856/initializing-a-boolean-array-in-java
+        Arrays.fill(setAnswerButtons, Boolean.FALSE);
 
         // Empty the any letter assign to answer buttons
-        l1AnswerBtn1.setText("");
-        l1AnswerBtn2.setText("");
-        l1AnswerBtn3.setText("");
+        for (Button answerButton : answerButtons) {
+            answerButton.setText("");
+        }
     }
 
     /*
@@ -469,37 +418,23 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
      */
     public void giveHint() {
         // check if the hint has been given or not (one hint is only allowed for level 1)
-        if(setAnswerBtn1 && setAnswerBtn2 && setAnswerBtn3) {
-            return;
-        }
+        // the following method learned from - https://stackoverflow.com/questions/8260881/what-is-the-most-elegant-way-to-check-if-all-values-in-a-boolean-array-are-true
+        if (Arrays.asList(setAnswerButtons).contains(false)) {
+        } else { return; }
+
         if(hintClickCount == maxHintGiven) {
             return;
         }
-        if(!setAnswerBtn1) {
-            clickWordBtnCount++;
-            String hintLetter = String.valueOf(levelOneQuestion.get(userQuestionNumber).getAnswer().charAt(0));
-            l1AnswerBtn1.setText(hintLetter);
-            setAnswerBtn1 = true;
-            if (clickWordBtnCount == 3) {
-                validateAnswer(levelOneQuestion.get(userQuestionNumber));
-            } else { return;}
-        }
-        if(!setAnswerBtn2) {
-            clickWordBtnCount++;
-            String hintLetter = String.valueOf(levelOneQuestion.get(userQuestionNumber).getAnswer().charAt(1));
-            l1AnswerBtn2.setText(hintLetter);
-            setAnswerBtn2 = true;
-            if (clickWordBtnCount == 3) {
-                validateAnswer(levelOneQuestion.get(userQuestionNumber));
-            } else { return;}
-        }
-        if(!setAnswerBtn3) {
-            clickWordBtnCount++;
-            String hintLetter = String.valueOf(levelOneQuestion.get(userQuestionNumber).getAnswer().charAt(2));
-            l1AnswerBtn3.setText(hintLetter);
-            setAnswerBtn3 = true;
-            if (clickWordBtnCount == 3) {
-                validateAnswer(levelOneQuestion.get(userQuestionNumber));
+        for (int i = 0; i < setAnswerButtons.length; i++) {
+            if(!setAnswerButtons[i]) {
+                clickWordBtnCount++;
+                String hintLetter = String.valueOf(levelData.get(userQuestionNumber).getAnswer().charAt(i));
+                answerButtons[i].setText(hintLetter);
+                setAnswerButtons[i] = true;
+                if (clickWordBtnCount == 3) {
+                    validateAnswer(levelData.get(userQuestionNumber));
+                    return;
+                } else { return;}
             }
         }
     }
@@ -514,7 +449,7 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
             return false;
         } else {
             coinAmount = coinAmount - amount;
-            coinButtonL1.setText(String.valueOf(coinAmount));
+            coinButton.setText(String.valueOf(coinAmount));
             return true;
         }
     }

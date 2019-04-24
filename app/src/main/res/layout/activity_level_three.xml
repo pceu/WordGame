@@ -117,7 +117,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="8dp">
         <Button
             android:id="@+id/l3HintButton"
             android:layout_width="55dp"
@@ -140,7 +140,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="25dp">
         <Button
             android:id="@+id/l3GivenWordBtn1"
             android:background="@drawable/word_button"
