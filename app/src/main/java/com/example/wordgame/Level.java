@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface Level {
 
-    // LevelData object list for a level - contains multiple questions to play for the level
-    List<LevelData> levelData = new ArrayList<>();
+//    // LevelData object list for a level - contains multiple questions to play for the level
+//    List<LevelData> levelData = new ArrayList<>();
 
 
     // ================ CLASS METHODS/FUNCTIONS ===========================================================

@@ -1,7 +1,7 @@
 package com.example.wordgame;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,9 +15,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class LevelOneActivity extends AppCompatActivity implements View.OnClickListener, Level {
+
+    // LevelData object list for a level - contains multiple questions to play for the level
+    List<LevelData> levelData = new ArrayList<>();
+    // User database
+    private UserDatabase userDb;
 
     private int userQuestionNumber;     // when exit the game the question user up to will be saved for user and allow to resume for future playing
     // use to track how many user has clicked given wordButtons
@@ -67,6 +74,10 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_one);
+
+        // initialize the database instance
+        userDb = UserDatabase.getInstance(this);
+
         // Background Music playing code
         if (lastbkgdchecked == 0) {
             bkgrdmsc = MediaPlayer.create(LevelOneActivity.this, R.raw.backgroundmusic);
@@ -78,7 +89,8 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
         readLevelOneData();
 
         // the LevelData object at useQuestionNumber will be pass to playLevel function to generate the game
-        userQuestionNumber = 0; // temporarily set as 0, but modified when User class is created and loaded here
+        // the value for userQuestionNumber is get from the User Database
+        userQuestionNumber = userDb.userDao().getQuestionNumber(1);
         hintClickCount = 0;
 
         // set pressAnswerCount to zero
@@ -97,8 +109,9 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
         answerButtons[2] = findViewById(R.id.l1AnswerBtn3);
 
         // ================ coin section =======================
+        // get the coinAmount saved in the Database and set the coinAmount
+        coinAmount = userDb.userDao().getCoinAmount(1);
         // assign button for coinButton
-        coinAmount = 50;
         coinButton = findViewById(R.id.coinButtonL1);
         coinButton.setText(String.valueOf(coinAmount));
         coinButton.setOnClickListener(this);
@@ -120,8 +133,8 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
         givenWordButtons[5] = findViewById(R.id.l1GivenWordBtn6);
 
         // assign all givenWord buttons to onClick method created for this view
-        for (Button buttonAtIndx : givenWordButtons) {
-            buttonAtIndx.setOnClickListener(this);
+        for (Button buttonAtIdx : givenWordButtons) {
+            buttonAtIdx.setOnClickListener(this);
         }
 
         // assign all answerButtons to onCLick method created for this view
@@ -132,6 +145,12 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
         // for clarity purpose, a playLevel method is created and call from here
         playLevel(levelData.get(userQuestionNumber));
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        UserDatabase.destroyInstance();
+        super.onDestroy();
     }
 
     // If user go out from game, the background music will turn off automatically.
@@ -254,6 +273,8 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
             case R.id.l1SkipButton:
                 if (decreaseCoin(30)) {
                     userQuestionNumber++;
+                    // update question number in database for level 1
+                    userDb.userDao().updateQuestionNumber(userQuestionNumber, 1);
                     playLevel(levelData.get(userQuestionNumber));
                 } else {
                     Toast.makeText(this, "Not enough Coin to skip the question!", Toast.LENGTH_LONG).show();
@@ -348,18 +369,23 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
 
         if (levelData1Object.getAnswer().equalsIgnoreCase(userAns)) {
             if (userQuestionNumber == levelData.size() - 1) {
-                // save coins and questionNumber to drive for future and other levels
+                // reset the question number in database to zero as user has finished the level
+                // when play again this level, will be started from question 1 again, which is zero index in the object and database
+                userDb.userDao().updateQuestionNumber(0, 1);
                 // go to next level page
                 Intent intent = new Intent (this, LevelTwoActivity.class);
                 startActivity(intent);
                 return;
             }
             Toast.makeText(this, "Answer is correct!", Toast.LENGTH_LONG).show();
-            coinAmount = coinAmount + 10;
-            coinButton.setText(String.valueOf(coinAmount));
+            // increment coins amount by 10 for correct answer
+            increaseCoin(10);
             clickWordBtnCount = 0;
             hintClickCount = 0;
             userQuestionNumber++;
+            // update the question number in database with current question number
+            userDb.userDao().updateQuestionNumber(userQuestionNumber, 1);
+            // pass the next question (object) to playLevel function
             playLevel(levelData.get(userQuestionNumber));
         } else {
             clickWordBtnCount = 0;
@@ -407,6 +433,7 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
     /*
         # do nothing and return if all the setAnswer buttons are set as true
         # if the decided number of hints are already given, then return
+        # if decreaseCoin does not return true, then exit the function
         # if the above stated conditions are not met, check every setAnswer buttons and do the following
             - if setAnswer bool value is false
             - increase clickWordBtnCount++ (as how many click of this helps the program know when to validate the answer)
@@ -443,6 +470,7 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
     /*
         # check and return false if the user coin amount subtract amount passed in the parameter is less than zero
         # else - reduce the user coin amount by the given amount and update the text of coinButton1
+        # also update the number of coin in database every time the coin is modified
      */
     public boolean decreaseCoin(int amount) {
         if (coinAmount - amount < 0) {
@@ -450,8 +478,20 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
         } else {
             coinAmount = coinAmount - amount;
             coinButton.setText(String.valueOf(coinAmount));
+            userDb.userDao().updateCoin(coinAmount, 1);
             return true;
         }
     }
+
+    /*
+        takes the amount given in the parameter and update the coinAmount, coinButton text and coinAmount in the database
+        does not need to return anything as we do not have to check the amount for increasing (increasing doesn't have any requirements to check)
+     */
+    public void increaseCoin(int amount) {
+        coinAmount = coinAmount + amount;
+        coinButton.setText(String.valueOf(coinAmount));
+        userDb.userDao().updateCoin(coinAmount, 1);
+    }
+
 
 }
