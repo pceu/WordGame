@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">WordGame</string>
+    <string name="music_text">Music</string>
+    <string name="timer_text">Timer</string>
+    <string name="text_off">Off</string>
+    <string name="text_on">On</string>
+
 </resources>

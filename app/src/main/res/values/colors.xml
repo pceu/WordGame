@@ -7,4 +7,6 @@
     <color name="appBackgroundStart">#36D1DC</color>
     <color name="appBackgroundEnd">#5B86E5</color>
     <color name="white">#ffff</color>
+    <color name="orange_color">#ed6321</color>
+    <color name="grey">#cdcdcd</color>
 </resources>
