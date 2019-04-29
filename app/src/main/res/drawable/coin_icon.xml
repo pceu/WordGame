@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!--
+    Creating layer-list is learned from StackOverFlow website - https://stackoverflow.com/questions/3484643/comments-in-android-layout-xml/3484726
+    -->
+    <item
+        android:drawable="@drawable/coin"
+        android:width="30dp"
+        android:height="30dp"
+        />
+
+</layer-list >

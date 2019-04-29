@@ -3,6 +3,7 @@ package com.example.wordgame;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +26,10 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
     List<LevelData> levelData = new ArrayList<>();
     // User database
     private UserDatabase userDb;
+
+    // create textView for timer
+    TextView timer;
+    CountDownTimer countDownTimer;
 
     private int userQuestionNumber;     // when exit the game the question user up to will be saved for user and allow to resume for future playing
     // use to track how many user has clicked given wordButtons
@@ -77,6 +82,13 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
 
         // initialize the database instance
         userDb = UserDatabase.getInstance(this);
+
+        // assign timerTextView to it's id
+        timer = findViewById(R.id.timer_level_one);
+        // check if user has turned on timer mode in the setting, and decide whether to set timer or not
+        if (isTimerOn()) {
+            setTimer(60000);
+        }
 
         // Background Music playing code
         if (lastbkgdchecked == 0) {
@@ -359,6 +371,8 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
             - pass the next object in the LevelData Object list (next question in other words) for user to play
         - if incorrect
             - pass the same object for user to play again
+        - also check if static variable for timer in Setting page set to as 1 or 'On' mode in other words
+        - it yes, start the timer again
      */
     public void validateAnswer(LevelData levelData1Object) {
         // first, combine the letters assigned to the answer buttons from user pressing buttons
@@ -385,10 +399,22 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
             userQuestionNumber++;
             // update the question number in database with current question number
             userDb.userDao().updateQuestionNumber(userQuestionNumber, 1);
+            // reset the timer
+            countDownTimer.cancel();
+            // check if timer is set as on to decide whether to set timer or not
+            if (isTimerOn()) {
+                setTimer(60000);
+            }
             // pass the next question (object) to playLevel function
             playLevel(levelData.get(userQuestionNumber));
         } else {
             clickWordBtnCount = 0;
+            // cancel the timer
+            countDownTimer.cancel();
+            // check if timer is set as on to decide whether to set timer or not
+            if (isTimerOn()) {
+                setTimer(60000);
+            }
             playLevel(levelData.get(userQuestionNumber));
         }
     }
@@ -493,5 +519,34 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
         userDb.userDao().updateCoin(coinAmount, 1);
     }
 
+    public void setTimer(int timeInMilliSeconds) {
+        countDownTimer = new CountDownTimer(timeInMilliSeconds, 1000) {
+            @Override
+            public void onTick(long l) {
+                int leftMinutes = (int)(l / 60000);
+                int leftSeconds = (int) (l % 60000 / 1000);
+                StringBuilder remainTime = new StringBuilder("");
+                remainTime.append(leftMinutes);
+                remainTime.append(":");
+                if (leftSeconds < 10) { remainTime.append(0);}
+                remainTime.append(leftSeconds);
+                timer.setText(remainTime);
+            }
+
+            @Override
+            public void onFinish() {
+                validateAnswer(levelData.get(userQuestionNumber));
+                timer.setText("DONE!");
+            }
+        }.start();
+    }
+
+    public boolean isTimerOn() {
+        if(SettingActivity.timerSet == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }

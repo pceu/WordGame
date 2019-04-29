@@ -9,24 +9,29 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/coin"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="240dp"/>
-
+        <TextView
+            android:id="@+id/timer_level_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="160dp"
+            android:text="2:00"
+            android:textSize="40sp"
+            android:textColor="@color/white"
+            android:layout_gravity="center"/>
         <Button
             android:id="@+id/coinButtonL1"
-            android:layout_width="100dp"
+            android:layout_width="120dp"
             android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginStart="20dp"
             android:background="@drawable/coin_box_shape"
+            android:drawableStart="@drawable/coin_icon"
+            android:layout_gravity="center"
             android:text="10"
-            android:textSize="24dp"/>
+            android:textSize="24sp"/>
     </LinearLayout>
 
     <LinearLayout
