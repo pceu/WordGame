@@ -66,7 +66,7 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
     Button [] givenWordButtons = new Button[8];
     // Background Music
     MediaPlayer bkgrdmsc;
-
+    private int lastbkgdchecked = SettingActivity.bkgdchecked;
     /*
         The onCreate function
         set value for some variables such as pressCount
@@ -83,9 +83,14 @@ public class LevelTwoActivity extends AppCompatActivity implements View.OnClickL
         userDb = UserDatabase.getInstance(this);
 
         // Background Music playing code
-        bkgrdmsc = MediaPlayer.create(LevelTwoActivity.this, R.raw.backgroundmusic);
-        bkgrdmsc.setLooping(true);
-        bkgrdmsc.start();
+        if (lastbkgdchecked == 1) {
+            bkgrdmsc = MediaPlayer.create(LevelTwoActivity.this, R.raw.backgroundmusic);
+            bkgrdmsc.setLooping(true);
+            bkgrdmsc.start();
+        } else {
+            bkgrdmsc = MediaPlayer.create(LevelTwoActivity.this, R.raw.backgroundmusic);
+            bkgrdmsc.setLooping(false);
+        }
 
         // read level Two data from csv file (stored in raw directory) and instantiate LevelData object
         // add the LevelData object created from the file to levelQuestionTwoData list

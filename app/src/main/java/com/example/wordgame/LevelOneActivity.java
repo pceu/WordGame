@@ -91,10 +91,13 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
         }
 
         // Background Music playing code
-        if (lastbkgdchecked == 0) {
+        if (lastbkgdchecked == 1) {
             bkgrdmsc = MediaPlayer.create(LevelOneActivity.this, R.raw.backgroundmusic);
             bkgrdmsc.setLooping(true);
             bkgrdmsc.start();
+        } else {
+            bkgrdmsc = MediaPlayer.create(LevelOneActivity.this, R.raw.backgroundmusic);
+            bkgrdmsc.setLooping(false);
         }
         // read level one data from csv file (stored in raw directory) and instantiate LevelData object
         // add the LevelData object created from the file to levelQuestionOneData list
@@ -170,7 +173,7 @@ public class LevelOneActivity extends AppCompatActivity implements View.OnClickL
         if (lastbkgdchecked == 0){
             bkgrdmsc.release();
         }
-        SettingActivity.bkgdchecked = 0;
+        //SettingActivity.bkgdchecked = 0;
         super.onPause();
         bkgrdmsc.release();
         finish();
