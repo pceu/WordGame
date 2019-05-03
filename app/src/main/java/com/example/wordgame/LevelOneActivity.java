@@ -134,7 +134,7 @@ public class LevelOneActivity extends Level implements View.OnClickListener {
         if (lastbkgdchecked == 0){
             bkgrdmsc.release();
         }
-        SettingActivity.bkgdchecked = 0;
+        //SettingActivity.bkgdchecked = 0;
         super.onPause();
         bkgrdmsc.release();
         finish();

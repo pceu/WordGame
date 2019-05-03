@@ -10,7 +10,7 @@ import android.widget.CompoundButton;
 
 public class SettingActivity extends AppCompatActivity {
 
-    public static int bkgdchecked = 0;
+    public static int bkgdchecked = 1;
 
     // if timerSwitch and bkgdchecked set Off = 0 and set On = 1 (this will be the value assign to timerSet and Music to track)
     // this is set as static because we need to check this value from other activity and class thus must be available to the whole class in the project
@@ -66,23 +66,23 @@ public class SettingActivity extends AppCompatActivity {
             }
         });
 
-        bkgdMusicoff();
+        //bkgdMusicoff();
     }
 
-    public  void bkgdMusicoff() {
-        CheckBox checkbox1 = (CheckBox) findViewById(R.id.checkBox);
-        checkbox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
-                if (compoundButton.isChecked()){
-                    bkgdchecked = 1;
-                } else {
-                    bkgdchecked = 0;
-                }
-            }
-        });
-    }
+//    public  void bkgdMusicoff() {
+//        CheckBox checkbox1 = (CheckBox) findViewById(R.id.checkBox);
+//        checkbox1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//
+//                if (compoundButton.isChecked()){
+//                    bkgdchecked = 1;
+//                } else {
+//                    bkgdchecked = 0;
+//                }
+//            }
+//        });
+//    }
 
     /*
         ======================== Credits  ==========================
