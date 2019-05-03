@@ -4,13 +4,19 @@ import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 public class SplashScreen extends AppCompatActivity {
+    ImageView splashScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        splashScreen = findViewById(R.id.splashScreen);
+        splashScreen.setScaleType(ImageView.ScaleType.FIT_XY);
+
         Thread myThread = new Thread() {
             @Override
             public void run() {
