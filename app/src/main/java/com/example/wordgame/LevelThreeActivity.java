@@ -20,48 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class LevelThreeActivity extends AppCompatActivity implements View.OnClickListener, Level {
-
-    // LevelData object list for a level - contains multiple questions to play for the level
-    List<LevelData> levelData = new ArrayList<>();
-
-    // create database variable for this class
-    private UserDatabase userDb;
-
-    private int userQuestionNumber;     // when exit the game the question user up to will be saved for user and allow to resume for future playing
-    private int clickWordBtnCount;
-
-    // hint button
-    Button hintButton;
-    private int hintClickCount;     // stored how many hint button is clicked for a given question
-    // the number user can click the hint button in a question
-    static final int maxHintGiven = 3;
-    // question board for a level
-    private TextView questionBoard;
-
-    //--------------- ANSWER BUTTONS SECTION-------------------------
-    // Boolean variables for tracking whether the answer has been set or not (for answer buttons)
-    // Boolean variables for tracking whether the answer has been set or not (for answer buttons)
-    // boolean value at index 0 represent setAnswerBtn1, index 1 for setAnswerBtn2 and so on
-    // Level 3 has 7 answer related buttons
-    private Boolean [] setAnswerButtons = new Boolean[7];
-
-    // Answer buttons - value will be assign when user click GivenWord buttons
-    private Button[] answerButtons = new Button[7];
-
-    // Coin Button
-    private int coinAmount;
-    Button coinButton;
-    // Skip Button
-    Button skipButton;
-
-    //---------------- GIVEN WORDS BUTTONS SECTION ---------------
-    // buttons given at the bottom for user to choose and combine to get the right answer
-    Button [] givenWordButtons = new Button[12];
-    //----------------------------------------------------------------------------------------------
-
-    // Background Music
-    MediaPlayer bkgrdmsc;
+public class LevelThreeActivity extends Level implements View.OnClickListener {
 
     /*
         The onCreate function
@@ -75,22 +34,47 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_three);
 
+        // read level Three data from csv file (stored in raw directory) and instantiate LevelData object
+        // add the LevelData object created from the file to levelQuestionThreeData list
+        InputStream myInputStream = getResources().openRawResource(R.raw.level_three_data);
+        readLevelData(myInputStream);
+
         // initialize the database instance
         userDb = UserDatabase.getInstance(this);
 
-        // Background Music playing code
-        bkgrdmsc = MediaPlayer.create(LevelThreeActivity.this, R.raw.backgroundmusic);
-        bkgrdmsc.setLooping(true);
-        bkgrdmsc.start();
+        maxHintGiven = 3;
+        // Answer Button
+        setAnswerButtons = new Boolean[7];
+        answerButtons = new Button[7];
+        //GIVEN WORDS BUTTONS
+        givenWordButtons = new Button[12];
 
-        // read level Three data from csv file (stored in raw directory) and instantiate LevelData object
-        // add the LevelData object created from the file to levelQuestionThreeData list
-        readLevelThreeData();
+        // set pressAnswerCount to zero
+        clickWordBtnCount = 0;
+        maxWordBtnClick = 7;
+        levelNumber = 3;
+        timerDuration = 120000;  // timer duration in milli seconds
+        // assign timerTextView to it's id
+        timer = findViewById(R.id.timer_level_three);
+        // check if user has turned on timer mode in the setting, and decide whether to set timer or not
+        if (isTimerOn()) {
+            setTimer(timerDuration);
+        }
+
+        // Background Music playing code
+        if (lastbkgdchecked == 1) {
+            bkgrdmsc = MediaPlayer.create(LevelThreeActivity.this, R.raw.backgroundmusic);
+            bkgrdmsc.setLooping(true);
+            bkgrdmsc.start();
+        } else {
+            bkgrdmsc = MediaPlayer.create(LevelThreeActivity.this, R.raw.backgroundmusic);
+            bkgrdmsc.setLooping(false);
+        }
+
 
         // the LevelData object at useQuestionNumber will be pass to playLevel function to generate the game
         // the value for userQuestionNumber is get from the User Database
-        userQuestionNumber = userDb.userDao().getQuestionNumber(3);
-        hintClickCount = 0;
+        userQuestionNumber = userDb.userDao().getQuestionNumber(levelNumber);
 
         //==================== Hint section================
         hintClickCount = 0;
@@ -124,7 +108,7 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
         // assign button for coinButton
         // get the coinAmount saved in the Database and set the coinAmount
         // note: we don't need to update coin amount for all levels as they are all the same so we will only be getting and updating for level 1
-        coinAmount = userDb.userDao().getCoinAmount(1);
+        coinAmount = userDb.userDao().getCoinAmount(1); // we don't pass level number here as we only update and retrieve coin amount in level 1
         // assign button for coinButton
         coinButton = findViewById(R.id.coinButtonL3);
         coinButton.setText(String.valueOf(coinAmount));
@@ -175,63 +159,6 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
         super.onPause();
         bkgrdmsc.release();
         finish();
-    }
-
-    /*
-        readLevelThreeData
-        Create an input stream to read files stored in this project
-        create a bufferedReader for the input stream
-        split the line in the csv file using comma as a token
-        store each token at value (0..5) in a temp variable which will then be used to create a LevelData Object
-        add the newly created LevelData object in a list (levelQuestionThreeData)
-        learned from Android Developer website and this (https://www.youtube.com/watch?v=i-TqNzUryn8)
-     */
-    public void readLevelThreeData() {
-        InputStream myInputStream = getResources().openRawResource(R.raw.level_three_data);
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(myInputStream, Charset.forName("UTF-8")));
-
-        String textLine = "";
-        try {
-            while ((textLine = bufferedReader.readLine()) != null) {
-                String[] tokens = textLine.split(",");
-
-                // Read the data and create a LevelData object, then add them in levelQuestionThreeData list
-                // first store the data in a temp variable first
-                int questionNumber = Integer.parseInt(tokens[0]);
-                String question = tokens[1];
-                String answer = tokens[2];
-                String hint = tokens[3];
-                int levelNumber = Integer.parseInt(tokens[4]);
-                String givenWord = tokens[5];
-                //create a new LevelData object by passing the above variables in its constructor
-                // add the new object to levelQuestionThreeData list
-                levelData.add(new LevelData(questionNumber, question, answer, hint, levelNumber, givenWord));
-            }
-        } catch (IOException e) {
-            Log.wtf("LevelData Three Activity", "Error occur while reading on line" + textLine, e);
-            e.printStackTrace();
-        }
-    }
-
-    /*
-        takes a level object as a parameter which will then be use to generate the game for user
-        First, reset answerButtons and WordGiven buttons (explained more about the function at the top of resetButtons method).
-        extract the question from the given object and present in the question board.
-        assign each character to givenWordButtons
-     */
-    public void playLevel(LevelData levelDataObject)
-    {
-        // reset all the buttons to make sure no value associated with answer and word buttons are not assigned at the beginning of the game.
-        resetButtons();
-
-        // assign object's attribute 'question' to questionBoard TextView
-        questionBoard.setText(levelDataObject.getQuestion());
-
-        // assign given word value to each button
-        // could use for loop as button will be stored in array
-        for (int i = 0; i < givenWordButtons.length; i++) {
-            givenWordButtons[i].setText(String.valueOf(levelDataObject.getGivenWord().charAt(i)));
-        }
     }
 
     /*
@@ -323,211 +250,5 @@ public class LevelThreeActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
-    /*
-        clickGivenWord method
-        - make disappear of the clicked button (the button given in the parameter)
-        - increase the clickWordBtn count by 1
-        - set the text from the button in the answer button (one that does not have a value yet)
-        - do the answer validation if the clickWordBtn count gets to 3
-     */
-    public void clickGivenWord(Button wordButton) {
-        disappearButton(wordButton);
-        clickWordBtnCount++;
-        setAnswer(String.valueOf(wordButton.getText()));
-        if (clickWordBtnCount == 7) {
-            validateAnswer(levelData.get(userQuestionNumber));
-        }
-    }
-
-    /*
-        clickAnswerButton method
-        - do nothing and return if the setAnswerButtons at the given index is not false
-        - otherwise, put back the button in the original place
-        - set the answer button at index to an empty string
-        - the false value for setAnswerButtons at index given
-        - reduce the clickWordBtnCount again
-     */
-    public void clickAnswerButton(int arrayIndex) {
-        if (!setAnswerButtons[arrayIndex]) {return; }
-        else {
-            putBackWordButton(answerButtons[arrayIndex]);
-            answerButtons[arrayIndex].setText("");
-            setAnswerButtons[arrayIndex] = false;
-            clickWordBtnCount--;
-        }
-    }
-
-    /*
-        # accept a button as a parameter
-        # compares the text from the given button with every word buttons; and put back (make appear and clickable) the button which has the same letter with the input button text
-        # the input button is the answer button clicked by the user
-     */
-    public void putBackWordButton(Button answerButton) {
-        String answerButtonText = String.valueOf(answerButton.getText());
-
-        // use foreach loop to compare the given text with every single givenWord buttons
-        // make reappear the button at index if the text stored are the same
-        for (Button buttonAtIdx: givenWordButtons) {
-            if(answerButtonText.equalsIgnoreCase(String.valueOf(buttonAtIdx.getText()))) {
-                reappearButton(buttonAtIdx);
-                return;
-            }
-        }
-    }
-
-    /*
-        set answer accept a string input and checks:
-        - if a button has been assigned with a value (an alphabet)
-        - if yes, go to next button and if no, then assign the input text (which is the text of the clicked wordGivenButtons) to the answerButton.
-        - set true to the setAnswerButton to know it has been assigned
-     */
-    public void setAnswer(String text) {
-        for (int i = 0; i < answerButtons.length; i++) {
-            if (!setAnswerButtons[i]) {
-                answerButtons[i].setText(text);
-                setAnswerButtons[i] = true;
-                return;
-            }
-        }
-    }
-
-    /*
-    - accepts a LevelData object as a parameter so that we know what object to pass when checking answer
-    - compares the answer from user and answer within the LevelData object
-    - If correct
-        - check if the question is the last one in the level, and go to LevelData page as this is the last level at the moment
-        - pass the next object in the LevelData Object list (next question in other words) for user to play
-    - if incorrect
-        - pass the same object for user to play again
- */
-    public void validateAnswer(LevelData levelData2Object) {
-        // first, combine the letters assigned to the answer buttons from user pressing buttons
-        String userAns = "";
-        for (Button answerButton: answerButtons) {
-            userAns = userAns + String.valueOf(answerButton.getText());
-        }
-
-        if (levelData2Object.getAnswer().equalsIgnoreCase(userAns)) {
-            increaseCoin(10);
-            clickWordBtnCount = 0;
-            hintClickCount = 0;
-            if (userQuestionNumber == (levelData.size() - 1)) {
-                // reset the question number in database to zero as user has finished the level
-                // when play again this level, will be started from question 1 again, which is zero index in the object and database
-                userDb.userDao().updateQuestionNumber(0, 3);
-                // go to back to level page
-                Intent intent = new Intent (this, ChooseLevelActivity.class);
-                startActivity(intent);
-                return;
-            }
-            userQuestionNumber++;
-            // update the question number in database with current question number
-            userDb.userDao().updateQuestionNumber(userQuestionNumber, 3);
-            // pass the next question (object) to playLevel function
-            playLevel(levelData.get(userQuestionNumber));
-        } else {
-            clickWordBtnCount = 0;
-            playLevel(levelData.get(userQuestionNumber));
-        }
-    }
-
-    /*
-        set all wordGivenButtons to appear and set clickable to true
-        set false for setAnswer variables
-        set the answers buttons to empty string
-     */
-    public void resetButtons() {
-        // make re-appear wordButtons
-        for (Button givenWordButton : givenWordButtons) {
-            reappearButton(givenWordButton);
-        }
-
-        // set to false for setAnswers buttons as we need this value to check if the answerButton is filled with letter
-        // learn the method(setting all boolean values in array to false or true) from this link - https://stackoverflow.com/questions/2364856/initializing-a-boolean-array-in-java
-        Arrays.fill(setAnswerButtons, Boolean.FALSE);
-
-        // Empty the any letter assign to answer buttons
-        for (Button answerButton : answerButtons) {
-            answerButton.setText("");
-        }
-    }
-
-    /*
-        this function set the alpha to full value and set button clickable to true
-     */
-    public void reappearButton(Button button) {
-        button.animate().alpha(255).setDuration(50);
-        button.setClickable(true);
-    }
-
-    /*
-        set alpha value of a given button to zero and set false for setClickable
-     */
-    public  void disappearButton(Button button) {
-        button.animate().alpha(0).setDuration(50);
-        button.setClickable(false);
-    }
-
-    /*
-        # do nothing and return if all the setAnswer buttons are set as true
-        # if the decided number of hints are already given, then return
-        # if the above stated conditions are not met, check every setAnswer buttons and do the following
-            - if setAnswer bool value is false
-            - increase clickWordBtnCount++ (as how many click of this helps the program know when to validate the answer)
-            - store the letter at a button (if answer button 1 is not set yet) for the question in a temporary String variable
-            - set the above temp variable as the given (in parameter) answer button text
-            - set setAnswer button to true
-            - validate the answer if clickWordBtnCount is 7
-            - else return (exit the function)
-     */
-    public void giveHint() {
-        // check if the hint has been given or not (one hint is only allowed for level 1)
-        // the following method learned from - https://stackoverflow.com/questions/8260881/what-is-the-most-elegant-way-to-check-if-all-values-in-a-boolean-array-are-true
-        if (Arrays.asList(setAnswerButtons).contains(false)) {
-        } else { return; }
-
-        if(hintClickCount == maxHintGiven) {
-            return;
-        }
-        for (int i = 0; i < setAnswerButtons.length; i++) {
-            if(!setAnswerButtons[i]) {
-                clickWordBtnCount++;
-                String hintLetter = String.valueOf(levelData.get(userQuestionNumber).getAnswer().charAt(i));
-                answerButtons[i].setText(hintLetter);
-                setAnswerButtons[i] = true;
-                if (clickWordBtnCount == 7) {
-                    validateAnswer(levelData.get(userQuestionNumber));
-                    return;
-                } else { return;}
-            }
-        }
-    }
-
-    // Coin number Modification
-    /*
-        # check and return false if the user coin amount subtract amount passed in the parameter is less than zero
-        # else - reduce the user coin amount by the given amount and update the text of coinButton1
-        # also update the number of coin in database every time the coin is modified
-     */
-    public boolean decreaseCoin(int amount) {
-        if (coinAmount - amount < 0) {
-            return false;
-        } else {
-            coinAmount = coinAmount - amount;
-            coinButton.setText(String.valueOf(coinAmount));
-            userDb.userDao().updateCoin(coinAmount, 1);
-            return true;
-        }
-    }
-
-    /*
-        takes the amount given in the parameter and update the coinAmount, coinButton text and coinAmount in the database
-        does not need to return anything as we do not have to check the amount for increasing (increasing doesn't have any requirements to check)
-     */
-    public void increaseCoin(int amount) {
-        coinAmount = coinAmount + amount;
-        coinButton.setText(String.valueOf(coinAmount));
-        userDb.userDao().updateCoin(coinAmount, 1);
-    }
 
 }
