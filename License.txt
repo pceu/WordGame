@@ -1,0 +1,10 @@
+<License file>
+
+<Main logo>
+http://www.wordgames.com/en/puzzle/
+
+<Coin icon>
+https://opengameart.org/content/coin-icon
+
+<Splash screen>
+https://www.peoplefun.com/
