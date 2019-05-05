@@ -1,17 +1,12 @@
 package com.example.wordgame;
 
+import android.app.Dialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 import android.media.MediaPlayer;
-
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 import java.util.Arrays;
 
 
@@ -33,6 +28,9 @@ public class LevelOneActivity extends Level implements View.OnClickListener {
         // add the LevelData object created from the file to levelQuestionOneData list
         InputStream myInputStream = getResources().openRawResource(R.raw.level_one_data); // create input stream for the  level
         readLevelData(myInputStream);
+
+        // popup dialog
+        popupDialog = new Dialog(this);
 
         // initialize the database instance
         userDb = UserDatabase.getInstance(this);
@@ -184,9 +182,7 @@ public class LevelOneActivity extends Level implements View.OnClickListener {
                     giveHint();
                     hintClickCount++;
                 } else {
-                    // will also use popup window (as custom popup window takes time to create)
-                    // we are right now focusing on the basic thing first
-                    Toast.makeText(this, "Not enough Coin to use hint or has used max hint allowance!", Toast.LENGTH_LONG).show();
+                    showNegativeMessage("Not enough coin for hint or user has reach maximum number of hint given for current level.");
                 }
             case R.id.coinButtonL1:
                 break;
@@ -197,8 +193,8 @@ public class LevelOneActivity extends Level implements View.OnClickListener {
                     userDb.userDao().updateQuestionNumber(userQuestionNumber, 1);
                     playLevel(levelData.get(userQuestionNumber));
                 } else {
-                    Toast.makeText(this, "Not enough Coin to skip the question!", Toast.LENGTH_LONG).show();
-                    // will use popup window to let user know that user does not have sufficient amount of coin
+                    showNegativeMessage("Insufficient coin amount to skip the question. Skip needs at least 30 coins.");
+                    Toast.makeText(this, "Not enough Coin to use hint or has used max hint allowance!", Toast.LENGTH_LONG).show();
                 }
         }
     }

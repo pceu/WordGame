@@ -1,9 +1,13 @@
 package com.example.wordgame;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -80,6 +84,10 @@ public abstract class Level extends AppCompatActivity {
     protected MediaPlayer bkgrdmsc;
     protected int lastbkgdchecked = SettingActivity.bkgdchecked;
 
+    // popup message
+    Button posOkButton, negOkButton;
+    Dialog popupDialog;
+    TextView posMessageTv, negMessageTv, posTitleTv, negTitleTV;
 
     // ================ CLASS METHODS/FUNCTIONS ===========================================================
 
@@ -298,7 +306,7 @@ public abstract class Level extends AppCompatActivity {
             @Override
             public void onFinish() {
                 validateAnswer(levelData.get(userQuestionNumber));
-                timer.setText("DONE!");
+                showNegativeMessage("That was close! Try again to answer correctly within the given time frame.");
             }
         }.start();
     }
@@ -331,6 +339,11 @@ public abstract class Level extends AppCompatActivity {
 
         if (levelData1Object.getAnswer().equalsIgnoreCase(userAns)) {
             if (userQuestionNumber == levelData.size() - 1) {
+                StringBuilder message = new StringBuilder();
+                message.append("You have completed Level ");
+                message.append(levelNumber);
+                message.append(". If you play this level again, you will be starting from question 1 again.");
+                showPositiveMessage(String.valueOf(message));
                 // reset the question number in database to zero as user has finished the level
                 // when play again this level, will be started from question 1 again, which is zero index in the object and database
                 userDb.userDao().updateQuestionNumber(0, levelNumber);
@@ -355,6 +368,7 @@ public abstract class Level extends AppCompatActivity {
             // pass the next question (object) to playLevel function
             playLevel(levelData.get(userQuestionNumber));
         } else {
+            showNegativeMessage("Incorrect answer, try again");
             clickWordBtnCount = 0;
             // cancel the timer
             // check if timer is set as on to decide whether to set timer or not
@@ -403,6 +417,40 @@ public abstract class Level extends AppCompatActivity {
             Log.wtf("LevelData One Activity", "Error occur while reading on line" + tempString, e);
             e.printStackTrace();
         }
+    }
+
+    public void showPositiveMessage(String message) {
+        popupDialog.setContentView(R.layout.positive_message);
+        posTitleTv = popupDialog.findViewById(R.id.posTitleTv);
+        posOkButton = popupDialog.findViewById(R.id.posOkButton);
+        posMessageTv = popupDialog.findViewById(R.id.posMessageTv);
+        posMessageTv.setText(message);
+        posOkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popupDialog.dismiss();
+            }
+        });
+
+        popupDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        popupDialog.show();
+    }
+
+    public void showNegativeMessage(String message) {
+        popupDialog.setContentView(R.layout.negative_message);
+        negTitleTV = popupDialog.findViewById(R.id.negTitleTv);
+        negOkButton = popupDialog.findViewById(R.id.negOkButton);
+        negMessageTv = popupDialog.findViewById(R.id.negMessageTv);
+        negMessageTv.setText(String.valueOf(message));
+        negOkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popupDialog.dismiss();
+            }
+        });
+
+        popupDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        popupDialog.show();
     }
 
     /*

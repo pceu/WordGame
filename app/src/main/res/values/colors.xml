@@ -3,10 +3,14 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name ="test">#050000</color>
+    <color name ="black">#050000</color>
     <color name="appBackgroundStart">#36D1DC</color>
     <color name="appBackgroundEnd">#5B86E5</color>
     <color name="white">#ffff</color>
     <color name="orange_color">#ed6321</color>
     <color name="grey">#cdcdcd</color>
+    <color name="darkGreen">#247b37</color>
+    <color name="negMessageBg">#ff3943</color>
+    <color name="posMessageBg">#abffc0</color>
+
 </resources>
