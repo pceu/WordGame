@@ -193,10 +193,10 @@ Note:   We have similiar xml file to some extent as I (Ceu) have changed and mes
 
 # Monday 6/May
 - complete popup message for level 2 and 3:
-	+ modify Level.java
- 	+ LevelOneActivity.java 
- 	+ LevelTwoActivity.java
- 	+ LevelThreeActivity.java
+	+ modify Level.java [Ceu]
+ 	+ LevelOneActivity.java [Ceu]
+ 	+ LevelTwoActivity.java [Ceu]
+ 	+ LevelThreeActivity.java [Ceu]
 
 
 
