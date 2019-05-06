@@ -129,4 +129,84 @@ Note:   We have similiar xml file to some extent as I (Ceu) have changed and mes
 - research and study about Room (storing technique in Android) to implement this in the project [Ceu]
 - Add function that music turn on and off [Nam]
 
+================================ EASTER BREAK + WEEK 8 =========================================================================================
+# Wednesday 24/April [Ceu]
+- working on modifying all levels ( using superclass and arrays for buttons and Booleans)
+	+ did not commit or push as this will only be push once the modified levels are working properly as it could ruin the previous data in GitHub
+	+ Haven't finished yet still left so many things to do.
+	+ contact Nam to do some readings about using superclass in java
+- as requested by Henry, read and learn about super class and try to implement but as Java does not support multiple class inheritance and could not use the super class in java. 
+  However, after some research, use interface for all the levels to implement. Interface only allow method without any inside declaration, and thus methods and appropriate attributes are declared in level interface.
+- modified all the level 1,2 and 3 such as using arrays and loop for buttons (which reduces hundreds of lines of code), introducing new methods to reduce code redundancy, use of inheritance in all the levels.
+- modified all the level 1,2 and 3 such as using arrays and loop for buttons (which reduces hundreds of lines of code), introducing new methods to reduce code redundancy, use of inheritance in all the levels.
+
+# Friday 26/April [Ceu]
+- Working on Room (saving user data to local Drive)
+	+ create and work on User entity class for Room
+	+ Create and work on UserDao.java class
+	+ Create and work on UserDatabase.java class
+	+ solve problem with gradle (this one took me a while to figure out as my project won't compile). Using Room need us to upgrade some gradle dependencies and migrate to AndroidX and so on.
+	+ - implement Room for all level 1, 2 and 3:
+		# saving user progress coinAmount, question number to database
+		# retrieving user data coinAmount, question number for level and resume the game from where user has left
+
+# Saturday 27/April [Ceu]
+- study and research about Timer in android
+
+# Sunday 28/April [Ceu]
+- Work on Setting Activity:
+	+ create SwitchCompat for Timer and Music (both java and xml file)
+	+ implement switch buttons for timer and music
+	+ create and work on switch_thumb.xml
+	+ create and work on switch_track.xml
+	+ modified and add some colors to colors.xml
+	+ add some string to strings.xml
+
+# Monday 29/Apr
+- Implement Timer for Level 1:
+	+ modify levelOneActivity.java - add variable and other CountDownTimer object, then create methods for timer. [Ceu]
+	+ create and work on coin_icon.xml - Add coin icon as a drawableStart for coin button to look nice. [Ceu]
+	+ modify activity_level_one.xml - Create textView for Timer. [Ceu]
+
+# Thursday 2/May
+  (Note: I mentioned that i use interface instead of super class as I could not figure out how to use inheritance using super class. However, after reading
+         and researching online resources, came up with an idea where Level extends AppCompatActivity and level 1, 2 and 3 extends level.
+         In this way Level 1, 2 and 3 also inherit from AppCompatActivity as their parent class Level inherit it.) [Ceu]
+- working on combining all the levels into one to use a super class. Previously, using interface does not reduces code redundancy and was not professional.
+  In this lab, successfully figure out how to combing all levels by using super class in java. Some attributes are override for different levels and assign 
+  different values for some class attributes. Been spending time on this and now, I can figure out successfully. [Ceu]
+
+# Friday 3/May
+- study how to create custom message box or alert for the project [Ceu]
+
+# Sunday 5/May [Ceu]
+- implement popup message for level one and work include:
+	+ changing Level abstract java class - add two positive and negative message methods
+	+ write code for popup message for levelOneActivity
+	+ create 5 vector assets using android studio
+	+ create and work on two new layouts for popup message - negative_message.xml and positive_message.xml
+	+ add message_button_round_green.xml and message_button_round_white.xml
+	+ add values to colors.xml
+	+ add values to strings.xml
+
+=========================== WEEK 9 ========================================================================================
+
+# Monday 6/May
+- complete popup message for level 2 and 3:
+	+ modify Level.java
+ 	+ LevelOneActivity.java 
+ 	+ LevelTwoActivity.java
+ 	+ LevelThreeActivity.java
+
+
+
+
+
+
+
+
+
+
+
+
 
