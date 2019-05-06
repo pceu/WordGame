@@ -348,10 +348,15 @@ public abstract class Level extends AppCompatActivity {
                 // when play again this level, will be started from question 1 again, which is zero index in the object and database
                 userDb.userDao().updateQuestionNumber(0, levelNumber);
                 // go to next level page
-                goToActivity(LevelTwoActivity.class);
+                if(levelNumber == 1) {
+                    goToActivity(LevelThreeActivity.class);
+                } else if(levelNumber == 2) {
+                    goToActivity(LevelThreeActivity.class);
+                } else {
+                    goToActivity(ChooseLevelActivity.class);
+                }
                 return;
             }
-            Toast.makeText(this, "Answer is correct!", Toast.LENGTH_LONG).show();
             // increment coins amount by 10 for correct answer
             increaseCoin(10);
             clickWordBtnCount = 0;
@@ -368,7 +373,6 @@ public abstract class Level extends AppCompatActivity {
             // pass the next question (object) to playLevel function
             playLevel(levelData.get(userQuestionNumber));
         } else {
-            showNegativeMessage("Incorrect answer, try again");
             clickWordBtnCount = 0;
             // cancel the timer
             // check if timer is set as on to decide whether to set timer or not
@@ -376,6 +380,7 @@ public abstract class Level extends AppCompatActivity {
                 countDownTimer.cancel();
                 setTimer(timerDuration);
             }
+            // reload the question again by passing the same object to playLevel method
             playLevel(levelData.get(userQuestionNumber));
         }
     }

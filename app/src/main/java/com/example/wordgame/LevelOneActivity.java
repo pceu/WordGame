@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 import android.media.MediaPlayer;
 import java.io.InputStream;
 import java.util.Arrays;
@@ -182,7 +181,7 @@ public class LevelOneActivity extends Level implements View.OnClickListener {
                     giveHint();
                     hintClickCount++;
                 } else {
-                    showNegativeMessage("Not enough coin for hint or user has reach maximum number of hint given for current level.");
+                    showNegativeMessage("Not enough coin for hint or user has reach maximum number of hint given for current level. A single use of Skip needs 10 coins.");
                 }
             case R.id.coinButtonL1:
                 break;
@@ -193,8 +192,7 @@ public class LevelOneActivity extends Level implements View.OnClickListener {
                     userDb.userDao().updateQuestionNumber(userQuestionNumber, 1);
                     playLevel(levelData.get(userQuestionNumber));
                 } else {
-                    showNegativeMessage("Insufficient coin amount to skip the question. Skip needs at least 30 coins.");
-                    Toast.makeText(this, "Not enough Coin to use hint or has used max hint allowance!", Toast.LENGTH_LONG).show();
+                    showNegativeMessage("Insufficient amount of coin to skip the question. Skip needs at least 30 coins.");
                 }
         }
     }

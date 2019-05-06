@@ -1,5 +1,6 @@
 package com.example.wordgame;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
@@ -38,6 +39,9 @@ public class LevelThreeActivity extends Level implements View.OnClickListener {
         // add the LevelData object created from the file to levelQuestionThreeData list
         InputStream myInputStream = getResources().openRawResource(R.raw.level_three_data);
         readLevelData(myInputStream);
+
+        // popup dialog
+        popupDialog = new Dialog(this);
 
         // initialize the database instance
         userDb = UserDatabase.getInstance(this);
@@ -234,6 +238,8 @@ public class LevelThreeActivity extends Level implements View.OnClickListener {
                 if(hintClickCount < maxHintGiven && decreaseCoin(10)) {
                     giveHint();
                     hintClickCount++;
+                } else {
+                    showNegativeMessage("Not enough coin for hint or user has reach maximum number of hint given for current level. A single use of Skip needs 10 coins.");
                 }
             case R.id.coinButtonL3:
                 break;
@@ -244,8 +250,7 @@ public class LevelThreeActivity extends Level implements View.OnClickListener {
                     userDb.userDao().updateQuestionNumber(userQuestionNumber, 3);
                     playLevel(levelData.get(userQuestionNumber));
                 } else {
-                    Toast.makeText(this, "Not enough Coin to skip the question!", Toast.LENGTH_LONG).show();
-                    // will use popup window to let user know that user does not have sufficient amount of coin
+                    showNegativeMessage("Insufficient amount of coin to skip the question. Skip needs at least 30 coins.");
                 }
         }
     }
