@@ -4,6 +4,7 @@ import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +20,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // initialize the database instance
-        userDb = UserDatabase.getInstance(this);
+        try {
+            // initialize the database instance
+            userDb = UserDatabase.getInstance(this);
+            // throw exception if the database is still null
+            if (userDb == null) {
+                throw new NullPointerException("Could not create database instance");
+            }
 
-        // empty row in the database means user has never played or delete the app and install the app again
-        // in this situation, hardcoded data (some coin amount to use and other related User data) are created for ths user
-        if(userDb.userDao().countRows() == 0) {
-            userDb.userDao().insertAllUserData(generateUser());
+            // empty row in the database means user has never played or delete the app and install the app again
+            // in this situation, hardcoded data (some coin amount to use and other related User data) are created for ths user
+            if(userDb.userDao().countRows() == 0) {
+                if(generateUser() == null) {
+                    throw new IllegalArgumentException();
+                }
+
+                userDb.userDao().insertAllUserData(generateUser());
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            finish();
+            startActivity(getIntent());
         }
     }
 

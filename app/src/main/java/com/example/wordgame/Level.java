@@ -92,15 +92,6 @@ public abstract class Level extends AppCompatActivity {
     // ================ CLASS METHODS/FUNCTIONS ===========================================================
 
     /*
-        readLevelData
-        Create an input stream to read files stored in this project
-        create a bufferedReader for the input stream
-        split the line in the csv file using comma as a token
-        store each token at value (0..5) in a temp variable which will then be used to create a LevelData Object
-        add the newly created LevelData object in a list (userLevelQuestion)
-     */
-
-    /*
         takes a level object as a parameter which will then be use to generate the game for user
         First, reset answerButtons and WordGiven buttons (explained more about the function at the top of resetButtons method).
         extract the question from the given object and present in the question board.
@@ -111,6 +102,33 @@ public abstract class Level extends AppCompatActivity {
         // reset all the buttons to make sure no value associated with answer and word buttons are not assigned at the beginning of the game.
         resetButtons();
 
+        // handling bugs here
+        /*
+            if passed object is null, then pass next object
+            condition: if the object is the last object in the class go to next level or appropriate page
+         */
+        if(levelDataObject == null || levelDataObject.getQuestion() == null) {
+            if (userQuestionNumber == levelData.size() - 1) {
+                // reset the question number in database to zero as user has finished the level
+                // when play again this level, will be started from question 1 again, which is zero index in the object and database
+                userDb.userDao().updateQuestionNumber(0, levelNumber);
+                // go to next level page
+                if(levelNumber == 1) {
+                    goToActivity(LevelThreeActivity.class);
+                } else if(levelNumber == 2) {
+                    goToActivity(LevelThreeActivity.class);
+                } else {
+                    goToActivity(ChooseLevelActivity.class);
+                }
+                return;
+            }
+            Toast.makeText(this, "The question is empty! Try the next question", Toast.LENGTH_SHORT).show();
+            userQuestionNumber++;
+            // update the question number in database with current question number
+            userDb.userDao().updateQuestionNumber(userQuestionNumber, levelNumber);
+            // pass the next question (object) to playLevel function
+            playLevel(levelData.get(userQuestionNumber));
+        }
         // assign object's attribute 'question' to questionBoard TextView
         questionBoard.setText(levelDataObject.getQuestion());
 
@@ -129,11 +147,15 @@ public abstract class Level extends AppCompatActivity {
         - do the answer validation if the clickWordBtn count gets to 3
      */
     public void clickGivenWord(Button wordButton) {
-        disappearButton(wordButton);
-        clickWordBtnCount++;
-        setAnswer(String.valueOf(wordButton.getText()));
-        if (clickWordBtnCount == maxWordBtnClick) {
-            validateAnswer(levelData.get(userQuestionNumber));
+        try {
+            disappearButton(wordButton);
+            clickWordBtnCount++;
+            setAnswer(String.valueOf(wordButton.getText()));
+            if (clickWordBtnCount == maxWordBtnClick) {
+                validateAnswer(levelData.get(userQuestionNumber));
+            }
+        } catch (Exception e) {
+            playLevel(levelData.get(userQuestionNumber));
         }
     }
 
@@ -146,12 +168,19 @@ public abstract class Level extends AppCompatActivity {
         - reduce the clickWordBtnCount again
      */
     public void clickAnswerButton(int arrayIndex) {
-        if (!setAnswerButtons[arrayIndex]) { }
-        else {
-            putBackWordButton(answerButtons[arrayIndex]);
-            answerButtons[arrayIndex].setText("");
-            setAnswerButtons[arrayIndex] = false;
-            clickWordBtnCount--;
+        try {
+            // exception is thrown when the bug is exceptional and solve it
+            if(arrayIndex > answerButtons.length - 1) {
+                throw new IndexOutOfBoundsException();
+            }
+            if(setAnswerButtons[arrayIndex]) {
+                putBackWordButton(answerButtons[arrayIndex]);
+                answerButtons[arrayIndex].setText("");
+                setAnswerButtons[arrayIndex] = false;
+                clickWordBtnCount--;
+            }
+        } catch (Exception e) {
+            playLevel(levelData.get(userQuestionNumber));
         }
     }
 
@@ -161,15 +190,23 @@ public abstract class Level extends AppCompatActivity {
         # the input button is the answer button clicked by the user
      */
     public void putBackWordButton(Button answerButton) {
-        String answerButtonText = String.valueOf(answerButton.getText());
-
-        // use foreach loop to compare the given text with every single givenWord buttons
-        // make reappear the button at index if the text stored are the same
-        for (Button buttonAtIdx: givenWordButtons) {
-            if(answerButtonText.equalsIgnoreCase(String.valueOf(buttonAtIdx.getText()))) {
-                reappearButton(buttonAtIdx);
-                return;
+        try {
+            if(answerButton.getText() == null || answerButton.getText() == "") {
+                throw new MyException("Text button cannot be null or empty when trying to put back button.");
             }
+            String answerButtonText = String.valueOf(answerButton.getText());
+
+            // use foreach loop to compare the given text with every single givenWord buttons
+            // make reappear the button at index if the text stored are the same
+            for (Button buttonAtIdx: givenWordButtons) {
+                if(answerButtonText.equalsIgnoreCase(String.valueOf(buttonAtIdx.getText()))) {
+                    reappearButton(buttonAtIdx);
+                    return;
+                }
+            }
+        } catch (Exception e) {
+            // resume the question in the game of bugs occur
+            playLevel(levelData.get(userQuestionNumber));
         }
     }
 
@@ -195,18 +232,22 @@ public abstract class Level extends AppCompatActivity {
         set the answers buttons to empty string
      */
     public void resetButtons() {
-        // make re-appear wordButtons
-        for (Button givenWordButton : givenWordButtons) {
-            reappearButton(givenWordButton);
-        }
+        try {
+            // make re-appear wordButtons
+            for (Button givenWordButton : givenWordButtons) {
+                reappearButton(givenWordButton);
+            }
 
-        // set to false for setAnswers buttons as we need this value to check if the answerButton is filled with letter
-        // learn the method(setting all boolean values in array to false or true) from this link - https://stackoverflow.com/questions/2364856/initializing-a-boolean-array-in-java
-        Arrays.fill(setAnswerButtons, Boolean.FALSE);
+            // set to false for setAnswers buttons as we need this value to check if the answerButton is filled with letter
+            // learn the method(setting all boolean values in array to false or true) from this link - https://stackoverflow.com/questions/2364856/initializing-a-boolean-array-in-java
+            Arrays.fill(setAnswerButtons, Boolean.FALSE);
 
-        // Empty the any letter assign to answer buttons
-        for (Button answerButton : answerButtons) {
-            answerButton.setText("");
+            // Empty the any letter assign to answer buttons
+            for (Button answerButton : answerButtons) {
+                answerButton.setText("");
+            }
+        } catch (Exception e) {
+            playLevel(levelData.get(userQuestionNumber));
         }
     }
 
@@ -222,6 +263,7 @@ public abstract class Level extends AppCompatActivity {
         set alpha value of a given button to zero and set false for setClickable
      */
     public void disappearButton(Button button) {
+
         button.animate().alpha(0).setDuration(50);
         button.setClickable(false);
     }
@@ -240,25 +282,32 @@ public abstract class Level extends AppCompatActivity {
             - else return (exit the function)
      */
     public void giveHint() {
-        // check if the hint has been given or not (one hint is only allowed for level 1)
-        // the following method learned from - https://stackoverflow.com/questions/8260881/what-is-the-most-elegant-way-to-check-if-all-values-in-a-boolean-array-are-true
-        if (Arrays.asList(setAnswerButtons).contains(false)) {
-        } else { return; }
-
-        if(hintClickCount == maxHintGiven) {
-            return;
-        }
-        for (int i = 0; i < setAnswerButtons.length; i++) {
-            if(!setAnswerButtons[i]) {
-                clickWordBtnCount++;
-                String hintLetter = String.valueOf(levelData.get(userQuestionNumber).getAnswer().charAt(i));
-                answerButtons[i].setText(hintLetter);
-                setAnswerButtons[i] = true;
-                if (clickWordBtnCount == maxWordBtnClick) {
-                    validateAnswer(levelData.get(userQuestionNumber));
-                    return;
-                } else { return;}
+        try {
+            // check if the hint has been given or not (one hint is only allowed for level 1)
+            // the following method learned from - https://stackoverflow.com/questions/8260881/what-is-the-most-elegant-way-to-check-if-all-values-in-a-boolean-array-are-true
+            if (!Arrays.asList(setAnswerButtons).contains(false)) {
+                return;
             }
+
+            if(hintClickCount == maxHintGiven) {
+                return;
+            }
+            for (int i = 0; i < setAnswerButtons.length; i++) {
+                if(!setAnswerButtons[i]) {
+                    clickWordBtnCount++;
+                    String hintLetter = String.valueOf(levelData.get(userQuestionNumber).getAnswer().charAt(i));
+                    answerButtons[i].setText(hintLetter);
+                    setAnswerButtons[i] = true;
+                    if (clickWordBtnCount == maxWordBtnClick) {
+                        validateAnswer(levelData.get(userQuestionNumber));
+                        return;
+                    } else { return;}
+                }
+            }
+        } catch (Exception e) {
+            // resume the question in the game of bugs occur
+            playLevel(levelData.get(userQuestionNumber));
+            // possibly store the error in the log page
         }
     }
 
@@ -269,13 +318,19 @@ public abstract class Level extends AppCompatActivity {
         # also update the number of coin in database every time the coin is modified
      */
     public boolean decreaseCoin(int amount) {
-        if (coinAmount - amount < 0) {
+        try {
+            if (coinAmount - amount < 0) {
+                return false;
+            } else {
+                coinAmount = coinAmount - amount;
+                coinButton.setText(String.valueOf(coinAmount));
+                userDb.userDao().updateCoin(coinAmount, 1);
+                return true;
+            }
+        } catch (Exception e) {
+            // reload the question again
+            playLevel(levelData.get(userQuestionNumber));
             return false;
-        } else {
-            coinAmount = coinAmount - amount;
-            coinButton.setText(String.valueOf(coinAmount));
-            userDb.userDao().updateCoin(coinAmount, 1);
-            return true;
         }
     }
 
@@ -295,7 +350,7 @@ public abstract class Level extends AppCompatActivity {
             public void onTick(long l) {
                 int leftMinutes = (int)(l / 60000);
                 int leftSeconds = (int) (l % 60000 / 1000);
-                StringBuilder remainTime = new StringBuilder("");
+                StringBuilder remainTime = new StringBuilder();
                 remainTime.append(leftMinutes);
                 remainTime.append(":");
                 if (leftSeconds < 10) { remainTime.append(0);}
@@ -331,56 +386,60 @@ public abstract class Level extends AppCompatActivity {
         - it yes, start the timer again
      */
     public void validateAnswer(LevelData levelData1Object) {
-        // first, combine the letters assigned to the answer buttons from user pressing buttons
-        String userAns = "";
-        for (Button answerButton: answerButtons) {
-            userAns = userAns + String.valueOf(answerButton.getText());
-        }
+        try {
+            // first, combine the letters assigned to the answer buttons from user pressing buttons
+            StringBuilder userAns = new StringBuilder();
+            for (Button answerButton: answerButtons) {
+                userAns.append(String.valueOf(answerButton.getText()));
+            }
 
-        if (levelData1Object.getAnswer().equalsIgnoreCase(userAns)) {
-            if (userQuestionNumber == levelData.size() - 1) {
-                StringBuilder message = new StringBuilder();
-                message.append("You have completed Level ");
-                message.append(levelNumber);
-                message.append(". If you play this level again, you will be starting from question 1 again.");
-                showPositiveMessage(String.valueOf(message));
-                // reset the question number in database to zero as user has finished the level
-                // when play again this level, will be started from question 1 again, which is zero index in the object and database
-                userDb.userDao().updateQuestionNumber(0, levelNumber);
-                // go to next level page
-                if(levelNumber == 1) {
-                    goToActivity(LevelThreeActivity.class);
-                } else if(levelNumber == 2) {
-                    goToActivity(LevelThreeActivity.class);
-                } else {
-                    goToActivity(ChooseLevelActivity.class);
+            if (levelData1Object.getAnswer().equalsIgnoreCase(String.valueOf(userAns))) {
+                if (userQuestionNumber == levelData.size() - 1) {
+                    StringBuilder message = new StringBuilder();
+                    message.append("You have completed Level ");
+                    message.append(levelNumber);
+                    message.append(". If you play this level again, you will be starting from question 1 again.");
+                    showPositiveMessage(String.valueOf(message));
+                    // reset the question number in database to zero as user has finished the level
+                    // when play again this level, will be started from question 1 again, which is zero index in the object and database
+                    userDb.userDao().updateQuestionNumber(0, levelNumber);
+                    // go to next level page
+                    if(levelNumber == 1) {
+                        goToActivity(LevelThreeActivity.class);
+                    } else if(levelNumber == 2) {
+                        goToActivity(LevelThreeActivity.class);
+                    } else {
+                        goToActivity(ChooseLevelActivity.class);
+                    }
+                    return;
                 }
-                return;
+                // increment coins amount by 10 for correct answer
+                increaseCoin(10);
+                clickWordBtnCount = 0;
+                hintClickCount = 0;
+                userQuestionNumber++;
+                // update the question number in database with current question number
+                userDb.userDao().updateQuestionNumber(userQuestionNumber, levelNumber);
+                // reset the timer
+                // check if timer is set as on to decide whether to set timer or not
+                if (isTimerOn()) {
+                    countDownTimer.cancel();
+                    setTimer(timerDuration);
+                }
+                // pass the next question (object) to playLevel function
+                playLevel(levelData.get(userQuestionNumber));
+            } else {
+                clickWordBtnCount = 0;
+                // cancel the timer
+                // check if timer is set as on to decide whether to set timer or not
+                if (isTimerOn()) {
+                    countDownTimer.cancel();
+                    setTimer(timerDuration);
+                }
+                // reload the question again by passing the same object to playLevel method
+                playLevel(levelData.get(userQuestionNumber));
             }
-            // increment coins amount by 10 for correct answer
-            increaseCoin(10);
-            clickWordBtnCount = 0;
-            hintClickCount = 0;
-            userQuestionNumber++;
-            // update the question number in database with current question number
-            userDb.userDao().updateQuestionNumber(userQuestionNumber, levelNumber);
-            // reset the timer
-            // check if timer is set as on to decide whether to set timer or not
-            if (isTimerOn()) {
-                countDownTimer.cancel();
-                setTimer(timerDuration);
-            }
-            // pass the next question (object) to playLevel function
-            playLevel(levelData.get(userQuestionNumber));
-        } else {
-            clickWordBtnCount = 0;
-            // cancel the timer
-            // check if timer is set as on to decide whether to set timer or not
-            if (isTimerOn()) {
-                countDownTimer.cancel();
-                setTimer(timerDuration);
-            }
-            // reload the question again by passing the same object to playLevel method
+        } catch (Exception e) {
             playLevel(levelData.get(userQuestionNumber));
         }
     }
@@ -411,16 +470,16 @@ public abstract class Level extends AppCompatActivity {
                 int questionNumber = Integer.parseInt(tokens[0]);
                 String question = tokens[1];
                 String answer = tokens[2];
-                String hint = tokens[3];
-                int levelNumber = Integer.parseInt(tokens[4]);
-                String givenWord = tokens[5];
+                int levelNumber = Integer.parseInt(tokens[3]);
+                String givenWord = tokens[4];
                 //create a new LevelData object by passing the above variables in its constructor
                 // add the new object to levelQuestionOneData list
-                levelData.add(new LevelData(questionNumber, question, answer, hint, levelNumber, givenWord));
+                levelData.add(new LevelData(questionNumber, question, answer, levelNumber, givenWord));
             }
         } catch (IOException e) {
-            Log.wtf("LevelData One Activity", "Error occur while reading on line" + tempString, e);
+            Log.wtf("Level " + levelNumber + " Activity", "Error occur while reading on line" + tempString, e);
             e.printStackTrace();
+            goToActivity(MainActivity.class);
         }
     }
 
@@ -436,9 +495,13 @@ public abstract class Level extends AppCompatActivity {
                 popupDialog.dismiss();
             }
         });
-
-        popupDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        popupDialog.show();
+        try {
+            popupDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            popupDialog.show();
+        } catch (NullPointerException e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            popupDialog.dismiss();
+        }
     }
 
     public void showNegativeMessage(String message) {
@@ -453,9 +516,14 @@ public abstract class Level extends AppCompatActivity {
                 popupDialog.dismiss();
             }
         });
+        try {
+            popupDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            popupDialog.show();
+        } catch (NullPointerException e) {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            popupDialog.dismiss();
+        }
 
-        popupDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        popupDialog.show();
     }
 
     /*
