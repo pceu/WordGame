@@ -41,11 +41,12 @@
         <Button
             android:layout_width="170dp"
             android:layout_height="60dp"
-            android:text="Store"
+            android:text="@string/log_page"
             android:textSize="25dp"
             android:textStyle="italic"
             android:layout_marginLeft="120dp"
-            android:background="@drawable/btn_shape_round" />
+            android:background="@drawable/btn_shape_round"
+            android:onClick="GoToLogActivity"/>
 
     </LinearLayout>
 

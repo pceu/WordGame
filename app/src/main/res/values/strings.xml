@@ -7,5 +7,7 @@
     <string name="positive_message_title">Congrats!</string>
     <string name="negative_message_title">Oops!</string>
     <string name="okText">OK</string>
+    <string name="title_activity_log">LogActivity</string>
+    <string name="log_page">Log</string>
 
 </resources>

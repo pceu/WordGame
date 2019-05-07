@@ -134,6 +134,7 @@ public class LevelTwoActivity extends Level implements View.OnClickListener {
             // for clarity purpose, a playLevel method is created and call from here
             playLevel(levelData.get(userQuestionNumber));
         } catch (Exception e) {
+            addToLogList(String.valueOf(e.getMessage()));
             goToActivity(MainActivity.class);
         }
 
@@ -225,6 +226,7 @@ public class LevelTwoActivity extends Level implements View.OnClickListener {
                     }
             }
         } catch (Exception e) {
+            addToLogList(String.valueOf(e.getMessage()));
             fileList();
             startActivity(getIntent());
         }

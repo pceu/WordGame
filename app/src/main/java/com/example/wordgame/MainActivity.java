@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,9 +41,15 @@ public class MainActivity extends AppCompatActivity {
             }
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            addToLogList(String.valueOf(e.getMessage()));
             finish();
             startActivity(getIntent());
         }
+    }
+
+    public void addToLogList(String exceptionMessage) {
+        Date currentTime = Calendar.getInstance().getTime();
+        LogActivity.logList.add("[Main Activity] - " + exceptionMessage + " [" + String.valueOf(currentTime) + "]");
     }
 
     /*
@@ -74,8 +82,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void GoToLogActivity(View view) {
+        Intent i = new Intent(this, LogActivity.class);
+        startActivity(i);
+    }
+
     public void GotoSetting(View view) {
         Intent i = new Intent(this, SettingActivity.class);
         startActivity(i);
     }
+
 }

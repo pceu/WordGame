@@ -9,12 +9,16 @@
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LevelThreeActivity"></activity>
+        <activity
+            android:name=".LogActivity"
+            android:label="@string/title_activity_log"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".LevelThreeActivity" />
         <activity android:name=".LevelTwoActivity" />
         <activity android:name=".LevelOneActivity" />
         <activity android:name=".ChooseLevelActivity" />
         <activity android:name=".SettingActivity" />
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

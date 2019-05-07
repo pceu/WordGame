@@ -123,6 +123,7 @@ public class LevelOneActivity extends Level implements View.OnClickListener {
             playLevel(levelData.get(userQuestionNumber));
         } catch (Exception e) {
             // store the message e to log page
+            addToLogList(String.valueOf(e.getMessage()));
             // bring user to main page
             goToActivity(MainActivity.class);
         }
@@ -206,6 +207,7 @@ public class LevelOneActivity extends Level implements View.OnClickListener {
             }
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            addToLogList(String.valueOf(e.getMessage()));
             finish();
             startActivity(getIntent());
         }

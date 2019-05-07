@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class SplashScreen extends AppCompatActivity {
     ImageView splashScreen;
 
@@ -28,11 +31,17 @@ public class SplashScreen extends AppCompatActivity {
                     finish();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    addToLogList(String.valueOf(e.getMessage()));
                 }
             }
         };
         myThread.start();
 
+    }
+
+    public void addToLogList(String exceptionMessage) {
+        Date currentTime = Calendar.getInstance().getTime();
+        LogActivity.logList.add("[Splash Screen Activity] - " + exceptionMessage + " [" + String.valueOf(currentTime) + "]");
     }
 
 }

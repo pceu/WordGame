@@ -18,6 +18,8 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -139,6 +141,10 @@ public abstract class Level extends AppCompatActivity {
         }
     }
 
+    public void addToLogList(String exceptionMessage) {
+        Date currentTime = Calendar.getInstance().getTime();
+        LogActivity.logList.add("[level " + levelNumber +"] - " + exceptionMessage + " [" + String.valueOf(currentTime) + "]");
+    }
     /*
         clickGivenWord method
         - make disappear of the clicked button (the button given in the parameter)
@@ -156,6 +162,7 @@ public abstract class Level extends AppCompatActivity {
             }
         } catch (Exception e) {
             playLevel(levelData.get(userQuestionNumber));
+            addToLogList(String.valueOf(e.getMessage()));
         }
     }
 
@@ -181,6 +188,7 @@ public abstract class Level extends AppCompatActivity {
             }
         } catch (Exception e) {
             playLevel(levelData.get(userQuestionNumber));
+            addToLogList(String.valueOf(e.getMessage()));
         }
     }
 
@@ -207,6 +215,7 @@ public abstract class Level extends AppCompatActivity {
         } catch (Exception e) {
             // resume the question in the game of bugs occur
             playLevel(levelData.get(userQuestionNumber));
+            addToLogList(String.valueOf(e.getMessage()));
         }
     }
 
@@ -248,6 +257,7 @@ public abstract class Level extends AppCompatActivity {
             }
         } catch (Exception e) {
             playLevel(levelData.get(userQuestionNumber));
+            addToLogList(String.valueOf(e.getMessage()));
         }
     }
 
@@ -307,7 +317,7 @@ public abstract class Level extends AppCompatActivity {
         } catch (Exception e) {
             // resume the question in the game of bugs occur
             playLevel(levelData.get(userQuestionNumber));
-            // possibly store the error in the log page
+            addToLogList(String.valueOf(e.getMessage()));
         }
     }
 
@@ -330,6 +340,7 @@ public abstract class Level extends AppCompatActivity {
         } catch (Exception e) {
             // reload the question again
             playLevel(levelData.get(userQuestionNumber));
+            addToLogList(String.valueOf(e.getMessage()));
             return false;
         }
     }
@@ -441,6 +452,7 @@ public abstract class Level extends AppCompatActivity {
             }
         } catch (Exception e) {
             playLevel(levelData.get(userQuestionNumber));
+            addToLogList(String.valueOf(e.getMessage()));
         }
     }
 
@@ -479,6 +491,7 @@ public abstract class Level extends AppCompatActivity {
         } catch (IOException e) {
             Log.wtf("Level " + levelNumber + " Activity", "Error occur while reading on line" + tempString, e);
             e.printStackTrace();
+            addToLogList(String.valueOf(e.getMessage()));
             goToActivity(MainActivity.class);
         }
     }
@@ -501,6 +514,7 @@ public abstract class Level extends AppCompatActivity {
         } catch (NullPointerException e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             popupDialog.dismiss();
+            addToLogList(String.valueOf(e.getMessage()));
         }
     }
 
@@ -522,6 +536,7 @@ public abstract class Level extends AppCompatActivity {
         } catch (NullPointerException e) {
             Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             popupDialog.dismiss();
+            addToLogList(String.valueOf(e.getMessage()));
         }
 
     }
