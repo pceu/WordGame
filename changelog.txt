@@ -202,6 +202,11 @@ Note:   We have similiar xml file to some extent as I (Ceu) have changed and mes
 - [Ceu] work on bugs hunting and fixing using exception and try & catch (for all java classes in the project except Database related file).
 - [Ceu] hint is deleted from raw files level 1, 2, 3 and LevelData as we don't use it in the project (we can give the hint depending on what user has not filled in the answer). This is much more advanced than just throwing random letter to the user.
 - [Ceu] create custom exception class.
+- implement saving log file and create a separate page for log: [Ceu]
+ 	- create LogActivity [Ceu]
+ 	- all the class that catch some exception are saved and display in LogActivity [Ceu]
+ 	- modify almost all java class file [Ceu]
+ 	- create vector asset for delete button [Ceu]
 
 
 
