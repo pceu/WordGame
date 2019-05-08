@@ -208,6 +208,11 @@ Note:   We have similiar xml file to some extent as I (Ceu) have changed and mes
  	- modify almost all java class file [Ceu]
  	- create vector asset for delete button [Ceu]
 
+# Wednesday 8/May [Henry]
+- Good progress. Glad to see it's getting closer. Final stretch now. 
+- Make sure you go over everything in the Grading Criteria super carefully, to ensure you meet each point.
+
+
 
 
 
