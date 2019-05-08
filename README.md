@@ -1,11 +1,11 @@
-Title: "# Word Game" 
+# Title: "# Word Game" 
 
 Github Link - https://github.com/pceu/WordGame 
 
 Name: Phiar Ceu Hnin    Name: Nam Youn Kim
 SID : 217281975          SID: 217429291
 
-Overview
+# Overview
 	The app, Word Game, as the name suggests, is about guessing and filling letters in the given empty boxes using
  the provided question as a hint. The app does not filter or targeted any particular demographic; hence, it can be played by anyone 
 who is interested in broadening their knowledge in English language. This is because the difficulty of the game solely depends on user’s proficiency 
