@@ -2,8 +2,9 @@
 
 Github Link - https://github.com/pceu/WordGame 
 
-Name: Phiar Ceu Hnin    Name: Nam Youn Kim
-SID : 217281975          SID: 217429291
+Name: Phiar Ceu Hnin    SID : 217281975 
+
+Name: Nam Youn Kim	SID: 217429291
 
 # Overview
 The app, Word Game, as the name suggests, is about guessing and filling letters in the given empty boxes using
