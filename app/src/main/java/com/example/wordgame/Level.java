@@ -226,12 +226,18 @@ public abstract class Level extends AppCompatActivity {
        - set true to the setAnswerButton to know it has been assigned
     */
     public void setAnswer(String text) {
-        for (int i = 0; i < answerButtons.length; i++) {
-            if (!setAnswerButtons[i]) {
-                answerButtons[i].setText(text);
-                setAnswerButtons[i] = true;
-                return;
+        try {
+            for (int i = 0; i < answerButtons.length; i++) {
+                if (!setAnswerButtons[i]) {
+                    answerButtons[i].setText(text);
+                    setAnswerButtons[i] = true;
+                    return;
+                }
             }
+        } catch (Exception e) {
+            // resume the question and report the bugs to log page by adding it to the list
+            playLevel(levelData.get(userQuestionNumber));
+            addToLogList(String.valueOf(e.getMessage()));
         }
     }
 
@@ -350,9 +356,14 @@ public abstract class Level extends AppCompatActivity {
         does not need to return anything as we do not have to check the amount for increasing (increasing doesn't have any requirements to check)
      */
     public void increaseCoin(int amount) {
-        coinAmount = coinAmount + amount;
-        coinButton.setText(String.valueOf(coinAmount));
-        userDb.userDao().updateCoin(coinAmount, 1);
+        try {
+            coinAmount = coinAmount + amount;
+            coinButton.setText(String.valueOf(coinAmount));
+            userDb.userDao().updateCoin(coinAmount, 1);
+        } catch (Exception e) {
+            playLevel(levelData.get(userQuestionNumber));
+            addToLogList(String.valueOf(e.getMessage()));
+        }
     }
 
     public void setTimer(int timeInMilliSeconds) {

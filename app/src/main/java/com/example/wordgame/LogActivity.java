@@ -7,8 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -28,13 +26,12 @@ public class LogActivity extends AppCompatActivity {
         setContentView(R.layout.activity_log);
 
         try {
-            listView = (ListView)findViewById(R.id.listView);
+            listView = findViewById(R.id.listView);
             final Date currentTime = Calendar.getInstance().getTime();
             final StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(currentTime + " - ");
-            stringBuilder.append("App could not be loaded because of this!");
+            stringBuilder.append("This is test data.");
             logList.add(String.valueOf(stringBuilder));
-            Toast.makeText(this, String.valueOf(currentTime), Toast.LENGTH_SHORT).show();
 
             myAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, logList);
             listView.setAdapter(myAdapter);
@@ -47,7 +44,7 @@ public class LogActivity extends AppCompatActivity {
                     logList.clear();
                     myAdapter = null;
                     listView.setAdapter(myAdapter);
-                    Snackbar.make(view, String.valueOf(stringBuilder), Snackbar.LENGTH_LONG)
+                    Snackbar.make(view, "Log history deleted permanently!", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
                 }
             });
