@@ -2,6 +2,7 @@ package com.example.wordgame;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import androidx.appcompat.app.AppCompatActivity;
@@ -155,6 +156,14 @@ public class LevelThreeActivity extends Level implements View.OnClickListener {
             addToLogList(String.valueOf(e.getMessage()));
             goToActivity(MainActivity.class);
         }
+    }
+
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Intent i = new Intent(this, LevelThreeActivity.class);
+        startActivity(i);
     }
 
     @Override

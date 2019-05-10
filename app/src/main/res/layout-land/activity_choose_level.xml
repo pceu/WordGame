@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_background"
+    tools:context=".ChooseLevelActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="80dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="170dp"
+            android:layout_height="60dp"
+            android:text="Level 1"
+            android:textSize="25dp"
+            android:textStyle="italic"
+            android:layout_marginLeft="250dp"
+            android:background="@drawable/btn_shape_round"
+            android:onClick="ClickLevelOne" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="170dp"
+            android:layout_height="60dp"
+            android:text="Level 2"
+            android:textSize="25dp"
+            android:textStyle="italic"
+            android:layout_marginLeft="250dp"
+            android:background="@drawable/btn_shape_round"
+            android:onClick="ClickLevelTwo"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="170dp"
+            android:layout_height="60dp"
+            android:text="Level 3"
+            android:textSize="25dp"
+            android:textStyle="italic"
+            android:layout_marginLeft="250dp"
+            android:background="@drawable/btn_shape_round"
+            android:onClick="ClickLevelThree"/>
+
+    </LinearLayout>
+
+</LinearLayout>

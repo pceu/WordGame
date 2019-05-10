@@ -13,9 +13,9 @@
             android:name=".LogActivity"
             android:label="@string/title_activity_log"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".LevelThreeActivity" />
-        <activity android:name=".LevelTwoActivity" />
-        <activity android:name=".LevelOneActivity" />
+        <activity android:name=".LevelThreeActivity" android:configChanges="orientation|screenSize"/>
+        <activity android:name=".LevelTwoActivity" android:configChanges="orientation|screenSize"/>
+        <activity android:name=".LevelOneActivity" android:configChanges="orientation|screenSize"/>
         <activity android:name=".ChooseLevelActivity" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".MainActivity" />

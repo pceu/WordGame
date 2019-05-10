@@ -1,6 +1,8 @@
 package com.example.wordgame;
 
 import android.app.Dialog;
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -127,6 +129,13 @@ public class LevelOneActivity extends Level implements View.OnClickListener {
             // bring user to main page
             goToActivity(MainActivity.class);
         }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Intent i = new Intent(this, LevelOneActivity.class);
+        startActivity(i);
     }
 
     @Override
