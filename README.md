@@ -7,17 +7,17 @@ Name: Phiar Ceu Hnin    SID : 217281975
 Name: Nam Youn Kim	SID: 217429291
 
 # Overview
-The app, Word Game, as the name suggests, is about guessing and filling letters in the given empty boxes using
-the provided question as a hint. The app does not filter or targeted any particular demographic; hence, it can be played by anyone 
+	Word Game, as the name suggests, is about guessing and filling letters in the given empty boxes using
+the provided question as a hint. The app does not filter or target any particular demographic; hence, it can be played by anyone 
 who is interested in broadening their knowledge in English language. This is because the difficulty of the game solely depends on user’s proficiency 
-and familiarity in English, not with the user’s age. Currently, the app offers three levels with two different mode – with timer mode or without 
+and familiarity in English, not with their age. Currently, the app offers three levels with two different mode – with timer mode or without 
 timer mode – which they differ in their level of difficulties. With timer mode, user is only allowed to complete the question with the given time frame while 
 the other has no duration limit. To have more fun with the game, challenges do not last forever as users are supported with features that will completely skip 
 the question or give a partial alphabet from the answer. Not to be too excited, using those features require user to earn coins from answering correctly and 
 the coin are in turn used for skipping and receiving hint. Moreover, user can enjoy listening to music while playing the game, or just turn off the music if 
 user thinks it’s distracting. Because of time limited we are unable to develop some other features; however, more enjoyable features will be added over time.
 
-#Explanation of Major Features
+# Explanation of Major Features
    Level
 	There are currently three different levels in this app and the main differences between them are the number of letters of the answer and the hardness
 	to guess the word as some words in higher levels are words that are not used in our daily life. More and variety levels are planned to add in the future
