@@ -1,10 +1,13 @@
 <License file>
 
-<Main logo>
+<wordgame.png>
 http://www.wordgames.com/en/puzzle/
 
-<Coin icon>
+<coin.png>
 https://opengameart.org/content/coin-icon
 
-<Splash screen>
+<splash.png>
 https://www.peoplefun.com/
+
+<hint_button>
+https://www.freeiconspng.com/img/820
