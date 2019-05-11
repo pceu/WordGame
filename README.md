@@ -7,7 +7,7 @@ Name: Phiar Ceu Hnin    SID : 217281975
 Name: Nam Youn Kim	SID: 217429291
 
 # Overview
-	Word Game, as the name suggests, is about guessing and filling letters in the given empty boxes using
+Word Game, as the name suggests, is about guessing and filling letters in the given empty boxes using
 the provided question as a hint. The app does not filter or target any particular demographic; hence, it can be played by anyone 
 who is interested in broadening their knowledge in English language. This is because the difficulty of the game solely depends on user’s proficiency 
 and familiarity in English, not with their age. Currently, the app offers three levels with two different mode – with timer mode or without 
