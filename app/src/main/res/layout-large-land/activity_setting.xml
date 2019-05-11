@@ -13,14 +13,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="180dp">
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/music_switch"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="@string/music_text"
-            android:textSize="35sp"
+            android:textSize="45sp"
             android:textStyle="bold"
             android:textOff="@string/text_off"
             android:textOn="@string/text_on"
@@ -35,7 +35,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="@string/timer_text"
-            android:textSize="35sp"
+            android:textSize="45sp"
             android:textStyle="bold"
             android:textOff="@string/text_off"
             android:textOn="@string/text_on"

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/app_background"
+    android:orientation="vertical"
+    tools:context=".LevelTwoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/timer_level_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="450dp"
+            android:text="0:00"
+            android:textSize="40sp"
+            android:textColor="@color/white"
+            android:layout_gravity="center"/>
+        <Button
+            android:id="@+id/coinButtonL1"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="300dp"
+            android:background="@drawable/coin_box_shape"
+            android:drawableStart="@drawable/coin_icon"
+            android:layout_gravity="center"
+            android:text="10"
+            android:textSize="24sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="600dp"
+        android:layout_height="200dp"
+        android:background="@drawable/question_box"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/l1qBoard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:textSize="30sp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/l1AnswerBtn1"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="@drawable/no_shadow_answer_btn"
+            android:layout_marginEnd="10dp"
+            android:textSize="38sp"/>
+        <Button
+            android:id="@+id/l1AnswerBtn2"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="@drawable/no_shadow_answer_btn"
+            android:layout_marginEnd="10dp"
+            android:textSize="38sp"/>
+        <Button
+            android:id="@+id/l1AnswerBtn3"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="@drawable/no_shadow_answer_btn"
+            android:textSize="38sp"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/l1HintButton"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="2dp"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/hint_button" />
+        <Button
+            android:id="@+id/l1SkipButton"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="2dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/skip_button" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/l1GivenWordBtn1"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="@drawable/no_shadow_answer_btn"
+            android:layout_marginEnd="10dp"
+            android:textSize="30sp"/>
+        <Button
+            android:id="@+id/l1GivenWordBtn2"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="@drawable/no_shadow_answer_btn"
+            android:layout_marginEnd="10dp"
+            android:textSize="30sp"/>
+        <Button
+            android:id="@+id/l1GivenWordBtn3"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="@drawable/no_shadow_answer_btn"
+            android:layout_marginEnd="10dp"
+            android:textSize="30sp"/>
+
+        <Button
+            android:id="@+id/l1GivenWordBtn4"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="@drawable/no_shadow_answer_btn"
+            android:layout_marginEnd="10dp"
+            android:textSize="30sp"/>
+        <Button
+            android:id="@+id/l1GivenWordBtn5"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="@drawable/no_shadow_answer_btn"
+            android:layout_marginEnd="10dp"
+            android:textSize="30sp"/>
+        <Button
+            android:id="@+id/l1GivenWordBtn6"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:background="@drawable/no_shadow_answer_btn"
+            android:layout_marginEnd="10dp"
+            android:textSize="30sp"/>
+    </LinearLayout>
+
+</LinearLayout>
