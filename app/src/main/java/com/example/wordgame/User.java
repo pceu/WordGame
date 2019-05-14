@@ -6,9 +6,15 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+/**
+ * User is a Class for database name User and it has some user related attributes such as what levelNumber, question number and coinAmount user has.
+ * The @Entity signature inform Room that this is a database table with some columns
+ * the object of this class will be handles and created to database by some other class such as UserDao
+ */
 @Entity(tableName = "User")
 public class User {
 
+    // primary key for the table
     @PrimaryKey
     @NonNull
     private int levelNumber;

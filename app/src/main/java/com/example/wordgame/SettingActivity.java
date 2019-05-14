@@ -9,7 +9,10 @@ import android.widget.Toast;
 import java.util.Calendar;
 import java.util.Date;
 
-
+/**
+ * In setting page or activity user can either turn on or off for music and timer
+ * Other control are planned to be added, should this be further developed later
+ */
 public class SettingActivity extends AppCompatActivity {
 
     public static int bkgdchecked = 1;
@@ -23,6 +26,11 @@ public class SettingActivity extends AppCompatActivity {
     SwitchCompat timerSwitch;
     SwitchCompat musicSwitch;
 
+    /**
+     * assign some attributes with id from layout
+     * handles timerSwitch and music when click which is either to set 0 or 1
+     * @param savedInstanceState bundle object
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

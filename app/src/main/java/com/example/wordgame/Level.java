@@ -25,6 +25,37 @@ import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * Level handles all the data related to the game
+ * level 1, 2 and 3 inherits from this level
+ * Almost all properties and attributes are from this Level class. The attributes includes list of LevelData objects database object,
+   textViews, buttons, timer object, some variables to track or count value for buttons and so on.
+   This class is the backbone of the app and includes functions:
+        - playLevel
+        - addToLogList
+        - clickGivenWord
+        - clickAnswerButton
+        - putBackWordButton
+        - setAnswer
+        - resetButtons
+        - reappearButton
+        - disappearButton
+        - giveHint
+        - decreaseCoin
+        - increaseCoin
+        - setTimer
+        - isTimerOn
+        - isMusicOn
+        - validateAnswer
+        - goToActivity
+        - readLevelData
+        - showPositiveMessage
+        - showNegativeMessage
+        - onConfigurationChanged
+        - areWordBtnClickable
+        - onDestroy
+        - onPause
+ */
 public abstract class Level extends AppCompatActivity {
 
     // ================ CLASS ATTRIBUTES ==================================================================
@@ -627,26 +658,31 @@ public abstract class Level extends AppCompatActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        Intent i;
-        if(levelNumber == 1) {
-            i = new Intent(this, LevelOneActivity.class);
-        } else if(levelNumber == 2) {
-            i = new Intent(this, LevelTwoActivity.class);
-        } else {
-            i = new Intent(this, LevelThreeActivity.class);
+        try {
+            Intent i;
+            if(levelNumber == 1) {
+                i = new Intent(this, LevelOneActivity.class);
+            } else if(levelNumber == 2) {
+                i = new Intent(this, LevelTwoActivity.class);
+            } else {
+                i = new Intent(this, LevelThreeActivity.class);
+            }
+            i.putExtra("hintClickCount", hintClickCount);
+            i.putExtra("wordBtnCount", clickWordBtnCount);
+            String[] answerTexts = new String[answerButtons.length];
+            // store each answer button texts in array and pass them
+            for(int index = 0; index < answerTexts.length; index++) {
+                answerTexts[index] = String.valueOf(answerButtons[index].getText());
+            }
+            i.putExtra("answerTexts", answerTexts);
+            i.putExtra("wordButtonsClickable", areWordBtnClickable());
+            i.putExtra("currentLeftTimer", timerLeftDuration);
+            finish();
+            startActivity(i);
+        } catch (Exception e) {
+            addToLogList(String.valueOf(e.getMessage()));
+            goToActivity(MainActivity.class);
         }
-        i.putExtra("hintClickCount", hintClickCount);
-        i.putExtra("wordBtnCount", clickWordBtnCount);
-        String[] answerTexts = new String[answerButtons.length];
-        // store each answer button texts in array and pass them
-        for(int index = 0; index < answerTexts.length; index++) {
-            answerTexts[index] = String.valueOf(answerButtons[index].getText());
-        }
-        i.putExtra("answerTexts", answerTexts);
-        i.putExtra("wordButtonsClickable", areWordBtnClickable());
-        i.putExtra("currentLeftTimer", timerLeftDuration);
-        finish();
-        startActivity(i);
     }
 
     // ========= methods for passing data when configuration change
@@ -658,12 +694,17 @@ public abstract class Level extends AppCompatActivity {
      */
     public boolean[] areWordBtnClickable() {
         boolean[] result = new boolean[givenWordButtons.length];
-        for(int i = 0; i <givenWordButtons.length; i++) {
-            if(givenWordButtons[i].isClickable()) {
-                result[i] = true;
-            } else {
-                result[i] = false;
+        try {
+            for(int i = 0; i <givenWordButtons.length; i++) {
+                if(givenWordButtons[i].isClickable()) {
+                    result[i] = true;
+                } else {
+                    result[i] = false;
+                }
             }
+        } catch (Exception e) {
+            addToLogList(String.valueOf(e.getMessage()));
+            goToActivity(MainActivity.class);
         }
         return result;
     }
@@ -681,15 +722,20 @@ public abstract class Level extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        UserDatabase.destroyInstance();
-        if(isMusicOn()) {
-            // to save memory consumption we release the music and start again on onResume()
-            bkgrdmsc.release();
-            isMusicPlaying = false;
-        }
-        if (isTimerOn()) {
-            countDownTimer.cancel();
-            isTimerRunning = false;
+        try {
+            UserDatabase.destroyInstance();
+            if(isMusicOn()) {
+                // to save memory consumption we release the music and start again on onResume()
+                bkgrdmsc.release();
+                isMusicPlaying = false;
+            }
+            if (isTimerOn()) {
+                countDownTimer.cancel();
+                isTimerRunning = false;
+            }
+        } catch (Exception e) {
+            addToLogList(String.valueOf(e.getMessage()));
+            goToActivity(MainActivity.class);
         }
         finish();
     }
@@ -703,16 +749,20 @@ public abstract class Level extends AppCompatActivity {
     @Override
     protected void onPause(){
         super.onPause();
-        if(isMusicOn()) {
-            // to save memory consumption we release the music and start again on onResume()
-            bkgrdmsc.release();
-            isMusicPlaying = false;
+        try {
+            if(isMusicOn()) {
+                // to save memory consumption we release the music and start again on onResume()
+                bkgrdmsc.release();
+                isMusicPlaying = false;
+            }
+            if(isTimerOn()) {
+                countDownTimer.cancel();
+                isTimerRunning = false;
+            }
+        } catch (Exception e) {
+            addToLogList(String.valueOf(e.getMessage()));
+            goToActivity(MainActivity.class);
         }
-        if(isTimerOn()) {
-            countDownTimer.cancel();
-            isTimerRunning = false;
-        }
-        //finish();
     }
 
 

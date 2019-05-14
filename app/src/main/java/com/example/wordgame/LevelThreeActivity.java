@@ -22,6 +22,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Same as other level it inherits from Level class too
+ * This means it has common properties and attributes with some difference in buttons number, answer buttons and so on
+ * it tracks and handle when buttons are clicked and initialize attributes inherits from Level
+ */
 public class LevelThreeActivity extends Level implements View.OnClickListener {
 
     /**

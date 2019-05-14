@@ -10,7 +10,12 @@ import android.widget.Toast;
 import java.io.InputStream;
 import java.util.Arrays;
 
-
+/**
+ * LevelOneActivity simply extends Level and assign the attributes value in the onCreate method
+ * the Level data for this level only contains three alphabets for the answer; thus, this level is the easiest one
+ * the difference between this from other class is that it only has six word buttons
+ * its characteristics are mostly controlled by the Level class thus for more about the behaviours are explained in Level class
+ */
 public class LevelOneActivity extends Level implements View.OnClickListener {
 
     /**

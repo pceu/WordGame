@@ -1,5 +1,9 @@
 package com.example.wordgame;
 
+/**
+ * Level Data is a class that contains question number, question, answer, level number, and the given word for one question
+ * Objects of this class are created or loaded from raw file and populate in the Level class
+ */
 public class LevelData {
 
     private int questionNum;    // uniquely identify the question as each will be given different number (e.g. 1,2,3...)

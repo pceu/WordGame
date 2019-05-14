@@ -21,6 +21,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Child class of level
+ * handles and track buttons click in the class and calls methods that are appropriate from the parent class
+ * further explanation about its properties are in Level class as it inherits all from the Level class.
+ */
 public class LevelTwoActivity extends Level implements View.OnClickListener {
 
     /**
