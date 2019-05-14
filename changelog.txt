@@ -13,6 +13,9 @@ Friday [Both Ceu & Nam]
 	+ make a task plan for week 4
 	+ discuss further detail about the project such as sharing ideas and modifications for project
 
+Summary
+	In this week, we prepared to be more familiar with the project, discussed and made agreement on what IDE we will be using for the project. Also, we also spent some time to learn how to setup GitHub and create a repository. 
+
 ================================================ WEEK 4 =============================================================
 Wednesday
 	- research some words to be used in the game [Nam = level 1] [Ceu == level 2]
