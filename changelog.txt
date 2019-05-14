@@ -171,6 +171,10 @@ Note:   We have similiar xml file to some extent as I (Ceu) have changed and mes
 	+ create and work on coin_icon.xml - Add coin icon as a drawableStart for coin button to look nice. [Ceu]
 	+ modify activity_level_one.xml - Create textView for Timer. [Ceu]
 
+# Wednesday 30/Apr
+- Modified some code of music turn on/off. [Nam]
+- created splash screen layout with app icon. [Nam]
+
 # Thursday 2/May
   (Note: I mentioned that i use interface instead of super class as I could not figure out how to use inheritance using super class. However, after reading
          and researching online resources, came up with an idea where Level extends AppCompatActivity and level 1, 2 and 3 extends level.
@@ -215,6 +219,11 @@ Note:   We have similiar xml file to some extent as I (Ceu) have changed and mes
 - Good progress. Glad to see it's getting closer. Final stretch now. 
 - Make sure you go over everything in the Grading Criteria super carefully, to ensure you meet each point.
 
+# Saturday 11/May [Nam]
+- created a License text file.
+- the UI fit nicely on the screen, regardless of different window widths and heights.
+- Landscape mode.
+
 # Saturday 11/May 
 - finish off with README.md file task in criteria [Ceu]
 
@@ -224,6 +233,7 @@ Note:   We have similiar xml file to some extent as I (Ceu) have changed and mes
 - resume timer when configuration change (portrait and landscape) [Ceu]
 - save and resume duration when onPause [Ceu]
 - add comments for class overview [Ceu]
+
 
 
 
