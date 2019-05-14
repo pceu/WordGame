@@ -23,12 +23,21 @@ import java.util.List;
 
 public class LevelTwoActivity extends Level implements View.OnClickListener {
 
-    /*
-        The onCreate function
-        set value for some variables such as pressCount
-        assign buttons created in this class with buttons from xml file
-        assign all givenWords buttons to onClick function
-        call playLevel function which assign each object attributes to buttons, textView accordingly
+    /**
+     * The onCreate function
+     * set value for some variables such as pressCount
+     *         - assign buttons created in this class with buttons from xml file
+     *         - assign all givenWords buttons to onClick function
+     *         - call playLevel function which assign each object attributes to buttons, textView accordingly
+     *         - as attributes are inherited from Level class all the attributes are initialize in this onCreate method
+     *         - class related attributes are:
+     *             - music file
+     *             - timer
+     *             - buttons
+     *             - textView
+     *             - database and so on
+     *         - when assigning and initializing them, comments are also included
+     * @param savedInstanceState state being passed when activity is loaded
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +58,7 @@ public class LevelTwoActivity extends Level implements View.OnClickListener {
 
             maxHintGiven = 2;
             // Answer Button
-            setAnswerButtons = new Boolean[5];
+            setAnswerButtons = new boolean[5];
             answerButtons = new Button[5];
             //GIVEN WORDS BUTTONS
             givenWordButtons = new Button[8];
@@ -58,22 +67,16 @@ public class LevelTwoActivity extends Level implements View.OnClickListener {
             clickWordBtnCount = 0;
             maxWordBtnClick = 5;
             levelNumber = 2;
-            timerDuration = 120000;  // timer duration in milli seconds
-            // assign timerTextView to it's id
-            timer = findViewById(R.id.timer_level_two);
-            // check if user has turned on timer mode in the setting, and decide whether to set timer or not
-            if (isTimerOn()) {
-                setTimer(timerDuration);
-            }
+
 
             // Background Music playing code
             if (lastbkgdchecked == 1) {
                 bkgrdmsc = MediaPlayer.create(LevelTwoActivity.this, R.raw.backgroundmusic);
                 bkgrdmsc.setLooping(true);
                 bkgrdmsc.start();
+                isMusicPlaying = true;
             } else {
-                bkgrdmsc = MediaPlayer.create(LevelTwoActivity.this, R.raw.backgroundmusic);
-                bkgrdmsc.setLooping(false);
+                isMusicPlaying = false;
             }
 
 
@@ -134,6 +137,43 @@ public class LevelTwoActivity extends Level implements View.OnClickListener {
 
             // for clarity purpose, a playLevel method is created and call from here
             playLevel(levelData.get(userQuestionNumber));
+
+            // put before checking bundle as this variable will be changed if bundle is not null
+            timerLeftDuration = timerDefaultDuration;  // timer duration in milli seconds
+
+            Bundle bundle = getIntent().getExtras();
+            if(bundle != null) {
+                hintClickCount = bundle.getInt("hintClickCount");
+                clickWordBtnCount = bundle.getInt("wordBtnCount");
+                timerLeftDuration = bundle.getLong("currentLeftTimer");
+                boolean[] wordButtonsClickableValue = bundle.getBooleanArray("wordButtonsClickable");
+                for(int i = 0; i <wordButtonsClickableValue.length; i++) {
+                    if(!wordButtonsClickableValue[i]) {
+                        disappearButton(givenWordButtons[i]);
+                    }
+                }
+                String[] tempString = bundle.getStringArray("answerTexts");
+                for(int a = 0; a < tempString.length; a++) {
+                    answerButtons[a].setText(tempString[a]);
+                    if(tempString[a].equalsIgnoreCase("")) {
+                        setAnswerButtons[a] = false;
+                    } else {
+                        setAnswerButtons[a] = true;
+                    }
+                }
+            }
+
+
+            // assign timerTextView to it's id
+            timer = findViewById(R.id.timer_level_two);
+            // check if user has turned on timer mode in the setting, and decide whether to set timer or not
+            if (isTimerOn()) {
+                timer.setVisibility(TextView.VISIBLE);
+                setTimer(timerLeftDuration);
+            } else {
+                isTimerRunning = false;
+                timer.setVisibility(TextView.INVISIBLE);
+            }
         } catch (Exception e) {
             addToLogList(String.valueOf(e.getMessage()));
             goToActivity(MainActivity.class);
@@ -141,35 +181,35 @@ public class LevelTwoActivity extends Level implements View.OnClickListener {
 
     }
 
+    /**
+     * onResume()
+     * Music and timer are released and canceled when activity is on pause (to save memory consumption)
+     * when the activity is resumed, we then check again whether to resume timer or play music by checking some value
+     * related to them
+     */
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        Intent i = new Intent(this, LevelTwoActivity.class);
-        startActivity(i);
+    protected void onResume() {
+        super.onResume();
+        if(isMusicOn() && !isMusicPlaying) {
+            bkgrdmsc = MediaPlayer.create(LevelTwoActivity.this, R.raw.backgroundmusic);
+            bkgrdmsc.setLooping(true);
+            bkgrdmsc.start();
+            isMusicPlaying = true;
+        }
+        if(isTimerOn() && !isTimerRunning) {
+            setTimer(timerLeftDuration);
+        }
     }
 
-    @Override
-    protected void onDestroy() {
-        UserDatabase.destroyInstance();
-        super.onDestroy();
-    }
-
-    // If user go out from game, the background music will turn off automatically.
-    protected void onPause(){
-        super.onPause();
-        bkgrdmsc.release();
-        finish();
-    }
-
-
-    /*
-        - The onClick methods is shared by all the givenWord buttons as we use View.OnclickListener interface
-        - switch statement is used to track which button is clicked
-        - make the clicked button to disappear and set clickable to false
-        - set the clicked button value to the unassigned answerButton
-        - each time a button is pressed/clicked, clickWordBtnCount is increment to decide whether user has filled all answer buttons
-        - Once it gets to 5 for clickWordBtnCount, call validateAnswer() which will validate the answer and pass appropriate object
-          depending on user getting the answer right or wrong
+    /**
+     * The onClick methods is shared by all the givenWord buttons as we use View.OnclickListener interface
+     * switch statement is used to track which button is clicked
+     * make the clicked button to disappear and set clickable to false
+     * set the clicked button value to the unassigned answerButton
+     * each time a button is pressed/clicked, clickWordBtnCount is increment to decide whether user has filled all answer buttons
+     * Once it gets to 3 for clickWordBtnCount, call validateAnswer() which will validate the answer and pass appropriate object
+     * depending on user getting the answer right or wrong
+     * @param view view is the current view (buttons at current view assigned to this method are all track here)
      */
     @Override
     public void onClick(View view) {
