@@ -221,6 +221,8 @@ Note:   We have similiar xml file to some extent as I (Ceu) have changed and mes
 - the UI fit nicely on the screen, regardless of different window widths and heights.
 - Landscape mode.
 
+# Saturday 11/May 
+- finish off with README.md file task in criteria [Ceu]
 
 
 
