@@ -13,6 +13,10 @@ Friday [Both Ceu & Nam]
 	+ make a task plan for week 4
 	+ discuss further detail about the project such as sharing ideas and modifications for project
 
+Summary
+	In this week, we prepared to be more familiar with the project, discussed and made agreement on what IDE we will 
+be using for the project. Also, we also spent some time to learn how to setup GitHub and create a repository. 
+
 ================================================ WEEK 4 =============================================================
 Wednesday
 	- research some words to be used in the game [Nam = level 1] [Ceu == level 2]
@@ -33,6 +37,13 @@ Friday & Saturday
 Henry notes
 	- Excellent progress listed.
 	- BUT: please also say WHO did each task (at the end of the line, add [NAME]), so I can match it with attendance.php and assign correct grade allocations at end of trimester.
+
+Summary
+	In this week, we are able to complete the weekly tasks that are planned for week 4. We research words that we will be using for 
+each level and decide words that has more letters will be used for higher (3 for level 1, 5 for level 2 and so on). We also create 
+questions (to give hint about the word) which took more time than we expected. There are also other tasks we do that are not listed 
+for week 4 such as re-design class structure again, resolve issue with GitHub and so on. However, compare with our milestones from project 
+plan we are still on the track so far.
 
 ================================== WEEK 5==================================================================================
 ## Week 5, Wednesday 3/April [Henry]
@@ -63,15 +74,15 @@ Note:   We have similiar xml file to some extent as I (Ceu) have changed and mes
 	on GitHub, errors stopped Nam to proceed with pushing his work. Therefore, Nam figured out and fixed the issue by combining his xml file with Ceu's work
 	on level 2.
 
+Summary
+	We are slightly falling behind compare to the task we plan to finish in this week as both of us are super busy with other assessments. 
+However, we discuss this matter and agree to catch up (commit more time than before) in week 6. We cannot finish all level 1, 2 and 3.
+
 
 
 ================================== WEEK 6 ==================================================================================
 # Monday 8/April [Henry]
 - This project is falling behind. You should be finished your primary feature by now. You need much more work to pass.
-
-# Thursday 11/April [Henry]
-- Good to see code comments improve.
-- This file MUST BE UPDATED every day (every work session), per person, to tell the other person what was changed. Otherwise we don't have a summary (me or your teammate) of what you changed.
 
 # Monday 8/April
 - assign Level object attributes to appropriate buttons and textView on the screen [Ceu]
@@ -87,6 +98,10 @@ Note:   We have similiar xml file to some extent as I (Ceu) have changed and mes
 - completed level feature for all level 1, 2 and 3. [Ceu]
 - meet with group partner and split tasks for this week [Ceu] [Nam]
 - Nam is assigned to 'Coin' feature; and Ceu is assigned to 'Hint' feature
+
+# Thursday 11/April [Henry]
+- Good to see code comments improve.
+- This file MUST BE UPDATED every day (every work session), per person, to tell the other person what was changed. Otherwise we don't have a summary (me or your teammate) of what you changed.
 
 # Thursday 11/April
 - created and added three csv files for level 1, 2 and 3 into the project [Ceu]
@@ -104,6 +119,12 @@ Note:   We have similiar xml file to some extent as I (Ceu) have changed and mes
 - Designed coin icon and coin box at all layout page [Nam]
 - Tried that increasing coin when user find a correct answer [Nam]
 - update changelog.txt for this week [Both]
+
+Summary
+	Like we mentioned in the previous week, we commit more time than before to catch up with our milestone on the project. We finish the task 
+listed for both week 5 and 6 in this week except increasing coin number when user gets correct answer. However, this is not a case that
+ we intentionally left this, but we are in a situation that we need more time to read the program and implement this feature correctly. We did try 
+to implement this feature in this week.
 
 
 ================================== WEEK 7 ==================================================================================
@@ -128,6 +149,12 @@ Note:   We have similiar xml file to some extent as I (Ceu) have changed and mes
 # Sunday 21/April
 - research and study about Room (storing technique in Android) to implement this in the project [Ceu]
 - Add function that music turn on and off [Nam]
+
+Summary
+	In this week, we are able to complete and implement the coin feature that we could not finish in week 6. Although we are able to finish all the tasks 
+listed for week 7 (music and skip features), we are struggling and misunderstanding with Henry’s suggestion. It needs to re-program all the levels as one not 
+as a different class for each one. After a group meeting, we decided our program to change in a way that fits Henry’s suggestion as our app does not meet a 
+professional coding level. We plan to give some time on Easter break to study and modify our project.
 
 ================================ EASTER BREAK + WEEK 8 =========================================================================================
 # Wednesday 24/April [Ceu]
@@ -193,6 +220,12 @@ Note:   We have similiar xml file to some extent as I (Ceu) have changed and mes
 	+ add values to colors.xml
 	+ add values to strings.xml
 
+Summary
+	Like we planned on week 7, we committed time during Easter break to solve the problem with levels. As a solution, an interface is created and implements 
+from level 1, 2 and 3. However, this does not reduce code redundancy and does not solve the problem at all. After some further study in week 8, we figure out
+a way to use super class for all levels and extends the super class which solve the problem with code redundancy and repetition in the three levels. We are able 
+to finish week 8 tasks in our milestone as well in this week.
+
 =========================== WEEK 9 ========================================================================================
 
 # Monday 6/May
@@ -224,12 +257,23 @@ Note:   We have similiar xml file to some extent as I (Ceu) have changed and mes
 # Saturday 11/May 
 - finish off with README.md file task in criteria [Ceu]
 
+Summary 
+	After a long discussion between team members and replies from Henry, the unit chair, we decide to drop out week 9 features as we agree to focus more on 
+hunting bugs and fixing them. We successfully implementing code quality as stated in the project marking criteria. Unexpectedly, we are having trouble with resuming 
+the game when screen rotate; we spend a certain amount of time to figure this out but we cannot in this week. Initially, we planned only to record video in week 10 but we decide 
+to give some more time on this and solve in week 10.
+
 ========================  WEEK 10 ============================================================================================
 # Tuesday 14/May
 - resume game when configuration change (portrait and landscape) [Ceu]
 - resume timer when configuration change (portrait and landscape) [Ceu]
 - save and resume duration when onPause [Ceu]
 - add comments for class overview [Ceu]
+
+
+
+Summary
+	After two days spending for resuming game when screen rotate, we are able to resolve this problem.
 
 
 
