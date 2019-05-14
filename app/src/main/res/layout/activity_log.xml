@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".LogActivity">
 
+    <include layout="@layout/content_log" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -13,9 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:backgroundTint="@color/appBackgroundStart"
+        app:backgroundTint="@color/appBackgroundStart"
         app:srcCompat="@drawable/ic_delete_forever" />
-
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
