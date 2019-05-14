@@ -9,5 +9,6 @@
     <string name="okText">OK</string>
     <string name="title_activity_log">LogActivity</string>
     <string name="log_page">Log</string>
+    <string name="default_timer_text">0:00</string>
 
 </resources>

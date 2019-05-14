@@ -224,6 +224,13 @@ Note:   We have similiar xml file to some extent as I (Ceu) have changed and mes
 # Saturday 11/May 
 - finish off with README.md file task in criteria [Ceu]
 
+========================  WEEK 10 ============================================================================================
+# Tuesday 14/May
+- resume game when configuration change (portrait and landscape) [Ceu]
+- resume timer when configuration change (portrait and landscape) [Ceu]
+- save and resume duration when onPause [Ceu]
+- add comments for class overview [Ceu]
+
 
 
 

@@ -6,11 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * ChooseLevelActivity is simple as it only navigate to level 1, 2 and 3
+ * comments are not added for methods as they are too simple and clear from just seeing them
+ */
 public class ChooseLevelActivity extends AppCompatActivity {
-
-    Button levelOneButton;
-    Button levelTwoButton;
-    Button levelThreeButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

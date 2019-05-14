@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="160dp"
-            android:text="0:00"
+            android:text="@string/default_timer_text"
             android:textSize="40sp"
             android:textColor="@color/white"
             android:layout_gravity="center"/>
@@ -31,7 +31,6 @@
             android:background="@drawable/coin_box_shape"
             android:drawableStart="@drawable/coin_icon"
             android:layout_gravity="center"
-            android:text="10"
             android:textSize="24sp"/>
     </LinearLayout>
 
