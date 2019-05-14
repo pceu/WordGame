@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -31,6 +32,10 @@ public class SettingActivity extends AppCompatActivity {
      * handles timerSwitch and music when click which is either to set 0 or 1
      * @param savedInstanceState bundle object
      */
+
+    // Legal button
+    private Button button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +96,20 @@ public class SettingActivity extends AppCompatActivity {
             startActivity(getIntent());
         }
 
+        // Legal button OnClickListener
+        button = (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDialog();
+            }
+        });
 
+    }
+
+    public  void openDialog() {
+        LegalDialog legalDialog = new LegalDialog();
+        legalDialog.show(getSupportFragmentManager(), "Legal Dialog");
     }
 
     public void addToLogList(String exceptionMessage) {

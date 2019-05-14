@@ -1,13 +1,16 @@
 <License file>
 
-<wordgame.png>
+<wordgame.png> CoolGames b.v. CC0
 http://www.wordgames.com/en/puzzle/
 
-<coin.png>
+<coin.png> galangpiliang CC0
 https://opengameart.org/content/coin-icon
 
-<splash.png>
+<splash.png> Richardson CC0
 https://www.peoplefun.com/
 
-<hint_button>
+<hint_button> Ahkam CC0
 https://www.freeiconspng.com/img/820
+
+<backgroundmusic.mp3> WP Weaver CC0
+https://soundimage.org/puzzle-music-2/
