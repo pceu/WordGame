@@ -269,6 +269,12 @@ to give some more time on this and solve in week 10.
 - resume timer when configuration change (portrait and landscape) [Ceu]
 - save and resume duration when onPause [Ceu]
 - add comments for class overview [Ceu]
+- add legal dialog in setting page for all layouts [Nam]
+
+# Wednesday 15/May
+- add home button at the left top on the game [Nam]
+- modified some license file [Nam]
+- change to image which can use free [Nam]
 
 
 

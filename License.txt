@@ -1,16 +1,16 @@
 <License file>
 
-<wordgame.png> CoolGames b.v. CC0
-http://www.wordgames.com/en/puzzle/
+<wordgame.png> Clipartoo.com CC0
+http://www.clipartroo.com/download-clipart-44878.html
 
 <coin.png> galangpiliang CC0
 https://opengameart.org/content/coin-icon
 
-<splash.png> Richardson CC0
-https://www.peoplefun.com/
+<splash_screen.png> Skitterphoto CC0
+https://www.pexels.com/photo/words-text-scrabble-blocks-695571/
 
 <hint_button> Ahkam CC0
 https://www.freeiconspng.com/img/820
 
-<backgroundmusic.mp3> WP Weaver CC0
+<backgroundmusic.mp3> Eric Matyas CC0
 https://soundimage.org/puzzle-music-2/
