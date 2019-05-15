@@ -14,3 +14,29 @@ https://www.freeiconspng.com/img/820
 
 <backgroundmusic.mp3> Eric Matyas CC0
 https://soundimage.org/puzzle-music-2/
+
+<answer_btn_shadow.png> made by us
+
+<hint_button.png> made by us
+
+<ic_card_giftcard.xml> inbuilt
+
+<ic_check_circle.xml> inbuilt
+
+<ic_delete_forever.xml> inbuilt
+
+<ic_error_outline.xml> inbuilt
+
+<ic_launcher_background.xml> inbuilt
+
+<no_shadow_answer_btn.png> made by us
+
+<question_box.png> made by us
+
+<skip_button.png> made by us
+
+<splash_screen.jpg> made by us
+
+
+
+
