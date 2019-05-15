@@ -293,7 +293,7 @@ public class LevelThreeActivity extends Level implements View.OnClickListener {
                         giveHint();
                         hintClickCount++;
                     } else {
-                        showNegativeMessage("Not enough coin for hint or user has reach maximum number of hint given for current level. A single use of Skip needs 10 coins.");
+                        showNegativeMessage("Insufficient coin or user has reach maximum number of hint given for current level.");
                     }
                 case R.id.coinButtonL3:
                     break;
