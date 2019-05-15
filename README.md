@@ -18,6 +18,7 @@ the coin are in turn used for skipping and receiving hint. Moreover, user can en
 user thinks it’s distracting. Because of time limited we are unable to develop some other features; however, more enjoyable features will be added over time.
 
 # Explanation of Major Features
+  As we only have limited time for project video, we list major features here and some include features that we could not mention in the video.
    Level
 	There are currently three different levels in this app and the main differences between them are the number of letters of the answer and the hardness
 	to guess the word as some words in higher levels are words that are not used in our daily life. More and variety levels are planned to add in the future
@@ -36,8 +37,20 @@ user thinks it’s distracting. Because of time limited we are unable to develop s
    Resume user progress (storing and retrieving from Room)
 	User progress during the game such as level number, question number and coin number are saved into local database using Room in Android. This allows user
 	 to resume the question they are up to and save the coin number from the previous play.
-   # Backgrouond Music
+   Backgrouond Music
 	Background music is added in the game and played by default, however, user can turn on or off from the setting page.
+   Erase Answer
+	The word game allows user to click the answer button and put them back in the place they are before which really efficient for user as some does not allow
+	user to erase and put back the letter.
+   Resuming game when screen rotate
+	User want to resume their game when the screen change from portrait to landscape and vice versa. This app also allows user to continue/resume the game
+	when configuration is changed. This include resuming the timer when changing from portrait to landscape.
+   Pause timer and release music when app is not active
+	It is annoying to continue the timer in the game when user just switch to other app while playing games. This app pause timer and release the music and resume
+	once user switch back to the game.
+   Keeping Errors in Log page
+	This is one of the HD task for this project to present errors and bugs to user in a log page. We try and catch any error and saved them in the log activity so that user
+	can view them. Once user does not need them anymore, user can delete the list view with just one press.
 
 # Main Project File & Instruction)
 
@@ -88,9 +101,10 @@ user thinks it’s distracting. Because of time limited we are unable to develop s
 	Raw: Files such as csv file type and music file (mp3 in our case) are stored in this directory. CSV file contains Level question number, question, answer and so on.
 	     
 # Advanced Features
-	- Room Database [Ceu]
-	- Input Stream & Buffer Reader (reading data from raw file in Android) [Ceu]
-	- Inheritance in Java [Ceu] & [Nam]
+	- Room Database
+	- Input Stream & Buffer Reader (reading data from raw file in Android)
+	- Inheritance in Java
+	- Saving State (resuming game in change of configuration)
 
 
 
