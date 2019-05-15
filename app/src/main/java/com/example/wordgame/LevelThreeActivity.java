@@ -115,9 +115,6 @@ public class LevelThreeActivity extends Level implements View.OnClickListener {
             // set answerButtons to false for all index
             Arrays.fill(setAnswerButtons, Boolean.FALSE);
 
-            // load the font for text in this level
-            Typeface customFont = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/felaFromAssets.otf");
-
             // ================ coin section =======================
             // assign button for coinButton
             // get the coinAmount saved in the Database and set the coinAmount
@@ -134,7 +131,6 @@ public class LevelThreeActivity extends Level implements View.OnClickListener {
 
             // assign buttons for givenWord buttons
             givenWordButtons[0] = findViewById(R.id.l3GivenWordBtn1);
-            givenWordButtons[0].setTypeface(customFont);
             givenWordButtons[1] = findViewById(R.id.l3GivenWordBtn2);
             givenWordButtons[2] = findViewById(R.id.l3GivenWordBtn3);
             givenWordButtons[3] = findViewById(R.id.l3GivenWordBtn4);
