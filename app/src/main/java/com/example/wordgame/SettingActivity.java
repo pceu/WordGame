@@ -106,6 +106,7 @@ public class SettingActivity extends AppCompatActivity {
 
     }
 
+    // Show legal dialog on setting page
     public  void openDialog() {
         LegalDialog legalDialog = new LegalDialog();
         legalDialog.show(getSupportFragmentManager(), "Legal Dialog");

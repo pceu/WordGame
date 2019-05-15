@@ -14,11 +14,22 @@
         android:orientation="horizontal"
         android:layout_gravity="center">
 
+        <Button
+            android:onClick="homeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/home_button_shape"
+            android:text="Home"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/timer_level_two"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="160dp"
+            android:layout_marginStart="70dp"
             android:text="@string/default_timer_text"
             android:textSize="40sp"
             android:textColor="@color/white"
@@ -27,7 +38,7 @@
             android:id="@+id/coinButtonL2"
             android:layout_width="120dp"
             android:layout_height="50dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="40dp"
             android:background="@drawable/coin_box_shape"
             android:drawableStart="@drawable/coin_icon"
             android:layout_gravity="center"

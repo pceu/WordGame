@@ -13,11 +13,22 @@
         android:orientation="horizontal"
         android:layout_gravity="center">
 
+        <Button
+            android:onClick="homeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/home_button_shape"
+            android:text="Home"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/timer_level_three"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="300dp"
+            android:layout_marginStart="200dp"
             android:text="@string/default_timer_text"
             android:textSize="40sp"
             android:textColor="@color/white"

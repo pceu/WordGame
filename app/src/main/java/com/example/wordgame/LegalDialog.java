@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 public class LegalDialog extends AppCompatDialogFragment {
     @Override
+    // In dialog, can see the text message with license
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Legal License")

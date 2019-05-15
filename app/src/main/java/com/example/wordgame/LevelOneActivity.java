@@ -1,6 +1,7 @@
 package com.example.wordgame;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -275,6 +276,12 @@ public class LevelOneActivity extends Level implements View.OnClickListener {
             finish();
             startActivity(getIntent());
         }
+    }
+
+    // Go back to Main page
+    public void homeButton(View view) {
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
     }
 
 

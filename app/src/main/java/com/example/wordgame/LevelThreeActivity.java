@@ -318,5 +318,10 @@ public class LevelThreeActivity extends Level implements View.OnClickListener {
         }
     }
 
+    // Go back to Main page
+    public void homeButton(View view) {
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
+    }
 
 }
