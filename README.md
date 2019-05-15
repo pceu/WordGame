@@ -1,4 +1,4 @@
-# Title: "# Word Game" 
+# Title: Word Game
 
 Github Link - https://github.com/pceu/WordGame 
 
@@ -87,9 +87,10 @@ user thinks it’s distracting. Because of time limited we are unable to develop s
 
 	Raw: Files such as csv file type and music file (mp3 in our case) are stored in this directory. CSV file contains Level question number, question, answer and so on.
 	     
-
-		
-
+# Advanced Features
+	- Room Database [Ceu]
+	- Input Stream & Buffer Reader (reading data from raw file in Android) [Ceu]
+	- Inheritance in Java [Ceu] & [Nam]
 
 
 
