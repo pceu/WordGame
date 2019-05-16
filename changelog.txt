@@ -1,4 +1,4 @@
-﻿Week 3
+﻿============================================ Week 3 ================================================================
 Wednesday (20/03/2019) [Both Nam & Ceu]
 	- contact each other to 
 		+ discuss which platform and IDE (Android Studio) we will be basing for our project
@@ -275,11 +275,13 @@ to give some more time on this and solve in week 10.
 - add home button at the left top on the game [Nam]
 - modified some license file [Nam]
 - change to image which can use free [Nam]
-
+- design own app icon [Ceu]
+- record video [Nam] [Ceu]
 
 
 Summary
-	After two days spending for resuming game when screen rotate, we are able to resolve this problem.
+	After two days spending for resuming game when screen rotate, we are able to resolve this problem. On Wednesday, we some time to proof checking our images, resources
+with their link to ensure that they are free to use, and under CC license. After this, we spent recording, editing, exporting and compressing the video.
 
 
 

@@ -768,7 +768,12 @@ public abstract class Level extends AppCompatActivity {
 
     /*
         ====== LEARNING SUMMARY
-        - creating an interface - https://www.geeksforgeeks.org/interfaces-in-java/
+        - super class - https://www.geeksforgeeks.org/super-keyword/
+        - read row file - https://www.youtube.com/watch?v=i-TqNzUryn8
+        - timer - https://developer.android.com/reference/android/os/CountDownTimer & https://www.youtube.com/watch?v=zmjfAcnosS0
+        - Room  - https://developer.android.com/training/data-storage/room/index.html
+                - https://www.lynda.com/Android-tutorials/Android-App-Development-Data-Persistence-Libraries/540500-2.html
+                - https://www.lynda.com/Android-tutorials/Android-App-Development-Essentials-Local-Data-Storage/486757-2.html
 
      */
 

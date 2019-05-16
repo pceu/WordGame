@@ -102,10 +102,10 @@ user thinks it’s distracting. Because of time limited we are unable to develop s
 	Raw: Files such as csv file type and music file (mp3 in our case) are stored in this directory. CSV file contains Level question number, question, answer and so on.
 	     
 # Advanced Features
-	- Room Database
-	- Input Stream & Buffer Reader (reading data from raw file in Android)
-	- Inheritance in Java
-	- Saving State (resuming game in change of configuration)
+	- Room Database: apply in Level (including Level 1, 2 and 3)
+	- Input Stream & Buffer Reader (reading data from raw file in Android): apply in Level class (including Level 1, 2 and 3)
+	- Inheritance in Java: apply in Level class
+	- Saving State (resuming game in change of configuration): apply in Level class (including Level 1, 2 and 3)
 
 
 
