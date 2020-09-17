@@ -1,6 +1,6 @@
 # Title: Word Game
 
-Contributors: Phiar Ceu Hnin and Nam Youn Kim 
+Developers: Phiar Ceu Hnin and Nam Youn Kim 
 
 # Overview
 Word Game, as the name suggests, is about guessing and filling letters in the given empty boxes using
