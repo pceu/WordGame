@@ -1,21 +1,17 @@
 # Title: Word Game
 
-Github Link - https://github.com/pceu/WordGame 
-
-Name: Phiar Ceu Hnin    SID : 217281975 
-
-Name: Nam Youn Kim	SID: 217429291
+Contributors: Phiar Ceu Hnin and Nam Youn Kim 
 
 # Overview
 Word Game, as the name suggests, is about guessing and filling letters in the given empty boxes using
 the provided question as a hint. The app does not filter or target any particular demographic; hence, it can be played by anyone 
-who is interested in broadening their knowledge in English language. This is because the difficulty of the game solely depends on user’s proficiency 
-and familiarity in English, not with their age. Currently, the app offers three levels with two different mode – with timer mode or without 
-timer mode – which they differ in their level of difficulties. With timer mode, user is only allowed to complete the question with the given time frame while 
+who is interested in broadening their knowledge in English language. This is because the difficulty of the game solely depends on userâ€™s proficiency 
+and familiarity in English, not with their age. Currently, the app offers three levels with two different mode â€“ with timer mode or without 
+timer mode â€“ which they differ in their level of difficulties. With timer mode, user is only allowed to complete the question with the given time frame while 
 the other has no duration limit. To have more fun with the game, challenges do not last forever as users are supported with features that will completely skip 
 the question or give a partial alphabet from the answer. Not to be too excited, using those features require user to earn coins from answering correctly and 
 the coin are in turn used for skipping and receiving hint. Moreover, user can enjoy listening to music while playing the game, or just turn off the music if 
-user thinks it’s distracting. Because of time limited we are unable to develop some other features; however, more enjoyable features will be added over time.
+user thinks itâ€™s distracting. Because of time limited we are unable to develop some other features; however, more enjoyable features will be added over time.
 
 # Explanation of Major Features
 
@@ -33,7 +29,7 @@ user thinks it’s distracting. Because of time limited we are unable to develop s
 	Skipping the question needs more coins (30 coins) as it just brings the user to the next question page without needing to answer anything. 
    - Timer: 
 	We cannot say it is reality when we are not controlled by time; too little of excitement, joyfulness and challenges are involved without time.
-	Just because of this, ‘Timer’ is added and requires users to complete the answer within the time given on the screen. To use this feature, 
+	Just because of this, â€˜Timerâ€™ is added and requires users to complete the answer within the time given on the screen. To use this feature, 
 	user can go to setting and turn on or off the timer.
    - Resume user progress (storing and retrieving from Room): 
 	User progress during the game such as level number, question number and coin number are saved into local database using Room in Android. This allows user
